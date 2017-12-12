@@ -9,65 +9,37 @@ using Windows.Devices.Enumeration;
 
 namespace rMultiplatform.BLE
 {
-	public class UnPairedDeviceBLE : IDeviceBLE
+
+    #region unpaired
+    public class UnPairedDeviceBLE : IDeviceBLE
 	{
 		public volatile DeviceInformation Information;
 		public event DeviceSetupComplete Ready;
 		public event ChangeEvent Change;
 
-		public string Id
-		{
-			get
-			{
-				return Information.Id;
-			}
-		}
-		public string Name
-		{
-			get
-			{
-				return Information.Name;
-			}
-		}
-		public bool Paired
-		{
-			get
-			{
-				return Information.Pairing.IsPaired;
-			}
-		}
-		public bool CanPair
-		{
-			get
-			{
-				return Information.Pairing.CanPair;
-			}
-		}
-		public UnPairedDeviceBLE(DeviceInformation pInput) { Information = pInput; }
-		public override string ToString()
-		{
-			return Name + "\n" + Id;
-		}
+		public string Id => Information.Id;
+		public string Name => Information.Name;
+		public bool Paired => Information.Pairing.IsPaired;
+		public bool CanPair => Information.Pairing.CanPair;
 
-		public void Remake(object o)
+		public UnPairedDeviceBLE(DeviceInformation pInput) { Information = pInput; }
+		public override string ToString() => Name + "\n" + Id;
+
+        public void Remake(object o)
 		{
 			throw new NotImplementedException();
 		}
-
 		public void Unregister()
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<IServiceBLE> Services
-		{
-			get
-			{
-				return null;
-			}
-		}
+		public List<IServiceBLE> Services => null;
 	}
-	public class PairedDeviceBLE : IDeviceBLE
+    #endregion
+
+
+    public class PairedDeviceBLE : IDeviceBLE
 	{
 		private BluetoothLEDevice mDevice;
 		private List<IServiceBLE> mServices;
@@ -79,62 +51,27 @@ namespace rMultiplatform.BLE
 			Ready?.Invoke(this);
 			Ready = null;
 		}
-		private void InvokeChange(object o, CharacteristicEvent v)
-		{
-			Change?.Invoke(o, v);
-		}
 
-		public string Id
-		{
-			get
-			{
-				return mDevice.DeviceId;
-			}
-		}
-		public string Name
-		{
-			get
-			{
-				return mDevice.Name;
-			}
-		}
-		public bool Paired
-		{
-			get
-			{
-				return mDevice.DeviceInformation.Pairing.IsPaired;
-			}
-		}
-		public bool CanPair
-		{
-			get
-			{
-				return mDevice.DeviceInformation.Pairing.CanPair;
-			}
-		}
-		public List<IServiceBLE> Services
-		{
-			get
-			{
-				return mServices;
-			}
-		}
+		private void                InvokeChange(object o, CharacteristicEvent v) => Change?.Invoke(o, v);
+        public  void                Unregister()    => Deregister();
+        public  string              Id              => mDevice.DeviceId;
+		public  string              Name            => mDevice.Name;
+        public override string      ToString()      => Name + "\n" + Id;
+		public  bool                Paired          => mDevice.DeviceInformation.Pairing.IsPaired;
+		public  bool                CanPair         => mDevice.DeviceInformation.Pairing.CanPair;
+		public  List<IServiceBLE>   Services        => mServices;
 
-		private int Uninitialised = 0;
+        private int Uninitialised = 0;
 		private void ItemReady()
 		{
 			--Uninitialised;
 			Debug.WriteLine("Service count remaining = " + Uninitialised.ToString());
-			if (Uninitialised == 0)
-				TriggerReady();
+			if (Uninitialised == 0) TriggerReady();
 		}
 		private async void Build()
 		{
-			await mDevice.GetGattServicesAsync().AsTask().ContinueWith((obj) =>
-			{
-				Debug.WriteLine("Found Services.");
-				ServicesAquired(obj.Result);
-			});
+            var obj = await mDevice.GetGattServicesAsync();
+            ServicesAquired(obj);
 		}
 		private void ServicesAquired(GattDeviceServicesResult result)
 		{
@@ -143,10 +80,6 @@ namespace rMultiplatform.BLE
 			Uninitialised = services.Count;
 			foreach (var service in services)
 				mServices.Add(new ServiceBLE(service, ItemReady, InvokeChange));
-		}
-		public override string ToString()
-		{
-			return Name + "\n" + Id;
 		}
 		public void Remake(object o)
 		{
@@ -176,7 +109,8 @@ namespace rMultiplatform.BLE
 			if (sender.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
 			{
 				Debug.WriteLine("Reconnecting...");
-				await BluetoothLEDevice.FromIdAsync(sender.DeviceId).AsTask().ContinueWith((obj) => { ConnectionComplete(obj.Result); });
+                var rslt = await BluetoothLEDevice.FromIdAsync(sender.DeviceId);
+                ConnectionComplete(rslt);
 			}
 			else
 				ConnectionComplete(sender);
@@ -190,10 +124,6 @@ namespace rMultiplatform.BLE
 			Debug.WriteLine("Connection complete end.");
 		}
 
-		public void Unregister()
-		{
-			Deregister();
-		}
 
 		public PairedDeviceBLE(BluetoothLEDevice pInput, DeviceSetupComplete pReady)
 		{

@@ -61,27 +61,27 @@ namespace rMultiplatform.BLE
 			}
 		}
 
-		private void ConnectionComplete( UnPairedDeviceBLE input )
+		private async void ConnectionComplete( UnPairedDeviceBLE input )
 		{
-			BluetoothLEDevice.FromIdAsync(input.Information.Id).AsTask().ContinueWith(
-			(obj)=>
-			{
-				Debug.WriteLine("Connection Complete.");
-				if (obj.Result == null)
-					return;
+            var obj = await BluetoothLEDevice.FromIdAsync(input.Information.Id);
 
-				var temp = new PairedDeviceBLE(obj.Result, (dev) =>
-				{
-					Debug.WriteLine("Enumeration Complete.");
-					TriggerDeviceConnected(dev);
-				});
+			Debug.WriteLine("Connection Complete.");
+			if (obj == null)
+				return;
+
+			var temp = new PairedDeviceBLE(obj, (dev) =>
+			{
+				Debug.WriteLine("Enumeration Complete.");
+
+                TriggerDeviceConnected(dev);
 			});
 		}
 		public void Connect(IDeviceBLE pInput)
 		{
 			Debug.WriteLine("Connecting to : " + pInput.Id);
+            Stop();
 
-			var inputType = pInput.GetType();
+            var inputType = pInput.GetType();
 			var searchType = typeof(UnPairedDeviceBLE);
 
 			if (inputType == searchType)

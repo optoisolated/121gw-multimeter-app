@@ -85,15 +85,7 @@ namespace rMultiplatform.BLE
 		private void MClient_DeviceConnected(IDeviceBLE pDevice)
 		{
 			IsBusy = false;
-			try
-			{
-				Connected?.Invoke(pDevice);
-				mClient.Stop();
-			}
-			catch
-			{
-				Debug.WriteLine("Error Caught : private void MClient_DeviceConnected(IDeviceBLE pDevice)");
-			}
+			Connected?.Invoke(pDevice);
 		}
 		private void OnSelection(object sender, SelectedItemChangedEventArgs e)
 		{

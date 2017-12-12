@@ -112,17 +112,19 @@ namespace rMultiplatform.BLE
 		}
 
 		public void TriggerDeviceConnected(IDeviceBLE pInput)
-		{
-			RunMainThread(() =>
-			{
-				Debug.WriteLine("Finished connecting to : " + pInput.Id);
-				if (mConnectedDevices != null)
-					mConnectedDevices.Add(pInput);
+        {
+            MutexBlock(() =>
+            {
+                Debug.WriteLine("Finished connecting to : " + pInput.Id);
+                    if (mConnectedDevices != null)
+                        mConnectedDevices.Add(pInput);
+                    RemoveDevice(pInput);
+            });
 
-				DeviceConnected?.Invoke(pInput);
-				RemoveDevice(pInput);
+            Globals.RunMainThread(() =>
+            {
+                DeviceConnected?.Invoke(pInput);
 			});
-
 		}
 
 		public void MutexBlock(Action Function, string tag = "")
@@ -182,20 +184,6 @@ namespace rMultiplatform.BLE
 			if (mVisibleDevices == null)
 				return new ObservableCollection<IDeviceBLE>();
 			return mVisibleDevices;
-		}
-		public void RunMainThread(Action input)
-		{
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				try
-				{
-					input?.Invoke();
-				}
-				catch
-				{
-					Debug.WriteLine("Error Caught :  public void RunMainThread(Action input)");
-				}
-			});
 		}
 	}
 }

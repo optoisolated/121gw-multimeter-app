@@ -41,7 +41,7 @@ namespace rMultiplatform
 			}
 		}
 
-		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 52);
+		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 38);
         Packet121GW processor = new Packet121GW();
 		public MultimeterScreen Screen;
 		public MultimeterMenu Menu;
@@ -63,14 +63,22 @@ namespace rMultiplatform
             }
         }
         private string _ChartTitle = "NOT_A_TITLE";
+
+        bool TitleSetDeferred = false;
         public string ChartTitle
         {
             set
             {
-                if (value != _ChartTitle)
+                if (value != _ChartTitle || TitleSetDeferred)
                 {
+                    if (Chart == null)
+                        TitleSetDeferred = true;
+                    else
+                    {
+                        Chart.Title = value;
+                        TitleSetDeferred = false;
+                    }
 
-                    Chart.Title = value;
                     _ChartTitle = value;
                     base.OnPropertyChanged("ChartTitle");
                     Reset();
@@ -78,24 +86,30 @@ namespace rMultiplatform
             }
         }
 
+
+        private bool PacketReady => processor.PacketReady && Screen != null && Logger != null;
+
         void ProcessPacket(byte[] pInput)
 		{
-			try
-			{
-				processor.ProcessPacket(pInput);
-                Id = processor.Serial.ToString();
+			processor.ProcessPacket(pInput);
 
-                Logger.Sample(processor.MainValue);
+            if (PacketReady)
+            {
+                try
+                {
+                    Id = processor.Serial.ToString();
+                    Logger.Sample(processor.MainValue);
+                    ChartTitle = processor.MainRangeLabel;
+                    Screen.Update(processor);
+                    Screen.InvalidateSurface();
+                }
+                catch
+                {
 
-                ChartTitle = processor.MainRangeLabel;
-
-                Screen.Update(processor);
-				Screen.InvalidateSurface();
-			}
-			catch
-			{
-				MyProcessor.Reset();
-			}
+                }
+            }
+            else
+                MyProcessor.Reset();
 		}
 		public void Reset() => Logger.Reset();
 		public Multimeter ( BLE.IDeviceBLE pDevice )
@@ -138,7 +152,7 @@ namespace rMultiplatform
 			ChartMenu.ResetClicked  += (s, e) => { Reset();		 };
 
 			DefineGrid(1, 4);
-			AutoAdd(Screen);	FormatCurrentRow(GridUnitType.Star);
+			AutoAdd(Screen);	FormatCurrentRow(GridUnitType.Auto);
 			AutoAdd(Menu);	    FormatCurrentRow(GridUnitType.Auto);
 			AutoAdd(Chart);	    FormatCurrentRow(GridUnitType.Star);
             AutoAdd(ChartMenu); FormatCurrentRow(GridUnitType.Auto);

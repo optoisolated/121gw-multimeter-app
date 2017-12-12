@@ -1096,4 +1096,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Screenshots\Main Plot Screenshot.png" />
+    <None Include="$(MSBuildThisFileDirectory)Screenshots\Math Plot Screenshot.png" />
+  </ItemGroup>
 </Project>

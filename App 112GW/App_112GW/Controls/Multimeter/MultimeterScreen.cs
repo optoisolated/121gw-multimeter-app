@@ -147,8 +147,8 @@ namespace rMultiplatform
 		}
 		private void	SetSmallSegments(string pInput)
 		{
-			if (pInput.Length > mSubSegments.Count)
-				throw (new Exception("Small segment value too many decimal places."));
+            if (pInput.Length > mSubSegments.Count)
+                pInput = pInput.Substring(0, mSubSegments.Count);
 
 			SetSegments(pInput.PadLeft(mSubSegments.Count, ' '), ref mSubSegments);
 		}

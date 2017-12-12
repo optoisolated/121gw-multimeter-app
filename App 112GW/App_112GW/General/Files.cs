@@ -37,7 +37,8 @@ namespace rMultiplatform
 			documentpicker.PickSaveFileAsync().AsTask().ContinueWith((Task<Windows.Storage.StorageFile> resutl)=> 
 			{
 				var file = resutl.Result;
-				Windows.Storage.FileIO.WriteTextAsync(file, content);
+                if (file != null)
+				    Windows.Storage.FileIO.WriteTextAsync(file, content);
 			});
 #endif
 		}

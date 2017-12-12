@@ -141,6 +141,8 @@ namespace rMultiplatform
             }
             return result;
         }
+        public byte ByteToValue(int start) => (byte)NibbleToValue(start / 2, 2);
+        
         //Start decimal coded nibbles protocol
         //Don't know why this is a seperate protocol...
         public int Year => DecimalNibbleToValue(0, 2) + 2000;
@@ -218,7 +220,7 @@ namespace rMultiplatform
                 return val;
             }
         }
-		public string		MainRangeLabel	=>  MainRange.mLabel;
+		public string		MainRangeLabel	=>  MainRange?.mLabel ?? "";
 
 		public double MainRangeMultiple
 		{
@@ -252,18 +254,20 @@ namespace rMultiplatform
         static List<string> History = new List<string>();
         static int index = 0;
 
+
+        const int PacketLength = 38;
         static bool is_valid(string input)
         {
-            if (input.Length != 52)
+            if (input.Length != PacketLength)
                 return false;
-
+            
             foreach (var c in input)
-            {
                 if (!(Char.IsDigit(c) || Char.IsLetter(c)))
                     return false;
-            }
             return true;
         }
+
+        public bool PacketReady => pNibbles.Length == PacketLength;
 
 		public void ProcessPacket(byte[] pInput)
 		{
@@ -273,6 +277,11 @@ namespace rMultiplatform
             if (is_valid(temp))
             {
                 pNibbles = temp;
+
+                byte chk = 0;
+                for (int i = 10; i < PacketLength / 2; ++i)
+                    chk ^= ByteToValue(i);
+
                 History.Add(str);
                 Debug.WriteLine(str);
             }

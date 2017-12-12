@@ -38,16 +38,12 @@ namespace rMultiplatform.BLE
 
 		public bool Send(string pInput)
 		{
-			var temp = mCharacteristic.WriteValueAsync(CryptographicBuffer.ConvertStringToBinary(pInput, BinaryStringEncoding.Utf8)).AsTask().Result;
+			mCharacteristic.WriteValueAsync(CryptographicBuffer.ConvertStringToBinary(pInput, BinaryStringEncoding.Utf8));
 			return true;
 		}
 		public bool Send(byte[] pInput)
 		{
-			try
-			{
-				var temp = mCharacteristic.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(pInput)).AsTask().Result;
-			}
-			catch { }
+			mCharacteristic.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(pInput));
 			return true;
 		}
 
@@ -66,12 +62,9 @@ namespace rMultiplatform.BLE
 			if ((properties & indicate_mask) != 0)
 			{
 				Debug.WriteLine("Setting up Indicate.");
-				await mCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate).AsTask().ContinueWith(
-				(obj2) =>
-				{
-					mCharacteristic.ValueChanged += CharacteristicEvent_ValueChanged;
-					TriggerReady();
-				});
+                var obj2 = await mCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate);
+				mCharacteristic.ValueChanged += CharacteristicEvent_ValueChanged;
+				TriggerReady();
 			}
 			else TriggerReady();
 		}
@@ -97,5 +90,4 @@ namespace rMultiplatform.BLE
 			mCharacteristic = null;
 		}
 	}
-
 }

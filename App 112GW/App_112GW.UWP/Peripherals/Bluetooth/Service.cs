@@ -38,13 +38,8 @@ namespace rMultiplatform.BLE
 		}
 		async void Build(ChangeEvent pEvent)
 		{
-			mCharacteristics = null;
-			mCharacteristics = new List<ICharacteristicBLE>();
-			await mService.GetCharacteristicsAsync().AsTask().ContinueWith((arg)=> 
-			{
-				Debug.WriteLine("Found Characteristics.");
-				CharacteristicsAquired(arg.Result, pEvent);
-			});		  
+            var arg = await mService.GetCharacteristicsAsync();
+			CharacteristicsAquired(arg, pEvent);
 		}
 		private int Uninitialised = 0;
 		private void ItemReady()
@@ -54,8 +49,13 @@ namespace rMultiplatform.BLE
 				TriggerReady();
 		}
 		private void CharacteristicsAquired(GattCharacteristicsResult result, ChangeEvent pEvent)
-		{
-			var characteristics = result.Characteristics;
+        {
+            //Clear existing.
+            mCharacteristics = null;
+            mCharacteristics = new List<ICharacteristicBLE>();
+
+            //Build list
+            var characteristics = result.Characteristics;
 			Uninitialised = characteristics.Count;
 			foreach (var item in result.Characteristics)
 				mCharacteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));

@@ -140,7 +140,6 @@ namespace rMultiplatform
 			Menu.ModeChanged		+= (s, e) => { SendKeycode(Packet121GW.Keycode.MODE);   };
 			Menu.RangeChanged	   += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE);  };
 			#endregion
-
 			#region CHART_CONSTRUCTION
 			Chart = 
 				new SmartChart(

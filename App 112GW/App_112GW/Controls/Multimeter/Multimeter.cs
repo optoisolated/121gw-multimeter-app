@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Text;
 
 namespace rMultiplatform
 {
@@ -91,22 +92,25 @@ namespace rMultiplatform
 
         void ProcessPacket(byte[] pInput)
 		{
-			processor.ProcessPacket(pInput);
-
-            if (PacketReady)
+			if (processor.ProcessPacket(pInput))
             {
-                try
+                if (PacketReady)
                 {
-                    Id = processor.Serial.ToString();
-                    Logger.Sample(processor.MainValue);
-                    ChartTitle = processor.MainRangeLabel;
-                    Screen.Update(processor);
-                    Screen.InvalidateSurface();
+                    try
+                    {
+                        Id = processor.Serial.ToString();
+                        Logger.Sample(processor.MainValue);
+                        ChartTitle = processor.MainRangeLabel;
+                        Screen.Update(processor);
+                        Screen.InvalidateSurface();
+                    }
+                    catch
+                    {
+                        MyProcessor.Reset();
+                    }
                 }
-                catch
-                {
-
-                }
+                else
+                    MyProcessor.Reset();
             }
             else
                 MyProcessor.Reset();
@@ -116,7 +120,11 @@ namespace rMultiplatform
 		{
 			mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");
 
-			mDevice.Change += (o, e) => { MyProcessor.Recieve(e.Bytes); };
+			mDevice.Change += (o, e) => {
+                var temp = Encoding.UTF8.GetString(e.Bytes);
+                Debug.WriteLine(temp);
+                MyProcessor.Recieve(e.Bytes);
+            };
 			MyProcessor.mCallback += ProcessPacket;
 
 			Screen  = new MultimeterScreen();

@@ -58,7 +58,9 @@ namespace rMultiplatform.BLE
 		async void Build()
 		{
 			int properties = (int)mCharacteristic.CharacteristicProperties;
-			int indicate_mask = (int)GattCharacteristicProperties.Indicate;
+
+
+            int indicate_mask = (int)GattCharacteristicProperties.Indicate;
 			if ((properties & indicate_mask) != 0)
 			{
 				Debug.WriteLine("Setting up Indicate.");

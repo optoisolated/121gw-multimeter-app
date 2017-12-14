@@ -64,8 +64,7 @@ namespace rMultiplatform.BLE
 		private async void ConnectionComplete( UnPairedDeviceBLE input )
 		{
             var obj = await BluetoothLEDevice.FromIdAsync(input.Information.Id);
-
-			Debug.WriteLine("Connection Complete.");
+            Debug.WriteLine("Connection Complete.");
 			if (obj == null)
 				return;
 
@@ -114,9 +113,9 @@ namespace rMultiplatform.BLE
 			//Create device watcher
 			mDeviceWatcher = DeviceInformation.CreateWatcher(query, new string[]{ "System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected" }, DeviceInformationKind.AssociationEndpoint);
 
-			// Register event handlers before starting the watcher.
-			// Added, Updated and Removed are required to get all nearby devices
-			mDeviceWatcher.Added	+=  DeviceWatcher_Added;
+            // Register event handlers before starting the watcher.
+            // Added, Updated and Removed are required to get all nearby devices
+            mDeviceWatcher.Added	+=  DeviceWatcher_Added;
 			mDeviceWatcher.Updated  +=  DeviceWatcher_Updated;
 
 			// Start the watcher.

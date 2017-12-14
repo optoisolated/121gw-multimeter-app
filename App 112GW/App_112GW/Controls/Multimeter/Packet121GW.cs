@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Xamarin;
+using Xamarin.Forms;
 
 namespace rMultiplatform
 {
@@ -123,7 +125,7 @@ namespace rMultiplatform
 
             return result;
         }
-        public char HexAToHex(char value)
+        static public char HexAToHex(char value)
         {
             char ten = ((char)(byte)10);
             if (value >= '0' && value <= '9') value = (char)(value - '0');
@@ -131,15 +133,20 @@ namespace rMultiplatform
             else if (value >= 'A' && value <= 'F') value = (char)(value + (ten - 'A'));
             return value;
         }
-        public int NibbleToValue(int start, int length)
+
+        static int StringNibbleToValue(string input, int start, int length)
         {
             int result = 0;
             for (int c = 0; c < length; c++)
             {
                 result <<= 4;
-                result |= HexAToHex(pNibbles[c + start]);
+                result |= HexAToHex(input[c + start]);
             }
             return result;
+        }
+        public int NibbleToValue(int start, int length)
+        {
+            return StringNibbleToValue(pNibbles, start, length);
         }
         public byte ByteToValue(int start) => (byte)NibbleToValue(start / 2, 2);
         
@@ -244,7 +251,6 @@ namespace rMultiplatform
 			}
 		}
 
-
         //Note the above properties should not be read until this subroutine
         // completes
 
@@ -255,37 +261,128 @@ namespace rMultiplatform
         static int index = 0;
 
 
-        const int PacketLength = 38;
-        static bool is_valid(string input)
+        const int MinPacketLength = 35;
+
+
+        static public bool Checksum(string input)
         {
-            if (input.Length != PacketLength)
-                return false;
-            
-            foreach (var c in input)
-                if (!(Char.IsDigit(c) || Char.IsLetter(c)))
-                    return false;
+            byte output = 0;
+            for (int i = 9; i < input.Length - 2; i += 2)
+            {
+                byte temp = (byte)StringNibbleToValue(input, i, 2);
+                output ^= temp;
+            }
+            return (output == (byte)StringNibbleToValue(input, input.Length - 2, 2));
+        }
+        
+        static public bool Zeros(string input)
+        {
+            var process = input.Substring(9);
+
+            byte 
+            temp = (byte)StringNibbleToValue(process, 2 * 0, 2);
+            if ((temp & 0xE0) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 1, 2);
+            if ((temp & 0x30) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 2, 2);
+            if ((temp & 0x08) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 8, 2);
+            if ((temp & 0xE0) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 9, 2);
+            if ((temp & 0xE0) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 10, 2);
+            if ((temp & 0x80) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 11, 2);
+            if ((temp & 0x80) != 0) return false;
+
+            temp = (byte)StringNibbleToValue(process, 2 * 12, 2);
+            if ((temp & 0x80) != 0) return false;
+
             return true;
         }
+        int VoteCount = 8;
+        List<eMode> ModeVotes = new List<eMode>();
+        List<bool> AutoVotes = new List<bool>();
+        public bool Vote(string input)
+        {
+            {
+                var mode_current = (eMode)StringNibbleToValue(input, 9, 2);
 
-        public bool PacketReady => pNibbles.Length == PacketLength;
+                ModeVotes.Add(mode_current);
+                if (ModeVotes.Count > VoteCount)
+                    ModeVotes.RemoveAt(0);
 
-		public void ProcessPacket(byte[] pInput)
+                int count = 0;
+                foreach (var mode in ModeVotes)
+                    if (mode == mode_current)
+                        count++;
+                if (count <= (ModeVotes.Count / 2)) return false;
+            }
+            {
+                var auto_current = ((StringNibbleToValue(input, 30, 1) & 0x4) != 0);
+
+                AutoVotes.Add(auto_current);
+                if (AutoVotes.Count > VoteCount)
+                    AutoVotes.RemoveAt(0);
+
+                int count = 0;
+                foreach (var mode in AutoVotes)
+                    if (mode == auto_current)
+                        count++;
+
+                if (count <= (AutoVotes.Count / 2)) return false;
+            }
+            return true;
+        }
+        bool is_valid(string input)
+        {
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                if (input.Length < MinPacketLength)
+                    return false;
+
+                foreach (var c in input)
+                    if (!(Char.IsDigit(c) || Char.IsLetter(c)))
+                        return false;
+
+                return Checksum(input);
+            }
+            else
+            {
+                if (input.Length < MinPacketLength)
+                    return false;
+
+                if (!(Zeros(input) && Vote(input)))
+                    return false;
+
+                foreach (var c in input)
+                    if (!(Char.IsDigit(c) || Char.IsLetter(c)))
+                        return false;
+
+                return true;
+            }
+        }
+        public bool PacketReady => pNibbles.Length >= MinPacketLength;
+
+		public bool ProcessPacket(byte[] pInput)
 		{
             var temp = Encoding.UTF8.GetString(pInput);
             var str = (index++).ToString() + ": " + temp.Length.ToString() + "  " + temp;
-            
-            if (is_valid(temp))
+
+            bool processed = false;
+            if (processed = is_valid(temp))
             {
                 pNibbles = temp;
-
-                byte chk = 0;
-                for (int i = 10; i < PacketLength / 2; ++i)
-                    chk ^= ByteToValue(i);
-
                 History.Add(str);
-                Debug.WriteLine(str);
             }
-		}
+            return processed;
+        }
 
 		private static byte[] KEYCODE_RANGE			= { 0xF4, 0x30, 0x31, 0x30, 0x31 };
 		private static byte[] KEYCODE_HOLD			= { 0xF4, 0x30, 0x32, 0x30, 0x32 };

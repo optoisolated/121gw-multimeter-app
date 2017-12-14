@@ -31,10 +31,6 @@ namespace rMultiplatform
 		}
 		public void Recieve(byte[] pBytes)
 		{
-            var debug_readable = Encoding.UTF8.GetString(pBytes);
-
-            Debug.WriteLine("Recieved : " + debug_readable);
-
             foreach (var byt in pBytes)
 			{
                 bool IsLetterOrDigitFix(char input)
@@ -47,23 +43,25 @@ namespace rMultiplatform
 
                 //Add byte
                 if (mStartFound)
-                {
-                    //Currently replacing Char.IsLetterOrNumber which let through some unicode characters
                     if (IsLetterOrDigitFix((char)byt))
-                    {
                         mBuffer.Add(byt);
+
+                //
+                if (byt == mStart)
+                {
+                    if (mStartFound == true)
+                    {
                         if (mBuffer.Count >= mLength)
                         {
                             mCallback?.Invoke(mBuffer.ToArray());
                             mBuffer.Clear();
-                            mStartFound = false;
                         }
                     }
-                }
-                if (byt == mStart)
-                {
-                    mStartFound = true;
-                    mBuffer.Clear();
+                    else
+                    {
+                        mStartFound = true;
+                        mBuffer.Clear();
+                    }
                 }
 			}
 		}

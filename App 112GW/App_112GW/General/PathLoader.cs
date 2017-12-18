@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using SkiaSharp;
+using SkiaSharp.Extended;
 
 using System;
 using System.Collections.Generic;
@@ -390,8 +391,8 @@ namespace rMultiplatform
 				}
 			}
 
-			//Use SKSVG to get viewbox
-			SKSvg Imag = new SKSvg();
+            //Use SKSVG to get viewbox
+            SkiaSharp.Extended.Svg.SKSvg Imag = new SkiaSharp.Extended.Svg.SKSvg();
 			Imag.Load(ms2);
 
 			LastCurve.CanvasSize = Imag.ViewBox.Size;

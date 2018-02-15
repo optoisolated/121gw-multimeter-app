@@ -87,7 +87,6 @@ namespace rMultiplatform
             }
         }
 
-
         private bool PacketReady => processor.PacketReady && Screen != null && Logger != null;
 
         void ProcessPacket(byte[] pInput)

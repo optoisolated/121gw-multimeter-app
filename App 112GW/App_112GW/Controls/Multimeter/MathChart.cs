@@ -207,7 +207,6 @@ namespace rMultiplatform
 		}
 
         //Returns true only when nothing is null
-        private bool Rendering = true;
 		private bool RenderReady() => ((DeviceA != null) && (DeviceB != null) && (Current_Operation != null));
 		private void AddEvents()
 		{

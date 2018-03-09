@@ -14,9 +14,6 @@ namespace rMultiplatform
 		private int mLength;
 		private List<byte> mBuffer;
 
-
-        
-
 		public PacketProcessor(byte start, int length)
 		{ 
 			mBuffer	 = new List<byte>();

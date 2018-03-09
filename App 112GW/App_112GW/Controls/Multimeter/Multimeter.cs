@@ -121,7 +121,6 @@ namespace rMultiplatform
 
 			mDevice.Change += (o, e) => {
                 var temp = Encoding.UTF8.GetString(e.Bytes);
-                Debug.WriteLine(temp);
                 MyProcessor.Recieve(e.Bytes);
             };
 			MyProcessor.mCallback += ProcessPacket;

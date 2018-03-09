@@ -44,7 +44,7 @@ namespace rMultiplatform.BLE
 		public bool Send(byte[] pInput)
 		{
 			mCharacteristic.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(pInput));
-			return true;
+            return true;
 		}
 
 		//Event that is called when the value of the characteristic is changed

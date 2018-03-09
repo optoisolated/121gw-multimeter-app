@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
@@ -172,8 +173,9 @@ namespace rMultiplatform
         public bool SubHz => ((NibbleToValue(19, 1) & 0x1) > 0);
 
         public int SubPoint => (NibbleToValue(20, 1) & 0xF);
+        public int SubIntValue => NibbleToValue(21, 4);
 
-        public int SubValue => NibbleToValue(21, 4);
+
         public bool BarOn => ((NibbleToValue(25, 1) & 0x1) == 0);
         public bool Bar0_150 => ((NibbleToValue(26, 1) & 0x8) != 0);
         public eSign BarSign => (eSign)BoolToInt((NibbleToValue(26, 1) & 0x4) > 0);
@@ -225,7 +227,15 @@ namespace rMultiplatform
                 return val;
             }
         }
-		public string		MainRangeLabel	=>  MainRange?.mLabel ?? "";
+        public float SubValue
+        {
+            get
+            {
+                var val = (float)SubIntValue / (float)Math.Pow((float)10, (float)SubPoint);
+                return (SubSign == eSign.eNegative)  ? - val : val;
+            }
+        }
+        public string		MainRangeLabel	=>  MainRange?.mLabel ?? "";
 
 		public double MainRangeMultiple
 		{
@@ -259,7 +269,8 @@ namespace rMultiplatform
         static int index = 0;
 
 
-        const int MinPacketLength = 35;
+        const int MinPacketLength = 37;
+        const int MaxPacketLength = 40;
 
 
         static public bool Checksum(string input)
@@ -356,8 +367,19 @@ namespace rMultiplatform
                 if (input.Length < MinPacketLength)
                     return false;
 
+                if (input.Length > MaxPacketLength)
+                    return false;
+
                 if (!(Zeros(input) && Vote(input)))
                     return false;
+
+                {
+                    var val = StringNibbleToValue(input, 27, 2);
+                    if (val > 25)
+                        return false;
+                }
+
+
 
                 foreach (var c in input)
                     if (!(Char.IsDigit(c) || Char.IsLetter(c)))

@@ -147,10 +147,11 @@ namespace rMultiplatform
 		}
 		private void	SetSmallSegments(string pInput)
 		{
+            int effective_length = mSubSegments.Count + (pInput.Contains(".") ? 1 : 0);
             if (pInput.Length > mSubSegments.Count)
-                pInput = pInput.Substring(0, mSubSegments.Count);
+                pInput = pInput.Substring(0, effective_length);
 
-			SetSegments(pInput.PadLeft(mSubSegments.Count, ' '), ref mSubSegments);
+			SetSegments(pInput.PadLeft(effective_length, ' '), ref mSubSegments);
 		}
 		public float LargeSegments
 		{
@@ -640,66 +641,55 @@ namespace rMultiplatform
 				}
 			}
 		}
-		public Packet121GW SubRangeValue
+
+        string UintPointToString(uint value, uint point)
+        {
+            string value_str = value.ToString();
+            if (point == 0) return value_str;
+
+            var value_str_len = value_str.Length;
+
+            int padd_len = 0;
+            if (point >= value_str_len)
+            {
+                padd_len = value_str.Length;
+                value_str = value_str.PadLeft((int)point + 1, '0');
+                padd_len = value_str.Length - padd_len;
+            }
+
+            value_str = value_str.Insert(value_str_len - (int)point + padd_len, ".");
+            return value_str;
+        }
+
+        public Packet121GW SubRangeValue
 		{
 			set
 			{
 				var OFL = value.SubOverload;
-				var Sign = value.SubSign;
-				var Range = value.SubPoint;
+				var Value = value.SubIntValue;
+                var Point = (uint)Math.Abs(value.SubPoint);
+
 
 				//Overload
-				if (OFL)
-					SmallSegmentsWord = "OFL";
+				if (OFL) SmallSegmentsWord = "OFL";
 				else
-				{
-					//Negative sign for segments
-					SetLayer(Sub_Minus, (Sign == Packet121GW.eSign.eNegative));
+                {
+                    var UValue = (uint)Math.Abs(Value);
+                    var DisplayString = UintPointToString(UValue, Point);
 
-					//Calculate the position of the decimal point
-					mDecimalPosition = Range / 10 + 1;
-
-					var DisplayString = value.SubValue.ToString();
-
-					//Cannot insert a decimal point outside the range of the string
-					if (mDecimalPosition + 1 < DisplayString.Length)
+                    switch (_SubMode)
 					{
-						if (mDecimalPosition < 5)
-							DisplayString = DisplayString.Insert(mDecimalPosition + 1, ".");
-
-						//Combine decimal points and charaters so that a decimal point 
-						// doesn't occupy a full character
-						bool beforepoint = true;
-						string outstring = "";
-						for (int i = 0; i < DisplayString.Length; ++i)
-						{
-							var c = DisplayString[i];
-							if (c == '.')
-								beforepoint = false;
-
-							if (beforepoint)
-								outstring += c;
-							else
-							{
-								if (c == ' ')
-									outstring += '0';
-								else
-									outstring += c;
-							}
-						}
-						switch (_SubMode)
-						{
-							case Packet121GW.eMode.Temp:
-							case Packet121GW.eMode._TempC:
-								DisplayString += "c";
-								break;
-							case Packet121GW.eMode._TempF:
-								DisplayString += "f";
-								break;
-						}
-						SmallSegmentsWord = DisplayString;
+						case Packet121GW.eMode.Temp:
+						case Packet121GW.eMode._TempC:
+							DisplayString += "c";
+							break;
+						case Packet121GW.eMode._TempF:
+							DisplayString += "f";
+							break;
 					}
-				}
+                    
+                    SmallSegmentsWord = DisplayString;
+                }
 			}
 		}
 		public Packet121GW BarStatus

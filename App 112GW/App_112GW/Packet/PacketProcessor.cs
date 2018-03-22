@@ -26,28 +26,28 @@ namespace rMultiplatform
 			mBuffer.Clear();
 			mStartFound = false;
 		}
-		public void Recieve(byte[] pBytes)
+		public void Recieve( byte[] pBytes )
 		{
             foreach ( var byt in pBytes )
 			{
-                var character = (char)byt;
+                var character = (char) byt;
                 if ( character == mStart )
                 {
                     if ( mStartFound )
                     {
-                        if (mBuffer.Count == mLength)
+                        if ( mBuffer.Count >= mLength )
                         {
-                            mCallback?.Invoke(mBuffer.ToArray());
-                            mBuffer.Clear();
+                            mCallback?.Invoke( mBuffer.ToArray() );
+                            mBuffer.Clear( );
                         }
                     }
-                    else
-                    {
-                        mStartFound = true;
-                        mBuffer.Clear();
-                        mBuffer.Add(byt);
-                    }
-                } else if ( mStartFound ) mBuffer.Add(byt);
+
+                    mStartFound = true;
+                    mBuffer.Clear( );
+                    mBuffer.Add( byt );
+
+                } else if ( mStartFound )
+                    mBuffer.Add( byt );
             }
 		}
 	}

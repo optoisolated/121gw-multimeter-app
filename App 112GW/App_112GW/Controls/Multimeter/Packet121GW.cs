@@ -23,7 +23,7 @@ namespace rMultiplatform
 	}
     public class Packet121GW
     {
-        string pNibbles;
+        byte[] m_Data;
 
         public enum eMode
         {
@@ -115,96 +115,75 @@ namespace rMultiplatform
 		};
 
         public int BoolToInt(bool value) => (value) ? 1 : 0;
-        public int DecimalNibbleToValue(int start, int length)
-        {
-            var result = 0;
 
-            for (int c = 0; c < length; c++)
-                result = result * 10 + (int)HexAToHex(pNibbles[start + c]);
-
-            return result;
-        }
-        static public char HexAToHex(char value)
+        public byte Nibble(int pIndex, bool pHigh)
         {
-            char ten = ((char)(byte)10);
-            if (value >= '0' && value <= '9') value = (char)(value - '0');
-            else if (value >= 'a' && value <= 'f') value = (char)(value + (ten - 'a'));
-            else if (value >= 'A' && value <= 'F') value = (char)(value + (ten - 'A'));
-            return value;
+            var data = m_Data[pIndex];
+            if (pHigh) data >>= 4;
+            data &= 0xf;
+
+            return data;
         }
 
-        static int StringNibbleToValue(string input, int start, int length)
-        {
-            int result = 0;
-            for (int c = 0; c < length; c++)
-            {
-                result <<= 4;
-                result |= HexAToHex(input[c + start]);
-            }
-            return result;
-        }
-        public int NibbleToValue(int start, int length)
-        {
-            return StringNibbleToValue(pNibbles, start, length);
-        }
-        public byte ByteToValue(int start) => (byte)NibbleToValue(start / 2, 2);
-        
         //Start decimal coded nibbles protocol
         //Don't know why this is a seperate protocol...
-        public int Year => DecimalNibbleToValue(0, 2) + 2000;
-        public int Month => DecimalNibbleToValue(2, 2);
-        public int Serial => DecimalNibbleToValue(4, 5);
+        public int Year                 => m_Data[1] + 2000;
+        public int Month                => Nibble(2, true);
+        public int Serial               => 
+            Nibble(2, false )   * 10000 + 
+            Nibble(3, true  )   * 1000 + 
+            Nibble(3, false )   * 100 + 
+            Nibble(4, true  )   * 10 + 
+            Nibble(4, false );
 
         //Start hex coded bytes protocol
-        public eMode Mode => (eMode)NibbleToValue(9, 2);
-
-        public bool MainOverload => (NibbleToValue(11, 1) & 0x8) > 0;
-        public eSign MainSign => (eSign)BoolToInt((NibbleToValue(11, 1) & 0x4) > 0);
-
-        public int MainRangeValue => MainRange.mValues[NibbleToValue(12, 1)];
-        public char MainRangeUnits => MainRange.mNotation[NibbleToValue(12, 1)];
-
-        public int MainIntValue => NibbleToValue(13, 4);
-        public eMode SubMode => (eMode)NibbleToValue(17, 2);
-
-        public bool SubOverload => (NibbleToValue(19, 1) & 0x8) != 0;
-        public eSign SubSign => ((eSign)BoolToInt((NibbleToValue(19, 1) & 0x4) > 0));
-        public bool SubK => ((NibbleToValue(19, 1) & 0x2) > 0);
-        public bool SubHz => ((NibbleToValue(19, 1) & 0x1) > 0);
-
-        public int SubPoint => (NibbleToValue(20, 1) & 0xF);
-        public int SubIntValue => NibbleToValue(21, 4);
+        public eMode    Mode            => (eMode)m_Data[5];
+        public bool     MainOverload    => (Nibble(6, true) & 0x8) > 0;
+        public eSign    MainSign        => (eSign)BoolToInt((Nibble(6, true) & 0x4) > 0);
+        public int      MainRangeValue  => MainRange.mValues[Nibble(6, false)];
+        public char     MainRangeUnits  => MainRange.mNotation[Nibble(6, false)];
+        public int      MainIntValue    => (m_Data[7] << 8) | m_Data[8];
+        public eMode    SubMode         => (eMode)m_Data[9];
+        public bool     SubOverload     => (Nibble(10, true) & 0x8) != 0;
+        public eSign    SubSign         => ((eSign)BoolToInt((Nibble(10, true) & 0x4) > 0));
+        public bool     SubK            => ((Nibble(10, true) & 0x2) > 0);
+        public bool     SubHz           => ((Nibble(10, true) & 0x1) > 0);
+        public int      SubPoint        => Nibble(10, false);
+        public int      SubIntValue     => (m_Data[11] << 8) | m_Data[12];
 
 
-        public bool BarOn => ((NibbleToValue(25, 1) & 0x1) == 0);
-        public bool Bar0_150 => ((NibbleToValue(26, 1) & 0x8) != 0);
-        public eSign BarSign => (eSign)BoolToInt((NibbleToValue(26, 1) & 0x4) > 0);
-        public eBarRange Bar1000_500 => (eBarRange)(NibbleToValue(26, 1) & 3);
-        public int BarValue => NibbleToValue(27, 2) & 0x1F;
-        public byte Status1 => (byte)NibbleToValue(29, 2);
-        public byte Status2 => (byte)NibbleToValue(31, 2);
-        public byte Status3 => (byte)NibbleToValue(33, 2);
-        public bool Status1KHz => (NibbleToValue(29, 1) & 0x4) != 0;
-        public bool Status1ms => (NibbleToValue(29, 1) & 0x2) != 0;
-        public eAD_DC StatusAC_DC => (eAD_DC)((NibbleToValue(29, 2) >> 3) & 3);
-        public bool StatusAuto => (NibbleToValue(30, 1) & 0x4) != 0;
-        public bool StatusAPO => (NibbleToValue(30, 1) & 0x2) != 0;
-        public bool StatusBAT => (NibbleToValue(30, 1) & 0x1) != 0;
-        public bool StatusBT => (NibbleToValue(31, 1) & 0x4) != 0;
-        public bool StatusArrow => (NibbleToValue(31, 1) & 0x2) != 0;
-        public bool StatusRel => (NibbleToValue(31, 1) & 0x1) != 0;
-        public bool StatusdBm => (NibbleToValue(32, 1) & 0x8) != 0;
-        public int StatusMinMax => (NibbleToValue(32, 1) & 0x7);
-        public bool StatusTest => ((NibbleToValue(33, 1) & 0x4) != 0);
-        public int StatusMem => (NibbleToValue(33, 1) & 0x3) >> 4;
-        public int StatusAHold => (NibbleToValue(34, 1) >> 2) & 3;
-        public bool StatusAC => (NibbleToValue(34, 1) & 0x2) != 0;
-        public bool StatusDC => (NibbleToValue(34, 1) & 0x1) != 0;
+        public bool BarOn               => ((Nibble(13, true) & 0x1) == 0);
+        public bool Bar0_150            => ((Nibble(13, false) & 0x8) != 0);
+        public eSign BarSign            => (eSign)BoolToInt((Nibble(13, false) & 0x4) > 0);
+        public eBarRange Bar1000_500    => (eBarRange)(Nibble(13, false) & 3);
+        public int BarValue             => m_Data[14] & 0x1F;
+        public byte Status1             => m_Data[15];
+        public byte Status2             => m_Data[16];
+        public byte Status3             => m_Data[17];
+
+        public bool Status1KHz          => (Status1 & 0x40) != 0;
+        public bool Status1ms           => (Status1 & 0x20) != 0;
+        public eAD_DC StatusAC_DC       => (eAD_DC)((Status1 >> 3) & 3);
+        public bool StatusAuto          => (Status1 & 0x4) != 0;
+        public bool StatusAPO           => (Status1 & 0x2) != 0;
+        public bool StatusBAT           => (Status1 & 0x1) != 0;
+
+        public bool StatusBT            => (Status2 & 0x40) != 0;
+        public bool StatusArrow         => (Status2 & 0x20) != 0;
+        public bool StatusRel           => (Status2 & 0x10) != 0;
+        public bool StatusdBm           => (Status2 & 0x8) != 0;
+        public int StatusMinMax         => (Status2 & 0x7);
+
+        public bool StatusTest          => (Status3 & 0x40) != 0;
+        public int StatusMem            => (Status3 & 0x30) >> 4;
+        public int StatusAHold          => (Status3 >> 2 ) & 3;
+        public bool StatusAC            => (Status3 & 0x2) != 0;
+        public bool StatusDC            => (Status3 & 0x1) != 0;
 
 
         public Packet121GW()
         {
-            pNibbles = "";
+            m_Data = new byte[19];
         }
 
         public Range121GW MainRange
@@ -269,126 +248,27 @@ namespace rMultiplatform
         static int index = 0;
 
 
-        static public bool Checksum(string input)
+        static public bool Checksum(byte[] input)
         {
             byte output = 0;
-            for (int i = 0; i < input.Length; ++i)
-                output ^= (byte)input[i];
-
-            return output;
+            for ( uint i = 0; i < input.Length - 1; ++i )
+                output ^= (byte)input[ i ];
+            return ( output == input[ input.Length - 1u ] );
         }
         
-        static public bool Zeros(string input)
+        bool is_valid( byte[] input )
         {
-            var process = input.Substring(9);
-
-            byte 
-            temp = (byte)StringNibbleToValue(process, 2 * 0, 2);
-            if ((temp & 0xE0) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 1, 2);
-            if ((temp & 0x30) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 2, 2);
-            if ((temp & 0x08) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 8, 2);
-            if ((temp & 0xE0) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 9, 2);
-            if ((temp & 0xE0) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 10, 2);
-            if ((temp & 0x80) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 11, 2);
-            if ((temp & 0x80) != 0) return false;
-
-            temp = (byte)StringNibbleToValue(process, 2 * 12, 2);
-            if ((temp & 0x80) != 0) return false;
-
-            return true;
-        }
-        int VoteCount = 8;
-        List<eMode> ModeVotes = new List<eMode>();
-        List<bool> AutoVotes = new List<bool>();
-        public bool Vote(string input)
-        {
-            {
-                var mode_current = (eMode)StringNibbleToValue(input, 9, 2);
-
-                ModeVotes.Add(mode_current);
-                if (ModeVotes.Count > VoteCount)
-                    ModeVotes.RemoveAt(0);
-
-                int count = 0;
-                foreach (var mode in ModeVotes)
-                    if (mode == mode_current)
-                        count++;
-                if (count <= (ModeVotes.Count / 2)) return false;
-            }
-            {
-                var auto_current = ((StringNibbleToValue(input, 30, 1) & 0x4) != 0);
-
-                AutoVotes.Add(auto_current);
-                if (AutoVotes.Count > VoteCount)
-                    AutoVotes.RemoveAt(0);
-
-                int count = 0;
-                foreach (var mode in AutoVotes)
-                    if (mode == auto_current)
-                        count++;
-
-                if (count <= (AutoVotes.Count / 2)) return false;
-            }
-            return true;
-        }
-        bool is_valid( string input )
-        {
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                if (input.Length < MinPacketLength)
-                    return false;
-
-                foreach (var c in input)
-                    if (!(Char.IsDigit(c) || Char.IsLetter(c)))
-                        return false;
-
-                return Checksum(input);
-            }
-            else
-            {
-                if (input.Length < MinPacketLength)
-                    return false;
-
-                if (input.Length > MaxPacketLength)
-                    return false;
-
-                if (!(Zeros(input) && Vote(input)))
-                    return false;
-                
-                var val = StringNibbleToValue(input, 27, 2);
-                if (val > 25)
-                    return false;
-
-                foreach (var c in input)
-                    if (!(Char.IsDigit(c) || Char.IsLetter(c)))
-                        return false;
-
-                return true;
-            }
+            return Checksum( input ) && ( input.Length == 19u );
         }
 
 		public bool ProcessPacket(byte[] pInput)
 		{
-            var temp = Encoding.UTF8.GetString(pInput);
-            var str = (index++).ToString() + ": " + temp.Length.ToString() + "  " + temp;
-
-            bool processed = false;
-            if (processed = is_valid(temp))
-                pNibbles = temp;
-
-            return processed;
+            if (is_valid(pInput))
+            {
+                m_Data = pInput;
+                return true;
+            }
+            return false;
         }
 
 		private static byte[] KEYCODE_RANGE			= { 0xF4, 0x30, 0x31, 0x30, 0x31 };

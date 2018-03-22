@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="eevblog.x121gw" android:versionName="1" android:versionCode="4">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="eevblog.x121gw" android:versionName="1" android:versionCode="5">
 	<uses-sdk />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />

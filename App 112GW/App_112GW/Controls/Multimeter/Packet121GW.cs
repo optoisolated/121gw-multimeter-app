@@ -269,19 +269,13 @@ namespace rMultiplatform
         static int index = 0;
 
 
-        const int MinPacketLength = 37;
-        const int MaxPacketLength = 40;
-
-
         static public bool Checksum(string input)
         {
             byte output = 0;
-            for (int i = 9; i < input.Length - 2; i += 2)
-            {
-                byte temp = (byte)StringNibbleToValue(input, i, 2);
-                output ^= temp;
-            }
-            return (output == (byte)StringNibbleToValue(input, input.Length - 2, 2));
+            for (int i = 0; i < input.Length; ++i)
+                output ^= (byte)input[i];
+
+            return output;
         }
         
         static public bool Zeros(string input)
@@ -349,7 +343,7 @@ namespace rMultiplatform
             }
             return true;
         }
-        bool is_valid(string input)
+        bool is_valid( string input )
         {
             if (Device.RuntimePlatform == Device.Android)
             {
@@ -372,14 +366,10 @@ namespace rMultiplatform
 
                 if (!(Zeros(input) && Vote(input)))
                     return false;
-
-                {
-                    var val = StringNibbleToValue(input, 27, 2);
-                    if (val > 25)
-                        return false;
-                }
-
-
+                
+                var val = StringNibbleToValue(input, 27, 2);
+                if (val > 25)
+                    return false;
 
                 foreach (var c in input)
                     if (!(Char.IsDigit(c) || Char.IsLetter(c)))
@@ -388,7 +378,6 @@ namespace rMultiplatform
                 return true;
             }
         }
-        public bool PacketReady => pNibbles.Length >= MinPacketLength;
 
 		public bool ProcessPacket(byte[] pInput)
 		{
@@ -397,10 +386,8 @@ namespace rMultiplatform
 
             bool processed = false;
             if (processed = is_valid(temp))
-            {
                 pNibbles = temp;
-                History.Add(str);
-            }
+
             return processed;
         }
 

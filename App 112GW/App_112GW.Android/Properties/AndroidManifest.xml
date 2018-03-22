@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="2" android:versionName="0" package="eevblog.x121gw">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="eevblog.x121gw" android:versionName="1" android:versionCode="4">
 	<uses-sdk />
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.SET_DEBUG_APP" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="121GW.Android" android:icon="@mipmap/ic_launcher"></application>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<application android:label="121GW.Android" android:hardwareAccelerated="true"></application>
 </manifest>

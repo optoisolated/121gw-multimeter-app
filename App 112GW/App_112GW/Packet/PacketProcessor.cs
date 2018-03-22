@@ -28,27 +28,14 @@ namespace rMultiplatform
 		}
 		public void Recieve(byte[] pBytes)
 		{
-            foreach (var byt in pBytes)
+            foreach ( var byt in pBytes )
 			{
-                bool IsLetterOrDigitFix(char input)
+                var character = (char)byt;
+                if ( character == mStart )
                 {
-                    bool lower = 'a' <= input && input <= 'z';
-                    bool upper = 'A' <= input && input <= 'Z';
-                    bool number = '0' <= input && input <= '9';
-                    return lower || upper || number;
-                }
-
-                //Add byte
-                if (mStartFound)
-                    if (IsLetterOrDigitFix((char)byt))
-                        mBuffer.Add(byt);
-
-                //
-                if (byt == mStart)
-                {
-                    if (mStartFound == true)
+                    if ( mStartFound )
                     {
-                        if (mBuffer.Count >= mLength)
+                        if (mBuffer.Count == mLength)
                         {
                             mCallback?.Invoke(mBuffer.ToArray());
                             mBuffer.Clear();
@@ -58,9 +45,10 @@ namespace rMultiplatform
                     {
                         mStartFound = true;
                         mBuffer.Clear();
+                        mBuffer.Add(byt);
                     }
-                }
-			}
+                } else if ( mStartFound ) mBuffer.Add(byt);
+            }
 		}
 	}
 }

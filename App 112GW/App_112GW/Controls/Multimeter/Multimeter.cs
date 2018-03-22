@@ -42,7 +42,7 @@ namespace rMultiplatform
 			}
 		}
 
-		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 38);
+		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 19);
         Packet121GW processor = new Packet121GW();
 		public MultimeterScreen Screen;
 		public MultimeterMenu Menu;
@@ -133,10 +133,10 @@ namespace rMultiplatform
 			{
 				SendData(Packet121GW.GetKeycode(keycode));
 			}
-			Menu.HoldClicked		+= (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD);   };
-			Menu.RelClicked		 += (s, e) => { SendKeycode(Packet121GW.Keycode.REL);	};
-			Menu.ModeChanged		+= (s, e) => { SendKeycode(Packet121GW.Keycode.MODE);   };
-			Menu.RangeChanged	   += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE);  };
+			Menu.HoldClicked    += (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD);   };
+			Menu.RelClicked	    += (s, e) => { SendKeycode(Packet121GW.Keycode.REL);	};
+			Menu.ModeChanged	+= (s, e) => { SendKeycode(Packet121GW.Keycode.MODE);   };
+			Menu.RangeChanged   += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE);  };
 			#endregion
 			#region CHART_CONSTRUCTION
 			Chart = 

@@ -87,31 +87,31 @@ namespace rMultiplatform
 
         Range121GW[] RangeLookup =
         {
-            new Range121GW("V",     "Voltage Low Z (V)",    new int[]{4}            ," "    ),    //0
-			new Range121GW("V",     "Voltage DC (V)",       new int[]{1,2,3,4}      ,"    "    ),    //1
-			new Range121GW("V",     "Voltage AC (V)",       new int[]{1,2,3,4}      ,"    "    ),    //2
-			new Range121GW("mV",    "Voltage DC (V)",       new int[]{2,3}          ,"mm"    ),    //3 
-			new Range121GW("mV",    "Voltage AC (V)",       new int[]{2,3}          ,"mm"    ),    //4
-			new Range121GW("°C",    "Temp (°C)",            new int[]{4}            ," "    ),    //5
-			new Range121GW("KHz",   "Frequency (Hz)",       new int[]{2,3,1,2,3}    ,"  kkk"),  //6
-			new Range121GW("ms",    "Period (s)",           new int[]{1,2,3}        ,"   "    ),    //7
-			new Range121GW("%",     "Duty (%)",             new int[]{4}            ," "    ),    //8
-			new Range121GW("KΩ",    "Resistance (Ω)",       new int[]{2,3,1,2,3,1,2},"  kkkMM"),//9
-			new Range121GW("KΩ",    "Continuity (Ω)",       new int[]{3}            ," "    ),    //10
-			new Range121GW("V",     "Diode (V)",            new int[]{1,2}          ,"  "    ),    //11
-			new Range121GW("ms",    "Capacitance (F)",      new int[]{3,4,2,3,4,5}  ,"nnuuuu"), //12
-			new Range121GW("uVA",   "Power AC (VA)",        new int[]{4,5,2,3}      ,"    "    ),    //13
-			new Range121GW("mVA",   "Power AC (VA)",        new int[]{4,5,2,3}      ,"mm  "    ),    //14
-			new Range121GW("mVA",   "Power AC (VA)",        new int[]{4,5,2,3}      ,"mm  "    ),    //15
-			new Range121GW("uA",    "Current AC (A)",       new int[]{2,3}          ,"  "    ),    //16
-			new Range121GW("uA",    "Current DC (A)",       new int[]{2,3}          ,"  "    ),    //17
-			new Range121GW("mA",    "Current AC (A)",       new int[]{3,1,2}        ,"mmm"    ),    //18
-			new Range121GW("mA",    "Current DC (A)",       new int[]{1,2}          ,"mm"    ),    //19
-			new Range121GW("A",     "Current AC (A)",       new int[]{3,1,2}        ,"m  "    ),    //20
-			new Range121GW("A",     "Current DC (A)",       new int[]{3,1,2}        ,"m  "    ),    //21
-			new Range121GW("uVA",   "Power DC (VA)",        new int[]{3,4,4,5}      ,"    "    ),    //22
-			new Range121GW("mVA",   "Power DC (VA)",        new int[]{4,5,2,3}      ,"mm  "    ),    //23
-			new Range121GW("VA",    "Power DC (VA)",        new int[]{4,5,2,3}      ,"mm  "    )    //24
+            new Range121GW("V",     "Voltage Low Z (V)",    new int[]{4}            ," "        ),      //0
+			new Range121GW("V",     "Voltage DC (V)",       new int[]{1,2,3,4}      ,"    "     ),      //1
+			new Range121GW("V",     "Voltage AC (V)",       new int[]{1,2,3,4}      ,"    "     ),      //2
+			new Range121GW("mV",    "Voltage DC (V)",       new int[]{2,3}          ,"mm"       ),      //3 
+			new Range121GW("mV",    "Voltage AC (V)",       new int[]{2,3}          ,"mm"       ),      //4
+			new Range121GW("°C",    "Temp (°C)",            new int[]{4}            ," "        ),      //5
+			new Range121GW("KHz",   "Frequency (Hz)",       new int[]{2,3,1,2,3}    ,"  kkk"    ),      //6
+			new Range121GW("ms",    "Period (s)",           new int[]{1,2,3}        ,"   "      ),      //7
+			new Range121GW("%",     "Duty (%)",             new int[]{4}            ," "        ),      //8
+			new Range121GW("KΩ",    "Resistance (Ω)",       new int[]{2,3,1,2,3,1,2},"  kkkMM"  ),      //9
+			new Range121GW("KΩ",    "Continuity (Ω)",       new int[]{3}            ," "        ),      //10
+			new Range121GW("V",     "Diode (V)",            new int[]{1,2}          ,"  "       ),      //11
+			new Range121GW("ms",    "Capacitance (F)",      new int[]{3,4,2,3,4,5}  ,"nnuuuu"   ),      //12
+			new Range121GW("uVA",   "Power AC (VA)",        new int[]{3,4,4,5}      ,"    "     ),      //13
+			new Range121GW("mVA",   "Power AC (VA)",        new int[]{2,3,3,4}      ,"mm  "     ),      //14
+			new Range121GW("mVA",   "Power AC (VA)",        new int[]{4,5,2,3}      ,"mm  "     ),      //15
+			new Range121GW("uA",    "Current AC (A)",       new int[]{2,3}          ,"  "       ),      //16
+			new Range121GW("uA",    "Current DC (A)",       new int[]{2,3}          ,"  "       ),      //17
+			new Range121GW("mA",    "Current AC (A)",       new int[]{3,1,2}        ,"mmm"      ),      //18
+			new Range121GW("mA",    "Current DC (A)",       new int[]{1,2}          ,"mm"       ),      //19
+			new Range121GW("A",     "Current AC (A)",       new int[]{3,1,2}        ,"m  "      ),      //20
+			new Range121GW("A",     "Current DC (A)",       new int[]{3,1,2}        ,"m  "      ),      //21
+			new Range121GW("uVA",   "Power DC (VA)",        new int[]{3,4,4,5}      ,"    "     ),      //22
+			new Range121GW("mVA",   "Power DC (VA)",        new int[]{2,3,3,4}      ,"mm  "     ),      //23
+			new Range121GW("VA",    "Power DC (VA)",        new int[]{4,5,2,3}      ,"mm  "     )       //24
 		};
 
         public int BoolToInt(bool value) => (value) ? 1 : 0;
@@ -137,73 +137,96 @@ namespace rMultiplatform
             Nibble(4, false );
 
         //Start hex coded bytes protocol
-        public eMode    Mode            => (eMode)m_Data[5];
-        public bool     MainOverload    => (Nibble(6, true) & 0x8) > 0;
-        public eSign    MainSign        => (eSign)BoolToInt((Nibble(6, true) & 0x4) > 0);
-        public int      MainRangeValue  => MainRange.mValues[Nibble(6, false)];
-        public char     MainRangeUnits  => MainRange.mNotation[Nibble(6, false)];
-        public int      MainIntValue    => (m_Data[7] << 8) | m_Data[8];
-        public eMode    SubMode         => (eMode)m_Data[9];
-        public bool     SubOverload     => (Nibble(10, true) & 0x8) != 0;
-        public eSign    SubSign         => ((eSign)BoolToInt((Nibble(10, true) & 0x4) > 0));
-        public bool     SubK            => ((Nibble(10, true) & 0x2) > 0);
-        public bool     SubHz           => ((Nibble(10, true) & 0x1) > 0);
-        public int      SubPoint        => Nibble(10, false);
-        public int      SubIntValue     => (m_Data[11] << 8) | m_Data[12];
+        public eMode        Mode            => (eMode)m_Data[5];
+        public bool         MainOverload    => (Nibble(6, true) & 0x8) > 0;
+        public eSign        MainSign        => (eSign)BoolToInt((Nibble(6, true) & 0x4) > 0);
+
+        public int          MainRangeIndex  => Nibble(6, false);
+        public int          MainRangeValue  => MainRange.mValues[MainRangeIndex];
+        public char         MainRangeUnits  => MainRange.mNotation[MainRangeIndex];
+        public int          MainIntValue    => (m_Data[7] << 8) | m_Data[8];
+        public eMode        SubMode         => (eMode)m_Data[9];
+        public bool         SubOverload     => (Nibble(10, true) & 0x8) != 0;
+        public eSign        SubSign         => ((eSign)BoolToInt((Nibble(10, true) & 0x4) > 0));
+        public bool         SubK            => ((Nibble(10, true) & 0x2) > 0);
+        public bool         SubHz           => ((Nibble(10, true) & 0x1) > 0);
+        public int          SubPoint        => Nibble(10, false);
+        public int          SubIntValue     => (m_Data[11] << 8) | m_Data[12];
+        public bool         SubCurrentMode => SubMode == eMode.ACA || SubMode == eMode.ACmA || SubMode == eMode.ACuA || SubMode == eMode.DCA || SubMode == eMode.DCmA || SubMode == eMode.DCuA;
+        public bool         Subm
+        {
+            get
+            {
+                switch (Mode)
+                {
+                    case eMode.ACVA:
+                    case eMode.DCVA:
+                    case eMode.ACmVA:
+                    case eMode.DCmVA:
+                    case eMode.ACuVA:
+                    case eMode.DCuVA:
+                        if (SubCurrentMode)
+                        {
+                            switch (MainRangeUnits)
+                            {
+                                case 'm':
+                                case 'n':
+                                case 'u':
+                                    return true;
+                            }
+                            return (SubMode == eMode.ACmA || SubMode == eMode.ACuA || SubMode == eMode.DCmA || SubMode == eMode.DCuA);
+                        }
+                        break;
+                }
+                return false;
+            }
+        }
 
 
-        public bool BarOn               => ((Nibble(13, true) & 0x1) == 0);
-        public bool Bar0_150            => ((Nibble(13, false) & 0x8) != 0);
-        public eSign BarSign            => (eSign)BoolToInt((Nibble(13, false) & 0x4) > 0);
-        public eBarRange Bar1000_500    => (eBarRange)(Nibble(13, false) & 3);
-        public int BarValue             => m_Data[14] & 0x1F;
-        public byte Status1             => m_Data[15];
-        public byte Status2             => m_Data[16];
-        public byte Status3             => m_Data[17];
+        public bool         BarOn           => ((Nibble(13, true) & 0x1) == 0);
+        public bool         Bar0_150        => ((Nibble(13, false) & 0x8) != 0);
+        public eSign        BarSign         => (eSign)BoolToInt((Nibble(13, false) & 0x4) > 0);
+        public eBarRange    Bar1000_500     => (eBarRange)(Nibble(13, false) & 3);
+        public int          BarValue        => m_Data[14] & 0x1F;
+        public byte         Status1         => m_Data[15];
+        public byte         Status2         => m_Data[16];
+        public byte         Status3         => m_Data[17];
 
-        public bool Status1KHz          => (Status1 & 0x40) != 0;
-        public bool Status1ms           => (Status1 & 0x20) != 0;
-        public eAD_DC StatusAC_DC       => (eAD_DC)((Status1 >> 3) & 3);
-        public bool StatusAuto          => (Status1 & 0x4) != 0;
-        public bool StatusAPO           => (Status1 & 0x2) != 0;
-        public bool StatusBAT           => (Status1 & 0x1) != 0;
+        public bool         Status1KHz      => (Status1 & 0x40) != 0;
+        public bool         Status1ms       => (Status1 & 0x20) != 0;
+        public eAD_DC       StatusAC_DC     => (eAD_DC)((Status1 >> 3) & 3);
+        public bool         StatusAuto      => (Status1 & 0x4) != 0;
+        public bool         StatusAPO       => (Status1 & 0x2) != 0;
+        public bool         StatusBAT       => (Status1 & 0x1) != 0;
 
-        public bool StatusBT            => (Status2 & 0x40) != 0;
-        public bool StatusArrow         => (Status2 & 0x20) != 0;
-        public bool StatusRel           => (Status2 & 0x10) != 0;
-        public bool StatusdBm           => (Status2 & 0x8) != 0;
-        public int StatusMinMax         => (Status2 & 0x7);
+        public bool         StatusBT        => (Status2 & 0x40) != 0;
+        public bool         StatusArrow     => (Status2 & 0x20) != 0;
+        public bool         StatusRel       => (Status2 & 0x10) != 0;
+        public bool         StatusdBm       => (Status2 & 0x8) != 0;
+        public int          StatusMinMax    => (Status2 & 0x7);
 
-        public bool StatusTest          => (Status3 & 0x40) != 0;
-        public int StatusMem            => (Status3 & 0x30) >> 4;
-        public int StatusAHold          => (Status3 >> 2 ) & 3;
-        public bool StatusAC            => (Status3 & 0x2) != 0;
-        public bool StatusDC            => (Status3 & 0x1) != 0;
-
+        public bool         StatusTest      => (Status3 & 0x40) != 0;
+        public int          StatusMem       => (Status3 & 0x30) >> 4;
+        public int          StatusAHold     => (Status3 >> 2 ) & 3;
+        public bool         StatusAC        => (Status3 & 0x2) != 0;
+        public bool         StatusDC        => (Status3 & 0x1) != 0;
 
         public Packet121GW()
         {
             m_Data = new byte[19];
         }
 
-        public Range121GW MainRange
-        {
-            get
-            {
-                var index = (int)Mode;
-                return RangeLookup[index];
-            }
-        }
+        public Range121GW MainRange => RangeLookup[(int)Mode];
 
         public float MainValue
         {
             get
             {
-                var val = (float)MainIntValue * (float)MainRangeMultiple / (float)Math.Pow(10.0, (5 - (float)MainRangeValue));
-                if (MainSign == eSign.eNegative)
-                    return -val;
+                var val = (float) MainIntValue / (float) Math.Pow(10f, 5 - MainRangeValue);
 
-                return val;
+                Debug.WriteLine("BarValue = " + BarValue.ToString());
+
+                return (MainSign == eSign.eNegative) ? -val : val;
             }
         }
         public float SubValue
@@ -248,7 +271,7 @@ namespace rMultiplatform
         static int index = 0;
 
 
-        static public bool Checksum(byte[] input)
+        static public bool Checksum( byte[] input )
         {
             byte output = 0;
             for ( uint i = 0; i < input.Length - 1; ++i )
@@ -261,9 +284,9 @@ namespace rMultiplatform
             return Checksum( input ) && ( input.Length == 19u );
         }
 
-		public bool ProcessPacket(byte[] pInput)
+		public bool ProcessPacket( byte[] pInput )
 		{
-            if (is_valid(pInput))
+            if ( is_valid( pInput ) )
             {
                 m_Data = pInput;
                 return true;

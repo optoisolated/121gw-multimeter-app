@@ -455,7 +455,27 @@ namespace rMultiplatform
 				}
 			}
 		}
-		public Packet121GW MainRangeValue
+
+        string UintPointToString(uint value, uint point)
+        {
+            string value_str = value.ToString();
+            if (point == 0) return value_str;
+
+            var value_str_len = value_str.Length;
+
+            int padd_len = 0;
+            if (point >= value_str_len)
+            {
+                padd_len = value_str.Length;
+                value_str = value_str.PadLeft((int)point + 1, '0');
+                padd_len = value_str.Length - padd_len;
+            }
+
+            value_str = value_str.Insert(value_str_len - (int)point + padd_len, ".");
+            return value_str;
+        }
+
+        public Packet121GW MainRangeValue
 		{
 			set
 			{
@@ -471,8 +491,11 @@ namespace rMultiplatform
 					//Negative sign for segments
 					SetLayer(Seg_Minus, (Sign == Packet121GW.eSign.eNegative));
 
-					//Calculate the position of the decimal point
-					mDecimalPosition = Range;
+                    //
+
+
+                    //Calculate the position of the decimal point
+                    mDecimalPosition = Range;
 
 					//Align the string to the right of the display
 					var DisplayString = value.MainIntValue.ToString().PadLeft(5, ' ');
@@ -532,13 +555,14 @@ namespace rMultiplatform
 						SetLayer(SubV,  true);
 						break;
 					case Packet121GW.eMode.DCV:
-						SetLayer(SubDC, true);
 						SetLayer(SubV,  true);
-						break;
+                        SetLayer(Subm, value.Subm);
+                        break;
 					case Packet121GW.eMode.ACV:
 						SetLayer(SubAC, true);
 						SetLayer(SubV,  true);
-						break;
+                        SetLayer(Subm, value.Subm);
+                        break;
 					case Packet121GW.eMode.DCmV:
 						SetLayer(SubDC, true);
 						SetLayer(SubV,  true);
@@ -574,41 +598,48 @@ namespace rMultiplatform
 					case Packet121GW.eMode.ACmVA:
 						break;
 					case Packet121GW.eMode.ACVA:
-						SetLayer(SubAC, true);
 						SetLayer(SubV, true);
 						SetLayer(SubA, true);
 						break;
 					case Packet121GW.eMode.ACuA:
-						break;
+                        SetLayer(Subm, value.Subm);
+                        SetLayer(SubA, true);
+                        break;
 					case Packet121GW.eMode.DCuA:
-						break;
+                        SetLayer(Subm, value.Subm);
+                        SetLayer(SubA, true);
+                        break;
 					case Packet121GW.eMode.ACmA:
-						SetLayer(SubAC, true);
 						SetLayer(SubA, true);
-						SetLayer(Subm, true);
+						SetLayer(Subm, value.Subm);
 						break;
 					case Packet121GW.eMode.DCmA:
-						SetLayer(SubDC, true);
 						SetLayer(SubA, true);
-						SetLayer(Subm, true);
+						SetLayer(Subm, value.Subm);
 						break;
 					case Packet121GW.eMode.ACA:
-						SetLayer(SubAC, true);
 						SetLayer(SubA, true);
-						break;
+                        SetLayer(Subm, value.Subm);
+                        break;
 					case Packet121GW.eMode.DCA:
-						SetLayer(SubDC, true);
 						SetLayer(SubA, true);
-						break;
+                        SetLayer(Subm, value.Subm);
+                        break;
 					case Packet121GW.eMode.DCuVA:
-						break;
+                        SetLayer(Subm, value.Subm);
+                        SetLayer(SubV, true);
+                        SetLayer(SubA, true);
+                        break;
 					case Packet121GW.eMode.DCmVA:
-						break;
+                        SetLayer(Subm, value.Subm);
+                        SetLayer(SubV, true);
+                        SetLayer(SubA, true);
+                        break;
 					case Packet121GW.eMode.DCVA:
-						SetLayer(SubDC, true);
 						SetLayer(SubV, true);
 						SetLayer(SubA, true);
-						break;
+                        SetLayer(Subm, value.Subm);
+                        break;
 					case Packet121GW.eMode._Battery:
 						SetLayer(SubDC, true);
 						SetLayer(SubV, true);
@@ -642,25 +673,6 @@ namespace rMultiplatform
 			}
 		}
 
-        string UintPointToString(uint value, uint point)
-        {
-            string value_str = value.ToString();
-            if (point == 0) return value_str;
-
-            var value_str_len = value_str.Length;
-
-            int padd_len = 0;
-            if (point >= value_str_len)
-            {
-                padd_len = value_str.Length;
-                value_str = value_str.PadLeft((int)point + 1, '0');
-                padd_len = value_str.Length - padd_len;
-            }
-
-            value_str = value_str.Insert(value_str_len - (int)point + padd_len, ".");
-            return value_str;
-        }
-
         public Packet121GW SubRangeValue
 		{
 			set
@@ -674,6 +686,9 @@ namespace rMultiplatform
 				if (OFL) SmallSegmentsWord = "OFL";
 				else
                 {
+                    //Negative sign for segments
+                    SetLayer(Sub_Minus, (value.SubSign == Packet121GW.eSign.eNegative));
+
                     var UValue = (uint)Math.Abs(Value);
                     var DisplayString = UintPointToString(UValue, Point);
 

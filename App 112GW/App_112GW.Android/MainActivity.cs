@@ -8,7 +8,9 @@ using Android.Widget;
 using Android.OS;
 
 using Xamarin.Forms;
-[assembly: Application(Debuggable = false)]
+using System.Threading.Tasks;
+
+[assembly: Application(Debuggable = true)]
 namespace App_112GW.Droid
 {
     [Activity (Label = "121GW", 
@@ -24,12 +26,12 @@ namespace App_112GW.Droid
 			Console.Write(e.Exception.ToString());
 		}
 		static void HandleExceptions(object sender, UnhandledExceptionEventArgs e)
-		{
-			Console.WriteLine(e.ExceptionObject.ToString());
+        {
+            Console.WriteLine(e.ExceptionObject.ToString());
 		}
+        
 
-
-		protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate (Bundle bundle)
 		{
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;

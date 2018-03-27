@@ -4,10 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
+using Android;
+using Android.App;
 
 namespace rMultiplatform
 {
-	static class Files
+    [Activity]
+    internal class Files : Activity
 	{
 		public static string UniqueFilename()
 		{
@@ -19,12 +22,16 @@ namespace rMultiplatform
 		public static void SaveFile(string content)
 		{
 #if __ANDROID__
-			//Email or cloud
-			Android.Content.Intent intent = new Android.Content.Intent(Android.Content.Intent.ActionSend);
-			intent.SetType("plain/text");
-			intent.PutExtra(Android.Content.Intent.ExtraSubject, "Logging");
-			intent.PutExtra(Android.Content.Intent.ExtraText, content);
-			Forms.Context.StartActivity(intent);
+            //Email or cloud
+            //var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            //var filePath = Path.Combine(documentsPath, "121GW Log " + System.DateTime.Now.ToShortTimeString() + " " + System.DateTime.Now.ToShortDateString() + ".csv");
+            //System.IO.File.WriteAllText(filePath, content);
+            var intent = new Android.Content.Intent(Android.Content.Intent.ActionSend);
+            intent.SetType("plain/text");
+            intent.SetFlags(Android.Content.ActivityFlags.NewTask);
+            intent.PutExtra(Android.Content.Intent.ExtraSubject, "Logging");
+            intent.PutExtra(Android.Content.Intent.ExtraText, content);
+            Android.App.Application.Context.StartActivity(intent);
 #elif __IOS__
 			//Email or cloud
 
@@ -41,7 +48,7 @@ namespace rMultiplatform
 				    Windows.Storage.FileIO.WriteTextAsync(file, content);
 			});
 #endif
-		}
+        }
 		public static string LoadFile(string filename)
 		{
 #if __ANDROID__

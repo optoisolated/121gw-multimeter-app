@@ -151,7 +151,18 @@ namespace rMultiplatform
         public bool         SubK            => ((Nibble(10, true) & 0x2) > 0);
         public bool         SubHz           => ((Nibble(10, true) & 0x1) > 0);
         public int          SubPoint        => Nibble(10, false);
-        public int          SubIntValue     => (m_Data[11] << 8) | m_Data[12];
+
+
+        public int          SubIntValue
+        {
+            get
+            {
+                uint MSB = m_Data[11u];
+                uint LSB = m_Data[12u];
+                return (int)((MSB * 256u) + LSB);
+            }
+        }
+
         public bool         SubCurrentMode => SubMode == eMode.ACA || SubMode == eMode.ACmA || SubMode == eMode.ACuA || SubMode == eMode.DCA || SubMode == eMode.DCmA || SubMode == eMode.DCuA;
         public bool         Subm
         {

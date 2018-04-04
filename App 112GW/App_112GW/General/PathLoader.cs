@@ -5,6 +5,7 @@ using SkiaSharp.Extended;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace rMultiplatform
 {
@@ -347,7 +348,7 @@ namespace rMultiplatform
 		#endregion
 		bool ProcessSVG(string Name, Stream InputStream)
 		{
-			MemoryStream ms = new MemoryStream();
+            MemoryStream ms = new MemoryStream();
 			InputStream.CopyTo(ms);
 			byte[] data = ms.ToArray();
 

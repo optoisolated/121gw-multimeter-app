@@ -10,7 +10,7 @@ using Android.OS;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 
-[assembly: Application(Debuggable = true)]
+[assembly: Application(Debuggable = false)]
 namespace App_112GW.Droid
 {
     [Activity (Label = "121GW", 
@@ -29,7 +29,6 @@ namespace App_112GW.Droid
         {
             Console.WriteLine(e.ExceptionObject.ToString());
 		}
-        
 
         protected override void OnCreate (Bundle bundle)
 		{

@@ -9,43 +9,70 @@ using System.Text;
 
 namespace rMultiplatform
 {
-	public class Multimeter : AutoGrid
-	{
-		public BLE.IDeviceBLE	    mDevice;
-		public SmartChart		    Chart;
-		public SmartChartMenu	    ChartMenu;
-		public SmartChartLogger	    Logger = new SmartChartLogger(10, SmartChartLogger.LoggerMode.Rescaling);
+    public class Multimeter : AutoGrid
+    {
+        public BLE.IDeviceBLE mDevice;
+        public SmartChart Chart;
+        public SmartChartMenu ChartMenu;
+        public SmartChartLogger Logger = new SmartChartLogger(10, SmartChartLogger.LoggerMode.Rescaling);
 
-		public enum ActiveItem
-		{
-			Screen,
-			FullscreenPlot
-		}
-		private ActiveItem _Item = ActiveItem.Screen;
-		public ActiveItem Item
-		{
-			set
-			{
-				_Item = value;
-				switch (Item)
-				{
-					case ActiveItem.Screen:
-						RestoreItems();
-						break;
-					case ActiveItem.FullscreenPlot:
-						MaximiseItem(Chart);    break;
-				}
-			}
-			get
-			{
-				return _Item;
-			}
-		}
+        public enum ActiveItem
+        {
+            Plot,
+            Screen,
+            Both
+        }
+        private ActiveItem _Item = ActiveItem.Screen;
+        public ActiveItem Item
+        {
+            set
+            {
+                _Item = value;
+                BatchBegin();
+                switch (value)
+                {
+                    case ActiveItem.Screen:
+                        RestoreItems();
+                        MaximiseItem(Screen);
+                        break;
+                    case ActiveItem.Plot:
+                        RestoreItems();
+                        MaximiseItem(Chart);
+                        break;
+                    case ActiveItem.Both:
+                        RestoreItems();
+                        break;
+                }
+                BatchCommit();
+            }
+            get
+            {
+                return _Item;
+            }
+        }
+        void FullscreenClicked(ActiveItem pItem)
+        {
+            if (CurrentOrientation == Orientation.Landscape)
+            {
+                switch (Item)
+                {
+                    case ActiveItem.Plot:
+                        Item = ActiveItem.Screen;
+                        break;
+                    case ActiveItem.Screen:
+                        Item = ActiveItem.Plot;
+                        break;
+                    case ActiveItem.Both:
+                        Item = pItem;
+                        break;
+                };
+            }
+        }
 
-		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 19);
+        private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 19);
         Packet121GW processor = new Packet121GW();
-		public MultimeterScreen Screen;
-		public MultimeterMenu Menu;
+        public MultimeterScreen Screen;
+        public MultimeterMenu Menu;
 
         private string _Id = "Device";
         public new string Id
@@ -90,8 +117,8 @@ namespace rMultiplatform
         private bool PacketReady => Screen != null && Logger != null;
 
         void ProcessPacket(byte[] pInput)
-		{
-			if (processor.ProcessPacket(pInput))
+        {
+            if (processor.ProcessPacket(pInput))
             {
                 if (PacketReady)
                 {
@@ -113,90 +140,70 @@ namespace rMultiplatform
             }
             else
                 MyProcessor.Reset();
-		}
-		public void Reset() => Logger.Reset();
-		public Multimeter ( BLE.IDeviceBLE pDevice )
-		{
-			mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");
+        }
+        public void Reset() => Logger.Reset();
+        public Multimeter(BLE.IDeviceBLE pDevice)
+        {
+            mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");
 
-			mDevice.Change += (o, e) => {
+            mDevice.Change += (o, e) => {
                 var temp = Encoding.UTF8.GetString(e.Bytes);
                 MyProcessor.Recieve(e.Bytes);
             };
-			MyProcessor.mCallback += ProcessPacket;
+            MyProcessor.mCallback += ProcessPacket;
 
-			Screen  = new MultimeterScreen();
-			Menu	= new MultimeterMenu();
+            Screen = new MultimeterScreen();
+            Screen.Clicked += (o, e) => { FullscreenClicked(ActiveItem.Screen); }; ;
+            Menu = new MultimeterMenu();
 
-			#region MULTIMETER_BUTTON_EVENTS
-			void SendKeycode(Packet121GW.Keycode keycode)
-			{
-				SendData(Packet121GW.GetKeycode(keycode));
-			}
-			Menu.HoldClicked    += (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD);   };
-			Menu.RelClicked	    += (s, e) => { SendKeycode(Packet121GW.Keycode.REL);	};
-			Menu.ModeChanged	+= (s, e) => { SendKeycode(Packet121GW.Keycode.MODE);   };
-			Menu.RangeChanged   += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE);  };
-			#endregion
-			#region CHART_CONSTRUCTION
-			Chart = 
-				new SmartChart(
-				new SmartData(
-					new SmartAxisPair(
-						new SmartAxisHorizontal ("Horizontal",  -0.1f,  0.1f), 
-						new SmartAxisVertical   ("Vertical",    -0.2f,  0.1f)), Logger.Data));
-
-			Chart.Clicked += (o, e) => 
+            void SendKeycode(Packet121GW.Keycode keycode)
             {
-                Plot_FullScreenClicked(o, e);
-            };
-			#endregion
+                SendData(Packet121GW.GetKeycode(keycode));
+            }
+            Menu.HoldClicked += (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD); };
+            Menu.RelClicked += (s, e) => { SendKeycode(Packet121GW.Keycode.REL); };
+            Menu.ModeChanged += (s, e) => { SendKeycode(Packet121GW.Keycode.MODE); };
+            Menu.RangeChanged += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE); };
 
-			ChartMenu = new SmartChartMenu(true, true);
-			ChartMenu.SaveClicked   += (s, e) => { Chart.SaveCSV(); };
-			ChartMenu.ResetClicked  += (s, e) => { Reset();		 };
+            Chart =
+                new SmartChart(
+                new SmartData(
+                    new SmartAxisPair(
+                        new SmartAxisHorizontal("Horizontal", -0.1f, 0.1f),
+                        new SmartAxisVertical("Vertical", -0.2f, 0.1f)), Logger.Data));
+        
+            Chart.Clicked += (o, e) => { FullscreenClicked(ActiveItem.Plot); };
 
-			DefineGrid(1, 4);
-			AutoAdd(Screen);	FormatCurrentRow(GridUnitType.Auto);
-			AutoAdd(Menu);	    FormatCurrentRow(GridUnitType.Auto);
-			AutoAdd(Chart);	    FormatCurrentRow(GridUnitType.Star);
+            ChartMenu = new SmartChartMenu(true, true);
+            ChartMenu.SaveClicked += (s, e) => { Chart.SaveCSV(); };
+            ChartMenu.ResetClicked += (s, e) => { Reset(); };
+
+            DefineGrid(1, 4);
+            AutoAdd(Screen); FormatCurrentRow(GridUnitType.Auto);
+            AutoAdd(Menu); FormatCurrentRow(GridUnitType.Auto);
+            AutoAdd(Chart); FormatCurrentRow(GridUnitType.Star);
             AutoAdd(ChartMenu); FormatCurrentRow(GridUnitType.Auto);
 
-			Item = ActiveItem.Screen;
-		}
-
-        public override void OrientationChanged(Orientation New)
+            Item = ActiveItem.Both;
+        }
+        
+        public override void OrientationChanged(Orientation Update)
         {
-            if (CurrentOrientation != New)
+            if (CurrentOrientation != Update)
             {
-                BatchBegin();
-                if (Screen.IsVisible == true)
+                if (Update == Orientation.Landscape)
                 {
-                    RestoreItems();
-                    if (New == Orientation.Landscape)
-                        MaximiseItem(Screen);
+                    if (Item == ActiveItem.Both)
+                        Item = ActiveItem.Screen;
                 }
-                BatchCommit();
+                else Item = ActiveItem.Both;
             }
 
             //Must be called at end.
-            base.OrientationChanged(New);
+            base.OrientationChanged(Update);
         }
-		private void Plot_FullScreenClicked(object sender, EventArgs e)
-		{
-			Item = (Item == ActiveItem.FullscreenPlot) ? ActiveItem.Screen : ActiveItem.FullscreenPlot;
 
-            if (CurrentOrientation == Orientation.Landscape)
-            {
-                BatchBegin();
-                if (Screen.IsVisible == true)
-                {
-                    RestoreItems();
-                    MaximiseItem(Screen);
-                }
-                BatchCommit();
-            }
-		}
+
 		private void SendData   (byte[] pData)
 		{
 			foreach (var serv in mDevice.Services)

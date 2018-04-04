@@ -4,8 +4,10 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
+#if __ANDROID__
 using Android;
 using Android.App;
+#endif
 
 namespace rMultiplatform
 {

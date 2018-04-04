@@ -38,9 +38,14 @@ namespace rMultiplatform
                         if ( mBuffer.Count >= mLength )
                         {
                             mCallback?.Invoke( mBuffer.ToArray() );
+                            
+                            Debug.WriteLine(BitConverter.ToString(mBuffer.ToArray()));
+
                             mBuffer.Clear( );
                         }
                     }
+                    else
+                        Debug.WriteLine("FAILED : " + BitConverter.ToString(mBuffer.ToArray()));
 
                     mStartFound = true;
                     mBuffer.Clear( );

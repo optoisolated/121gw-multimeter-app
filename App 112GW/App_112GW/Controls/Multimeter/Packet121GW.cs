@@ -196,7 +196,7 @@ namespace rMultiplatform
 
         public bool         BarOn           => ((Nibble(13, true) & 0x1) == 0);
         public bool         Bar0_150        => ((Nibble(13, false) & 0x8) != 0);
-        public eSign        BarSign         => (eSign)BoolToInt((Nibble(13, false) & 0x4) > 0);
+        public eSign        BarSign         => (eSign)BoolToInt((Nibble(13, false) & 0x4) == 0);
         public eBarRange    Bar1000_500     => (eBarRange)(Nibble(13, false) & 3);
         public int          BarValue        => m_Data[14] & 0x1F;
         public byte         Status1         => m_Data[15];
@@ -234,9 +234,6 @@ namespace rMultiplatform
             get
             {
                 var val = (float) MainIntValue / (float) Math.Pow(10f, 5 - MainRangeValue);
-
-                Debug.WriteLine("BarValue = " + BarValue.ToString());
-
                 return (MainSign == eSign.eNegative) ? -val : val;
             }
         }

@@ -54,6 +54,7 @@ namespace rMultiplatform
 
 		public void			 Set(bool pState)
 		{
+            if (mActive != pState) mChange |= true;
 			mActive = pState;
 			foreach (ILayer Layer in mLayers)
 				Layer.Set(pState);
@@ -103,13 +104,10 @@ namespace rMultiplatform
 
 		public void			 Render(ref SKCanvas pSurface, SKRect pRectangle)
 		{
-			if (mActive)
-			{
-				if (mChange)
-					foreach (ILayer Layer in mLayers)
-						Layer.Render(ref pSurface, pRectangle);
-				mChange = false;
-			}
+			if (mChange)
+				foreach (ILayer Layer in mLayers)
+					Layer.Render(ref pSurface, pRectangle);
+			mChange = false;
 		}
 
 		public void			 AddLayer(ILayer pInput)

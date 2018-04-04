@@ -48,7 +48,8 @@ namespace rMultiplatform
 				return _IdleColor.ToFormsColor();
 			}
 		}
-		private SKColor _PressColor;
+
+        private SKColor _PressColor;
 		public Color PressColor
 		{
 			set
@@ -61,7 +62,8 @@ namespace rMultiplatform
 				return _PressColor.ToFormsColor();
 			}
 		}
-		private SKColor _HoverColor;
+
+        private SKColor _HoverColor;
 		public Color HoverColor
 		{
 			set
@@ -74,7 +76,8 @@ namespace rMultiplatform
 				return _HoverColor.ToFormsColor();
 			}
 		}
-		private SKColor _BackgroundColor;
+
+        private SKColor _BackgroundColor;
 		public new Color BackgroundColor
 		{
 			set
@@ -87,7 +90,8 @@ namespace rMultiplatform
 				return _BackgroundColor.ToFormsColor();
 			}
 		}
-		private void ChangeColors()
+
+        private void ChangeColors()
 		{
 			switch (State)
 			{
@@ -153,14 +157,14 @@ namespace rMultiplatform
 
 			SetSegments(pInput.PadLeft(effective_length, ' '), ref mSubSegments);
 		}
-		public float LargeSegments
+		public float    LargeSegments
 		{
 			set
 			{
 				SetLargeSegments(value.ToString());
 			}
 		}
-		public string LargeSegmentsWord
+		public string   LargeSegmentsWord
 		{
 			set
 			{
@@ -181,7 +185,8 @@ namespace rMultiplatform
 				SetSmallSegments(value);
 			}
 		}
-		public int	  Bargraph
+
+        public int	    Bargraph
 		{
 			set
 			{
@@ -226,7 +231,8 @@ namespace rMultiplatform
 			SubHz, 
 			SubR, 
 			SubA, 
-			SubS, 
+			SubS,
+            SubK,
 			SubdB, 
 			Seg_Minus, 
 			Sub_Minus, 
@@ -283,15 +289,15 @@ namespace rMultiplatform
 		{
 			LowZ			= GetOther("LowZ"	   );
 			SegV			= GetOther("SegV"	   );
-			SegmV		   = GetOther("SegmV"	  );
-			AC			  = GetOther("AC"		 );
-			DC			  = GetOther("DC"		 );
+			SegmV		    = GetOther("SegmV"	  );
+			AC			    = GetOther("AC"		 );
+			DC			    = GetOther("DC"		 );
 			SegTempC		= GetOther("SegTempC"   );
-			SegHz		   = GetOther("SegHz"	  );
-			SubPercent	  = GetOther("Sub%"	   );
-			SegCapF		 = GetOther("SegCapF"	);
-			Diode		   = GetOther("Diode"	  );
-			Subms		   = GetOther("Subms"	  );
+			SegHz		    = GetOther("SegHz"	  );
+			SubPercent	    = GetOther("Sub%"	   );
+			SegCapF		    = GetOther("SegCapF"	);
+			Diode		    = GetOther("Diode"	  );
+			Subms		    = GetOther("Subms"	  );
 			SegR			= GetOther("SegR"	   );
 			Segu			= GetOther("Segu"	   );
 			SegA			= GetOther("SegA"	   );
@@ -300,52 +306,53 @@ namespace rMultiplatform
 			Segk			= GetOther("Segk"	   );
 			Segn			= GetOther("Segn"	   );
 			SubV			= GetOther("SubV"	   );
-			SubDC		   = GetOther("SubDC"	  );
-			SubAC		   = GetOther("SubAC"	  );
+			SubDC		    = GetOther("SubDC"	  );
+			SubAC		    = GetOther("SubAC"	  );
 			Subm			= GetOther("Subm"	   );
 			SubS			= GetOther("SubS"	   );
-			SubdB		   = GetOther("SubdB"	  );
-			Sub_Minus	   = GetOther("Sub-"	   );
+			SubdB		    = GetOther("SubdB"	  );
+            SubK            = GetOther("Subk");
+            Sub_Minus	    = GetOther("Sub-"	   );
 			BarTick_Minus   = GetOther("Bar+"	   );
 			BarTick_Plus	= GetOther("BarTick-"   );
-			BarTick1_2	  = GetOther("BarTick1_2" );
-			BarTick2_4	  = GetOther("BarTick2_4" );
-			BarTick3_6	  = GetOther("BarTick3_6" );
-			BarTick4_8	  = GetOther("BarTick4_8" );
-			BarTick5_0	  = GetOther("BarTick5_0" );
-			BarTick5_1	  = GetOther("BarTick5_1" );
-			BarTick0_0	  = GetOther("BarTick0_0" );
-			BarTick1_1	  = GetOther("BarTick1_1" );
-			BarTick2_2	  = GetOther("BarTick2_2" );
-			BarTick3_3	  = GetOther("BarTick3_3" );
-			BarTick4_4	  = GetOther("BarTick4_4" );
-			BarTick5_5	  = GetOther("BarTick5_5" );
-			Bar500_5_0	  = GetOther("Bar500_5_0" );
-			Bar500_0_1	  = GetOther("Bar500_0_1" );
-			Bar500_0_2	  = GetOther("Bar500_0_2" );
-			Bar1000_1_0	 = GetOther("Bar1000_1_0");
-			Bar1000_0_1	 = GetOther("Bar1000_0_1");
-			Bar1000_0_2	 = GetOther("Bar1000_0_2");
-			Bar1000_0_3	 = GetOther("Bar1000_0_3");
-			One_kHz		 = GetOther("1 kHz");
+			BarTick1_2	    = GetOther("BarTick1_2" );
+			BarTick2_4	    = GetOther("BarTick2_4" );
+			BarTick3_6	    = GetOther("BarTick3_6" );
+			BarTick4_8	    = GetOther("BarTick4_8" );
+			BarTick5_0	    = GetOther("BarTick5_0" );
+			BarTick5_1	    = GetOther("BarTick5_1" );
+			BarTick0_0	    = GetOther("BarTick0_0" );
+			BarTick1_1	    = GetOther("BarTick1_1" );
+			BarTick2_2	    = GetOther("BarTick2_2" );
+			BarTick3_3	    = GetOther("BarTick3_3" );
+			BarTick4_4	    = GetOther("BarTick4_4" );
+			BarTick5_5	    = GetOther("BarTick5_5" );
+			Bar500_5_0	    = GetOther("Bar500_5_0" );
+			Bar500_0_1	    = GetOther("Bar500_0_1" );
+			Bar500_0_2	    = GetOther("Bar500_0_2" );
+			Bar1000_1_0	    = GetOther("Bar1000_1_0");
+			Bar1000_0_1	    = GetOther("Bar1000_0_1");
+			Bar1000_0_2	    = GetOther("Bar1000_0_2");
+			Bar1000_0_3	    = GetOther("Bar1000_0_3");
+			One_kHz		    = GetOther("1 kHz");
 			Sub1			= GetOther("Sub1");
 			auto			= GetOther("auto");
-			apo			 = GetOther("apo");
-			Battery		 = GetOther("Battery");
-			REL			 = GetOther("REL");
-			DC_Plus_AC	  = GetOther("DC+AC");
+			apo			    = GetOther("apo");
+			Battery		    = GetOther("Battery");
+			REL			    = GetOther("REL");
+			DC_Plus_AC	    = GetOther("DC+AC");
 			TEST			= GetOther("TEST");
-			MEM			 = GetOther("MEM");
+			MEM			    = GetOther("MEM");
 			HOLD			= GetOther("HOLD");
-			A_Minus		 = GetOther("A-");
-			MAX			 = GetOther("MAX");
-			MIN			 = GetOther("MIN");
-			AVG			 = GetOther("AVG");
-			BT			  = GetOther("bt");
-			Seg_Minus	   = GetOther("Seg-");
+			A_Minus		    = GetOther("A-");
+			MAX			    = GetOther("MAX");
+			MIN			    = GetOther("MIN");
+			AVG			    = GetOther("AVG");
+			BT			    = GetOther("bt");
+			Seg_Minus	    = GetOther("Seg-");
 			SubA			= GetOther("SubA");
 			SubR			= GetOther("SubR");
-			SubHz		   = GetOther("SubHz");
+			SubHz		    = GetOther("SubHz");
 		}
 
 		public Packet121GW MainMode
@@ -670,6 +677,8 @@ namespace rMultiplatform
 						Debug.WriteLine("Other mode recieved" + value.ToString());
 						break;
 				}
+
+                SetLayer(SubK, value.SubK);
 			}
 		}
 
@@ -717,9 +726,10 @@ namespace rMultiplatform
 				var sign = value.BarSign;
 				var barval = value.BarValue;
 				if (On)
-				{
-					//Setup bargraph ranges
-					SetLayer(BarTick0_0, true);
+                {
+                    mBargraph.On();
+                    //Setup bargraph ranges
+                    SetLayer(BarTick0_0, true);
 					if (_0_150)
 					{
 						SetLayer(BarTick1_2, true);
@@ -767,7 +777,9 @@ namespace rMultiplatform
 
 					Bargraph = barval + 1;
 				}
-			}
+                else
+                    mBargraph.Off();
+            }
 		}
 		public Packet121GW IconStatus
 		{
@@ -841,7 +853,6 @@ namespace rMultiplatform
 		}
 		public void Update(Packet121GW pInput)
 		{
-			SetLayer(BT, true);
 			foreach (var other in mOther.mLayers)
 				other.Off();
 
@@ -858,7 +869,10 @@ namespace rMultiplatform
 
 			//Update icons
 			IconStatus = pInput;
-		}
+
+            //If it is communicating BT is on
+            SetLayer(BT, pInput.StatusBT);
+        }
 
 		Layers segments	 = new Layers("mSegments");
 		Layers subsegments  = new Layers("mSubsegments");

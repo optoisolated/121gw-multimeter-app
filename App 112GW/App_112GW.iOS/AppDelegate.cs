@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace App_112GW.iOS
+namespace App_121GW.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
@@ -23,7 +23,7 @@ namespace App_112GW.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-			LoadApplication (new App_112GW.App ());
+			LoadApplication (new App_121GW.App ());
 
 			//var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
 			//x = typeof(Xamarin.Forms.Themes.LightThemeResources);

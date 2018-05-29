@@ -1,11 +1,11 @@
-﻿namespace App_112GW.UWP
+﻿namespace App_121GW.UWP
 {
     public sealed partial class MainPage
 	{
 		public MainPage()
 		{
 			this.InitializeComponent();
-			LoadApplication(new App_112GW.App());
+			LoadApplication(new App_121GW.App());
 		}
 	}
 }

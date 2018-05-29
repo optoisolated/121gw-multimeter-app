@@ -1,0 +1,1526 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App.xaml" />
+    <None Remove="Image\Layer Resources\!bar_range.svg" />
+    <None Remove="Image\Layer Resources\1 kHz.svg" />
+    <None Remove="Image\Layer Resources\A-.svg" />
+    <None Remove="Image\Layer Resources\AC.svg" />
+    <None Remove="Image\Layer Resources\apo.svg" />
+    <None Remove="Image\Layer Resources\auto.svg" />
+    <None Remove="Image\Layer Resources\AVG.svg" />
+    <None Remove="Image\Layer Resources\Bar+.svg" />
+    <None Remove="Image\Layer Resources\bar01.svg" />
+    <None Remove="Image\Layer Resources\bar02.svg" />
+    <None Remove="Image\Layer Resources\bar03.svg" />
+    <None Remove="Image\Layer Resources\bar04.svg" />
+    <None Remove="Image\Layer Resources\bar05.svg" />
+    <None Remove="Image\Layer Resources\bar06.svg" />
+    <None Remove="Image\Layer Resources\bar07.svg" />
+    <None Remove="Image\Layer Resources\bar08.svg" />
+    <None Remove="Image\Layer Resources\bar09.svg" />
+    <None Remove="Image\Layer Resources\bar10.svg" />
+    <None Remove="Image\Layer Resources\Bar1000_0_1.svg" />
+    <None Remove="Image\Layer Resources\Bar1000_0_2.svg" />
+    <None Remove="Image\Layer Resources\Bar1000_0_3.svg" />
+    <None Remove="Image\Layer Resources\Bar1000_1_0.svg" />
+    <None Remove="Image\Layer Resources\bar11.svg" />
+    <None Remove="Image\Layer Resources\bar12.svg" />
+    <None Remove="Image\Layer Resources\bar13.svg" />
+    <None Remove="Image\Layer Resources\bar14.svg" />
+    <None Remove="Image\Layer Resources\bar15.svg" />
+    <None Remove="Image\Layer Resources\bar16.svg" />
+    <None Remove="Image\Layer Resources\bar17.svg" />
+    <None Remove="Image\Layer Resources\bar18.svg" />
+    <None Remove="Image\Layer Resources\bar19.svg" />
+    <None Remove="Image\Layer Resources\bar20.svg" />
+    <None Remove="Image\Layer Resources\bar21.svg" />
+    <None Remove="Image\Layer Resources\bar22.svg" />
+    <None Remove="Image\Layer Resources\bar23.svg" />
+    <None Remove="Image\Layer Resources\bar24.svg" />
+    <None Remove="Image\Layer Resources\bar25.svg" />
+    <None Remove="Image\Layer Resources\bar26.svg" />
+    <None Remove="Image\Layer Resources\Bar500_0_1.svg" />
+    <None Remove="Image\Layer Resources\Bar500_0_2.svg" />
+    <None Remove="Image\Layer Resources\Bar500_5_0.svg" />
+    <None Remove="Image\Layer Resources\BarTick-.svg" />
+    <None Remove="Image\Layer Resources\BarTick0_0.svg" />
+    <None Remove="Image\Layer Resources\BarTick1_1.svg" />
+    <None Remove="Image\Layer Resources\BarTick1_2.svg" />
+    <None Remove="Image\Layer Resources\BarTick2_2.svg" />
+    <None Remove="Image\Layer Resources\BarTick2_4.svg" />
+    <None Remove="Image\Layer Resources\BarTick3_3.svg" />
+    <None Remove="Image\Layer Resources\BarTick3_6.svg" />
+    <None Remove="Image\Layer Resources\BarTick4_4.svg" />
+    <None Remove="Image\Layer Resources\BarTick4_8.svg" />
+    <None Remove="Image\Layer Resources\BarTick5_0.svg" />
+    <None Remove="Image\Layer Resources\BarTick5_1.svg" />
+    <None Remove="Image\Layer Resources\BarTick5_5.svg" />
+    <None Remove="Image\Layer Resources\Battery.svg" />
+    <None Remove="Image\Layer Resources\Beep.svg" />
+    <None Remove="Image\Layer Resources\bt.svg" />
+    <None Remove="Image\Layer Resources\DC+AC.svg" />
+    <None Remove="Image\Layer Resources\DC.svg" />
+    <None Remove="Image\Layer Resources\Diode.svg" />
+    <None Remove="Image\Layer Resources\HOLD.svg" />
+    <None Remove="Image\Layer Resources\LowZ.svg" />
+    <None Remove="Image\Layer Resources\MAX.svg" />
+    <None Remove="Image\Layer Resources\MEM.svg" />
+    <None Remove="Image\Layer Resources\MIN.svg" />
+    <None Remove="Image\Layer Resources\REL.svg" />
+    <None Remove="Image\Layer Resources\Seg-.svg" />
+    <None Remove="Image\Layer Resources\seg1a.svg" />
+    <None Remove="Image\Layer Resources\seg1b.svg" />
+    <None Remove="Image\Layer Resources\seg1c.svg" />
+    <None Remove="Image\Layer Resources\seg1d.svg" />
+    <None Remove="Image\Layer Resources\seg1dp.svg" />
+    <None Remove="Image\Layer Resources\seg1e.svg" />
+    <None Remove="Image\Layer Resources\seg1f.svg" />
+    <None Remove="Image\Layer Resources\seg1g.svg" />
+    <None Remove="Image\Layer Resources\seg2a.svg" />
+    <None Remove="Image\Layer Resources\seg2b.svg" />
+    <None Remove="Image\Layer Resources\seg2c.svg" />
+    <None Remove="Image\Layer Resources\seg2d.svg" />
+    <None Remove="Image\Layer Resources\seg2dp.svg" />
+    <None Remove="Image\Layer Resources\seg2e.svg" />
+    <None Remove="Image\Layer Resources\seg2f.svg" />
+    <None Remove="Image\Layer Resources\seg2g.svg" />
+    <None Remove="Image\Layer Resources\seg3a.svg" />
+    <None Remove="Image\Layer Resources\seg3b.svg" />
+    <None Remove="Image\Layer Resources\seg3c.svg" />
+    <None Remove="Image\Layer Resources\seg3d.svg" />
+    <None Remove="Image\Layer Resources\seg3dp.svg" />
+    <None Remove="Image\Layer Resources\seg3e.svg" />
+    <None Remove="Image\Layer Resources\seg3f.svg" />
+    <None Remove="Image\Layer Resources\seg3g.svg" />
+    <None Remove="Image\Layer Resources\seg4a.svg" />
+    <None Remove="Image\Layer Resources\seg4b.svg" />
+    <None Remove="Image\Layer Resources\seg4c.svg" />
+    <None Remove="Image\Layer Resources\seg4d.svg" />
+    <None Remove="Image\Layer Resources\seg4dp.svg" />
+    <None Remove="Image\Layer Resources\seg4e.svg" />
+    <None Remove="Image\Layer Resources\seg4f.svg" />
+    <None Remove="Image\Layer Resources\seg4g.svg" />
+    <None Remove="Image\Layer Resources\seg5a.svg" />
+    <None Remove="Image\Layer Resources\seg5b.svg" />
+    <None Remove="Image\Layer Resources\seg5c.svg" />
+    <None Remove="Image\Layer Resources\seg5d.svg" />
+    <None Remove="Image\Layer Resources\seg5e.svg" />
+    <None Remove="Image\Layer Resources\seg5f.svg" />
+    <None Remove="Image\Layer Resources\seg5g.svg" />
+    <None Remove="Image\Layer Resources\SegA.svg" />
+    <None Remove="Image\Layer Resources\SegCapF.svg" />
+    <None Remove="Image\Layer Resources\SegHz.svg" />
+    <None Remove="Image\Layer Resources\Segk.svg" />
+    <None Remove="Image\Layer Resources\SegM.svg" />
+    <None Remove="Image\Layer Resources\SegmV.svg" />
+    <None Remove="Image\Layer Resources\Segn.svg" />
+    <None Remove="Image\Layer Resources\SegR.svg" />
+    <None Remove="Image\Layer Resources\Segs_unA.svg" />
+    <None Remove="Image\Layer Resources\SegTempC.svg" />
+    <None Remove="Image\Layer Resources\SegTempF.svg" />
+    <None Remove="Image\Layer Resources\Segu.svg" />
+    <None Remove="Image\Layer Resources\SegV.svg" />
+    <None Remove="Image\Layer Resources\Shock.svg" />
+    <None Remove="Image\Layer Resources\Sub%.svg" />
+    <None Remove="Image\Layer Resources\Sub-.svg" />
+    <None Remove="Image\Layer Resources\Sub1.svg" />
+    <None Remove="Image\Layer Resources\sub1a.svg" />
+    <None Remove="Image\Layer Resources\sub1b.svg" />
+    <None Remove="Image\Layer Resources\sub1c.svg" />
+    <None Remove="Image\Layer Resources\sub1d.svg" />
+    <None Remove="Image\Layer Resources\sub1dp.svg" />
+    <None Remove="Image\Layer Resources\sub1e.svg" />
+    <None Remove="Image\Layer Resources\sub1f.svg" />
+    <None Remove="Image\Layer Resources\sub1g.svg" />
+    <None Remove="Image\Layer Resources\sub2a.svg" />
+    <None Remove="Image\Layer Resources\sub2b.svg" />
+    <None Remove="Image\Layer Resources\sub2c.svg" />
+    <None Remove="Image\Layer Resources\sub2d.svg" />
+    <None Remove="Image\Layer Resources\sub2dp.svg" />
+    <None Remove="Image\Layer Resources\sub2e.svg" />
+    <None Remove="Image\Layer Resources\sub2f.svg" />
+    <None Remove="Image\Layer Resources\sub2g.svg" />
+    <None Remove="Image\Layer Resources\sub3a.svg" />
+    <None Remove="Image\Layer Resources\sub3b.svg" />
+    <None Remove="Image\Layer Resources\sub3c.svg" />
+    <None Remove="Image\Layer Resources\sub3d.svg" />
+    <None Remove="Image\Layer Resources\sub3dp.svg" />
+    <None Remove="Image\Layer Resources\sub3e.svg" />
+    <None Remove="Image\Layer Resources\sub3f.svg" />
+    <None Remove="Image\Layer Resources\sub3g.svg" />
+    <None Remove="Image\Layer Resources\sub4a.svg" />
+    <None Remove="Image\Layer Resources\sub4b.svg" />
+    <None Remove="Image\Layer Resources\sub4c.svg" />
+    <None Remove="Image\Layer Resources\sub4d.svg" />
+    <None Remove="Image\Layer Resources\sub4dp.svg" />
+    <None Remove="Image\Layer Resources\sub4e.svg" />
+    <None Remove="Image\Layer Resources\sub4f.svg" />
+    <None Remove="Image\Layer Resources\sub4g.svg" />
+    <None Remove="Image\Layer Resources\sub5a.svg" />
+    <None Remove="Image\Layer Resources\sub5b.svg" />
+    <None Remove="Image\Layer Resources\sub5c.svg" />
+    <None Remove="Image\Layer Resources\sub5d.svg" />
+    <None Remove="Image\Layer Resources\sub5e.svg" />
+    <None Remove="Image\Layer Resources\sub5f.svg" />
+    <None Remove="Image\Layer Resources\sub5g.svg" />
+    <None Remove="Image\Layer Resources\SubA.svg" />
+    <None Remove="Image\Layer Resources\SubAC.svg" />
+    <None Remove="Image\Layer Resources\SubdB.svg" />
+    <None Remove="Image\Layer Resources\SubDC.svg" />
+    <None Remove="Image\Layer Resources\SubHz.svg" />
+    <None Remove="Image\Layer Resources\Subk.svg" />
+    <None Remove="Image\Layer Resources\Subm.svg" />
+    <None Remove="Image\Layer Resources\Subms.svg" />
+    <None Remove="Image\Layer Resources\Subn.svg" />
+    <None Remove="Image\Layer Resources\SubR.svg" />
+    <None Remove="Image\Layer Resources\SubS.svg" />
+    <None Remove="Image\Layer Resources\SubV.svg" />
+    <None Remove="Image\Layer Resources\TEST.svg" />
+    <None Remove="Image\PNG's\!bar_range.png" />
+    <None Remove="Image\PNG's\%.png" />
+    <None Remove="Image\PNG's\+.png" />
+    <None Remove="Image\PNG's\1khz.png" />
+    <None Remove="Image\PNG's\1ms.png" />
+    <None Remove="Image\PNG's\a-.png" />
+    <None Remove="Image\PNG's\ac.png" />
+    <None Remove="Image\PNG's\ac2.png" />
+    <None Remove="Image\PNG's\ampre 2.png" />
+    <None Remove="Image\PNG's\ampre.png" />
+    <None Remove="Image\PNG's\Amps.png" />
+    <None Remove="Image\PNG's\apo.png" />
+    <None Remove="Image\PNG's\auto.png" />
+    <None Remove="Image\PNG's\avg.png" />
+    <None Remove="Image\PNG's\bar01.png" />
+    <None Remove="Image\PNG's\bar02.png" />
+    <None Remove="Image\PNG's\bar03.png" />
+    <None Remove="Image\PNG's\bar04.png" />
+    <None Remove="Image\PNG's\bar05.png" />
+    <None Remove="Image\PNG's\bar06.png" />
+    <None Remove="Image\PNG's\bar07.png" />
+    <None Remove="Image\PNG's\bar08.png" />
+    <None Remove="Image\PNG's\bar09.png" />
+    <None Remove="Image\PNG's\bar10.png" />
+    <None Remove="Image\PNG's\bar11.png" />
+    <None Remove="Image\PNG's\bar12.png" />
+    <None Remove="Image\PNG's\bar13.png" />
+    <None Remove="Image\PNG's\bar14.png" />
+    <None Remove="Image\PNG's\bar15.png" />
+    <None Remove="Image\PNG's\bar16.png" />
+    <None Remove="Image\PNG's\bar17.png" />
+    <None Remove="Image\PNG's\bar18.png" />
+    <None Remove="Image\PNG's\bar19.png" />
+    <None Remove="Image\PNG's\bar20.png" />
+    <None Remove="Image\PNG's\bar21.png" />
+    <None Remove="Image\PNG's\bar22.png" />
+    <None Remove="Image\PNG's\bar23.png" />
+    <None Remove="Image\PNG's\bar24.png" />
+    <None Remove="Image\PNG's\bar25.png" />
+    <None Remove="Image\PNG's\bar26.png" />
+    <None Remove="Image\PNG's\bar_+.png" />
+    <None Remove="Image\PNG's\bar_-.png" />
+    <None Remove="Image\PNG's\bar_1000.png" />
+    <None Remove="Image\PNG's\bar_500.png" />
+    <None Remove="Image\PNG's\battery.png" />
+    <None Remove="Image\PNG's\bt.png" />
+    <None Remove="Image\PNG's\dB.png" />
+    <None Remove="Image\PNG's\DC 2.png" />
+    <None Remove="Image\PNG's\dc.png" />
+    <None Remove="Image\PNG's\degreesC.png" />
+    <None Remove="Image\PNG's\degreesF.png" />
+    <None Remove="Image\PNG's\diode.png" />
+    <None Remove="Image\PNG's\electric.png" />
+    <None Remove="Image\PNG's\Farads.png" />
+    <None Remove="Image\PNG's\hold.png" />
+    <None Remove="Image\PNG's\Hz 2.png" />
+    <None Remove="Image\PNG's\hz.png" />
+    <None Remove="Image\PNG's\k.png" />
+    <None Remove="Image\PNG's\Kilo.png" />
+    <None Remove="Image\PNG's\LowZ.png" />
+    <None Remove="Image\PNG's\M.png" />
+    <None Remove="Image\PNG's\MAX.png" />
+    <None Remove="Image\PNG's\Mega.png" />
+    <None Remove="Image\PNG's\mem.png" />
+    <None Remove="Image\PNG's\micro 2.png" />
+    <None Remove="Image\PNG's\micro.png" />
+    <None Remove="Image\PNG's\milli 2.png" />
+    <None Remove="Image\PNG's\milli.png" />
+    <None Remove="Image\PNG's\min.png" />
+    <None Remove="Image\PNG's\n.png" />
+    <None Remove="Image\PNG's\negitive.png" />
+    <None Remove="Image\PNG's\ohm right top.png" />
+    <None Remove="Image\PNG's\ohm.png" />
+    <None Remove="Image\PNG's\percent.png" />
+    <None Remove="Image\PNG's\s.png" />
+    <None Remove="Image\PNG's\seg1a.png" />
+    <None Remove="Image\PNG's\seg1b.png" />
+    <None Remove="Image\PNG's\seg1c.png" />
+    <None Remove="Image\PNG's\seg1d.png" />
+    <None Remove="Image\PNG's\seg1dp.png" />
+    <None Remove="Image\PNG's\seg1e.png" />
+    <None Remove="Image\PNG's\seg1f.png" />
+    <None Remove="Image\PNG's\seg1g.png" />
+    <None Remove="Image\PNG's\seg2a.png" />
+    <None Remove="Image\PNG's\seg2b.png" />
+    <None Remove="Image\PNG's\seg2c.png" />
+    <None Remove="Image\PNG's\seg2d.png" />
+    <None Remove="Image\PNG's\seg2dp.png" />
+    <None Remove="Image\PNG's\seg2e.png" />
+    <None Remove="Image\PNG's\seg2f.png" />
+    <None Remove="Image\PNG's\seg2g.png" />
+    <None Remove="Image\PNG's\seg3a.png" />
+    <None Remove="Image\PNG's\seg3b.png" />
+    <None Remove="Image\PNG's\seg3c.png" />
+    <None Remove="Image\PNG's\seg3d.png" />
+    <None Remove="Image\PNG's\seg3dp.png" />
+    <None Remove="Image\PNG's\seg3e.png" />
+    <None Remove="Image\PNG's\seg3f.png" />
+    <None Remove="Image\PNG's\seg3g.png" />
+    <None Remove="Image\PNG's\seg4a.png" />
+    <None Remove="Image\PNG's\seg4b.png" />
+    <None Remove="Image\PNG's\seg4c.png" />
+    <None Remove="Image\PNG's\seg4d.png" />
+    <None Remove="Image\PNG's\seg4e.png" />
+    <None Remove="Image\PNG's\seg4f.png" />
+    <None Remove="Image\PNG's\seg4g.png" />
+    <None Remove="Image\PNG's\seg5a.png" />
+    <None Remove="Image\PNG's\seg5b.png" />
+    <None Remove="Image\PNG's\seg5c.png" />
+    <None Remove="Image\PNG's\seg5d.png" />
+    <None Remove="Image\PNG's\seg5e.png" />
+    <None Remove="Image\PNG's\seg5f.png" />
+    <None Remove="Image\PNG's\seg5g.png" />
+    <None Remove="Image\PNG's\Sound.png" />
+    <None Remove="Image\PNG's\sub1a.png" />
+    <None Remove="Image\PNG's\sub1b.png" />
+    <None Remove="Image\PNG's\sub1c.png" />
+    <None Remove="Image\PNG's\sub1d.png" />
+    <None Remove="Image\PNG's\sub1dp.png" />
+    <None Remove="Image\PNG's\sub1e.png" />
+    <None Remove="Image\PNG's\sub1f.png" />
+    <None Remove="Image\PNG's\sub1g.png" />
+    <None Remove="Image\PNG's\sub2a.png" />
+    <None Remove="Image\PNG's\sub2b.png" />
+    <None Remove="Image\PNG's\sub2c.png" />
+    <None Remove="Image\PNG's\sub2d.png" />
+    <None Remove="Image\PNG's\sub2dp.png" />
+    <None Remove="Image\PNG's\sub2e.png" />
+    <None Remove="Image\PNG's\sub2f.png" />
+    <None Remove="Image\PNG's\sub2g.png" />
+    <None Remove="Image\PNG's\sub3a.png" />
+    <None Remove="Image\PNG's\sub3b.png" />
+    <None Remove="Image\PNG's\sub3c.png" />
+    <None Remove="Image\PNG's\sub3d.png" />
+    <None Remove="Image\PNG's\sub3dp.png" />
+    <None Remove="Image\PNG's\sub3e.png" />
+    <None Remove="Image\PNG's\sub3f.png" />
+    <None Remove="Image\PNG's\sub3g.png" />
+    <None Remove="Image\PNG's\sub4a.png" />
+    <None Remove="Image\PNG's\sub4b.png" />
+    <None Remove="Image\PNG's\sub4c.png" />
+    <None Remove="Image\PNG's\sub4d.png" />
+    <None Remove="Image\PNG's\sub4dp.png" />
+    <None Remove="Image\PNG's\sub4e.png" />
+    <None Remove="Image\PNG's\sub4f.png" />
+    <None Remove="Image\PNG's\sub4g.png" />
+    <None Remove="Image\PNG's\sub5a.png" />
+    <None Remove="Image\PNG's\sub5b.png" />
+    <None Remove="Image\PNG's\sub5c.png" />
+    <None Remove="Image\PNG's\sub5d.png" />
+    <None Remove="Image\PNG's\sub5e.png" />
+    <None Remove="Image\PNG's\sub5f.png" />
+    <None Remove="Image\PNG's\sub5g.png" />
+    <None Remove="Image\PNG's\subnegative.png" />
+    <None Remove="Image\PNG's\sym.png" />
+    <None Remove="Image\PNG's\triangle.png" />
+    <None Remove="Image\PNG's\V.png" />
+    <None Remove="Image\PNG's\Volts.png" />
+    <None Remove="MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\!bar_range.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\1 kHz.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\A-.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\AC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\apo.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\auto.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\AVG.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar+.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar01.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar02.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar03.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar04.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar05.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar06.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar07.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar08.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar09.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar10.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_3.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_1_0.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar11.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar12.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar13.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar14.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar15.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar16.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar17.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar18.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar19.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar20.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar21.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar22.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar23.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar24.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar25.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar26.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_5_0.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick-.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick0_0.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick1_1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick1_2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick2_2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick2_4.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick3_3.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick3_6.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick4_4.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick4_8.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_0.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_5.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Battery.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Beep.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bt.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\DC+AC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\DC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Diode.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\HOLD.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\LowZ.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MAX.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MEM.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MIN.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\REL.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Seg-.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegA.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegCapF.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegHz.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segk.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegM.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegmV.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segn.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegR.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segs_unA.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegTempC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegTempF.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segu.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegV.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Shock.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Sub%.svg" />
+    <EmbeddedResource Include="Image\Layer Resources\Sub-.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Sub1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4dp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5a.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5b.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5c.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5d.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5e.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5f.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5g.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubA.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubAC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubdB.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubDC.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubHz.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subk.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subm.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subms.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subn.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubR.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubS.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubV.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\TEST.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\PNG's\!bar_range.png" />
+    <EmbeddedResource Include="Image\PNG's\%.png" />
+    <EmbeddedResource Include="Image\PNG's\+.png" />
+    <EmbeddedResource Include="Image\PNG's\1khz.png" />
+    <EmbeddedResource Include="Image\PNG's\1ms.png" />
+    <EmbeddedResource Include="Image\PNG's\a-.png" />
+    <EmbeddedResource Include="Image\PNG's\ac.png" />
+    <EmbeddedResource Include="Image\PNG's\ac2.png" />
+    <EmbeddedResource Include="Image\PNG's\ampre 2.png" />
+    <EmbeddedResource Include="Image\PNG's\ampre.png" />
+    <EmbeddedResource Include="Image\PNG's\Amps.png" />
+    <EmbeddedResource Include="Image\PNG's\apo.png" />
+    <EmbeddedResource Include="Image\PNG's\auto.png" />
+    <EmbeddedResource Include="Image\PNG's\avg.png" />
+    <EmbeddedResource Include="Image\PNG's\bar01.png" />
+    <EmbeddedResource Include="Image\PNG's\bar02.png" />
+    <EmbeddedResource Include="Image\PNG's\bar03.png" />
+    <EmbeddedResource Include="Image\PNG's\bar04.png" />
+    <EmbeddedResource Include="Image\PNG's\bar05.png" />
+    <EmbeddedResource Include="Image\PNG's\bar06.png" />
+    <EmbeddedResource Include="Image\PNG's\bar07.png" />
+    <EmbeddedResource Include="Image\PNG's\bar08.png" />
+    <EmbeddedResource Include="Image\PNG's\bar09.png" />
+    <EmbeddedResource Include="Image\PNG's\bar10.png" />
+    <EmbeddedResource Include="Image\PNG's\bar11.png" />
+    <EmbeddedResource Include="Image\PNG's\bar12.png" />
+    <EmbeddedResource Include="Image\PNG's\bar13.png" />
+    <EmbeddedResource Include="Image\PNG's\bar14.png" />
+    <EmbeddedResource Include="Image\PNG's\bar15.png" />
+    <EmbeddedResource Include="Image\PNG's\bar16.png" />
+    <EmbeddedResource Include="Image\PNG's\bar17.png" />
+    <EmbeddedResource Include="Image\PNG's\bar18.png" />
+    <EmbeddedResource Include="Image\PNG's\bar19.png" />
+    <EmbeddedResource Include="Image\PNG's\bar20.png" />
+    <EmbeddedResource Include="Image\PNG's\bar21.png" />
+    <EmbeddedResource Include="Image\PNG's\bar22.png" />
+    <EmbeddedResource Include="Image\PNG's\bar23.png" />
+    <EmbeddedResource Include="Image\PNG's\bar24.png" />
+    <EmbeddedResource Include="Image\PNG's\bar25.png" />
+    <EmbeddedResource Include="Image\PNG's\bar26.png" />
+    <EmbeddedResource Include="Image\PNG's\bar_+.png" />
+    <EmbeddedResource Include="Image\PNG's\bar_-.png" />
+    <EmbeddedResource Include="Image\PNG's\bar_1000.png" />
+    <EmbeddedResource Include="Image\PNG's\bar_500.png" />
+    <EmbeddedResource Include="Image\PNG's\battery.png" />
+    <EmbeddedResource Include="Image\PNG's\bt.png" />
+    <EmbeddedResource Include="Image\PNG's\dB.png" />
+    <EmbeddedResource Include="Image\PNG's\DC 2.png" />
+    <EmbeddedResource Include="Image\PNG's\dc.png" />
+    <EmbeddedResource Include="Image\PNG's\degreesC.png" />
+    <EmbeddedResource Include="Image\PNG's\degreesF.png" />
+    <EmbeddedResource Include="Image\PNG's\diode.png" />
+    <EmbeddedResource Include="Image\PNG's\electric.png" />
+    <EmbeddedResource Include="Image\PNG's\Farads.png" />
+    <EmbeddedResource Include="Image\PNG's\hold.png" />
+    <EmbeddedResource Include="Image\PNG's\Hz 2.png" />
+    <EmbeddedResource Include="Image\PNG's\hz.png" />
+    <EmbeddedResource Include="Image\PNG's\k.png" />
+    <EmbeddedResource Include="Image\PNG's\Kilo.png" />
+    <EmbeddedResource Include="Image\PNG's\LowZ.png" />
+    <EmbeddedResource Include="Image\PNG's\M.png" />
+    <EmbeddedResource Include="Image\PNG's\MAX.png" />
+    <EmbeddedResource Include="Image\PNG's\Mega.png" />
+    <EmbeddedResource Include="Image\PNG's\mem.png" />
+    <EmbeddedResource Include="Image\PNG's\micro 2.png" />
+    <EmbeddedResource Include="Image\PNG's\micro.png" />
+    <EmbeddedResource Include="Image\PNG's\milli 2.png" />
+    <EmbeddedResource Include="Image\PNG's\milli.png" />
+    <EmbeddedResource Include="Image\PNG's\min.png" />
+    <EmbeddedResource Include="Image\PNG's\n.png" />
+    <EmbeddedResource Include="Image\PNG's\negitive.png" />
+    <EmbeddedResource Include="Image\PNG's\ohm right top.png" />
+    <EmbeddedResource Include="Image\PNG's\ohm.png" />
+    <EmbeddedResource Include="Image\PNG's\percent.png" />
+    <EmbeddedResource Include="Image\PNG's\s.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1a.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1b.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1c.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1d.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1dp.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1e.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1f.png" />
+    <EmbeddedResource Include="Image\PNG's\seg1g.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2a.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2b.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2c.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2d.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2dp.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2e.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2f.png" />
+    <EmbeddedResource Include="Image\PNG's\seg2g.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3a.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3b.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3c.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3d.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3dp.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3e.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3f.png" />
+    <EmbeddedResource Include="Image\PNG's\seg3g.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4a.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4b.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4c.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4d.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4e.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4f.png" />
+    <EmbeddedResource Include="Image\PNG's\seg4g.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5a.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5b.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5c.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5d.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5e.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5f.png" />
+    <EmbeddedResource Include="Image\PNG's\seg5g.png" />
+    <EmbeddedResource Include="Image\PNG's\Sound.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1a.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1b.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1c.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1d.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1dp.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1e.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1f.png" />
+    <EmbeddedResource Include="Image\PNG's\sub1g.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2a.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2b.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2c.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2d.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2dp.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2e.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2f.png" />
+    <EmbeddedResource Include="Image\PNG's\sub2g.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3a.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3b.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3c.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3d.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3dp.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3e.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3f.png" />
+    <EmbeddedResource Include="Image\PNG's\sub3g.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4a.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4b.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4c.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4d.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4dp.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4e.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4f.png" />
+    <EmbeddedResource Include="Image\PNG's\sub4g.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5a.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5b.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5c.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5d.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5e.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5f.png" />
+    <EmbeddedResource Include="Image\PNG's\sub5g.png" />
+    <EmbeddedResource Include="Image\PNG's\subnegative.png" />
+    <EmbeddedResource Include="Image\PNG's\sym.png" />
+    <EmbeddedResource Include="Image\PNG's\triangle.png" />
+    <EmbeddedResource Include="Image\PNG's\V.png" />
+    <EmbeddedResource Include="Image\PNG's\Volts.png" />
+    <EmbeddedResource Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Image\Layer Resources\Sub%25.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\!bar_range.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\%25.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\+.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\1khz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\1ms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\a-.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ac.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ac2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ampre 2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ampre.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Amps.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\apo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\auto.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\avg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar06.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar07.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar09.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar14.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar15.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar17.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar18.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar19.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar20.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar21.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar22.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar23.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar25.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar26.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar_+.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar_-.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar_1000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bar_500.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\battery.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\bt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\dB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\DC 2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\dc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\degreesC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\degreesF.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\diode.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\electric.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Farads.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\hold.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Hz 2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\hz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\k.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Kilo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\LowZ.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\M.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\MAX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Mega.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\mem.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\micro 2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\micro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\milli 2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\milli.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\min.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\n.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\negitive.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ohm right top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\ohm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\percent.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg1g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg2g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg3g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg4g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\seg5g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Sound.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub1g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub2g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub3g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4dp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub4g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5c.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5d.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5f.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sub5g.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\subnegative.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\sym.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\triangle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\V.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Image\PNG%27s\Volts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

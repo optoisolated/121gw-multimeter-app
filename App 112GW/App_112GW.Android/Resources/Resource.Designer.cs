@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("App_112GW.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("App_121GW.Droid.Resource", IsApplication=true)]
 
-namespace App_112GW.Droid
+namespace App_121GW.Droid
 {
 	
 	
@@ -26,8 +26,8 @@ namespace App_112GW.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::App_112GW.Droid.Resource.String.library_name;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App_112GW.Droid.Resource.Attribute.actionBarSize;
+			global::ModernHttpClient.Resource.String.library_name = global::App_121GW.Droid.Resource.String.library_name;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App_121GW.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

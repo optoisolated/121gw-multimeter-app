@@ -11,7 +11,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 
 [assembly: Application(Debuggable = false)]
-namespace App_112GW.Droid
+namespace App_121GW.Droid
 {
     [Activity (Label = "121GW", 
         Icon = "@mipmap/ic_launcher", 
@@ -41,7 +41,7 @@ namespace App_112GW.Droid
 			AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new App_112GW.App ());
+			LoadApplication (new App_121GW.App ());
 		}
 	}
 }

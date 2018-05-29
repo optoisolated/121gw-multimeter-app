@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace App_112GW.UWP
+namespace App_121GW.UWP
 {
 	/// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.

@@ -6,7 +6,7 @@
     <SharedGUID>42703b07-6599-410f-af0d-7097e5a63b1c</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>App_112GW</Import_RootNamespace>
+    <Import_RootNamespace>App_121GW</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">

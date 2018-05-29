@@ -892,7 +892,7 @@ namespace rMultiplatform
 
 			return true;
 		}
-		bool ProcessImage(string filename, SKSvg Image)
+		bool ProcessImage(string filename, SkiaSharp.Extended.Svg.SKSvg Image)
 		{
 			CacheFunction?.Invoke((new SVGLayer(Image, filename) as ILayer));
 

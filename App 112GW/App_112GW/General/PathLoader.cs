@@ -355,10 +355,9 @@ namespace rMultiplatform
 			MemoryStream ms1 = new MemoryStream(data);
 			MemoryStream ms2 = new MemoryStream(data);
 
-			var xdoc = new System.Xml.Linq.XDocument();
-			xdoc = System.Xml.Linq.XDocument.Load(ms1);
+			var xdoc = new XDocument();
+			xdoc = XDocument.Load(ms1);
 			var temp = xdoc.Descendants();
-
 			foreach (var t in temp)
 			{
 				switch (t.Name.LocalName.ToString())

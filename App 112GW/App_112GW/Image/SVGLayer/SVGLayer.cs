@@ -48,13 +48,13 @@ namespace rMultiplatform
 			}
 		}
 
-		public SKSvg mImage;
+		public SkiaSharp.Extended.Svg.SKSvg mImage;
 		public string mName;
 
 		SKPaint mDrawPaint;
 		SKPaint mUndrawPaint;
 
-		public SVGLayer(SKSvg pImage, string pName, bool pActive = true)
+		public SVGLayer(SkiaSharp.Extended.Svg.SKSvg pImage, string pName, bool pActive = true)
 		{
 			_Changed = new VariableMonitor<bool>();
 			_RenderChanged = new VariableMonitor<bool>();

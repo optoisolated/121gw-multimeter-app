@@ -3,23 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "121GW", "App 112GW\App_112GW\121GW.shproj", "{42703B07-6599-410F-AF0D-7097E5A63B1C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "121GW.Android", "App 112GW\App_112GW.Android\121GW.Android.csproj", "{DE4A4122-66AF-455D-A666-F9236AA3DB89}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "121GW.iOS", "App 112GW\App_112GW.iOS\121GW.iOS.csproj", "{D3849BFD-7F63-4FBB-AFB2-24104381649E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "121GW.UWP", "App 112GW\App_112GW.UWP\121GW.UWP.csproj", "{632E8605-2ACD-48CF-AA61-F85C72C92EC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "121GW.Core", "121GW.Core\121GW.Core.csproj", "{B4CEE817-34ED-4EBC-93CB-E775D485A052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "121GW", "121GW.Core\121GW.csproj", "{B4CEE817-34ED-4EBC-93CB-E775D485A052}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		App 112GW\App_112GW\App_112GW.projitems*{42703b07-6599-410f-af0d-7097e5a63b1c}*SharedItemsImports = 13
-		App 112GW\App_112GW\App_112GW.projitems*{632e8605-2acd-48cf-aa61-f85c72c92ec6}*SharedItemsImports = 4
-		App 112GW\App_112GW\App_112GW.projitems*{d3849bfd-7f63-4fbb-afb2-24104381649e}*SharedItemsImports = 4
-		App 112GW\App_112GW\App_112GW.projitems*{de4a4122-66af-455d-a666-f9236aa3db89}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|ARM = Ad-Hoc|ARM

@@ -215,7 +215,6 @@
   <ItemGroup>
     <Folder Include="Peripherals\Touch\" />
   </ItemGroup>
-  <Import Project="..\App_112GW\App_112GW.projitems" Label="Shared" Condition="Exists('..\App_112GW\App_112GW.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

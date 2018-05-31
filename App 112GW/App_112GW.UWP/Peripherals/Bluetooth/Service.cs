@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
-namespace rMultiplatform.BLE
+namespace App_121GW.BLE
 {
 	public class ServiceBLE : IServiceBLE
 	{

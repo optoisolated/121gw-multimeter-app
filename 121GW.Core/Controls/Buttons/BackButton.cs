@@ -1,7 +1,7 @@
 ﻿using System;
 using SkiaSharp;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class BackButton : GeneralControl
 	{

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace rMultiplatform
+namespace App_121GW
 {
-	interface ICappedRange
+    interface ICappedRange
 	{
 		float Minimum
 		{
@@ -31,11 +30,11 @@ namespace rMultiplatform
 		void AddToMaximum   (float Value);
 		void AddToMinimum   (float Value);
 
-		void ShiftRange	 (float Value);
-		void ShiftFit	   (float Value);
-		void ExpandFit	  (float Value);
+		void ShiftRange	    (float Value);
+		void ShiftFit	    (float Value);
+		void ExpandFit	    (float Value);
 		void Pan			(float Amount);
-		void Zoom		   (float Amount, float About);
+		void Zoom		    (float Amount, float About);
 
 		Range GetRange();
 		Range Combine(List<Range> mRanges);

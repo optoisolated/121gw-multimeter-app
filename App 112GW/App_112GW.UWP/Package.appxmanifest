@@ -29,8 +29,9 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="App_121GW.UWP.App">
+        <Extension Category="windows.backgroundTasks" StartPage="App_121GW.UWP.App">
           <BackgroundTasks>
+            <Task Type="general" />
             <Task Type="systemEvent" />
             <Task Type="deviceConnectionChange" />
             <Task Type="bluetooth" />

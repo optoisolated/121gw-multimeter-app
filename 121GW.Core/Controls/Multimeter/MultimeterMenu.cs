@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using App_121GW;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class MultimeterMenu : AutoGrid
 	{

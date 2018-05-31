@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class GeneralButton : Button
 	{

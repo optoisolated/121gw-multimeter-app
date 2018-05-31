@@ -3,7 +3,7 @@ using Windows.Security.Cryptography;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using System.Diagnostics;
 
-namespace rMultiplatform.BLE
+namespace App_121GW.BLE
 {
 	public class CharacteristicBLE : ICharacteristicBLE
 	{

@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public abstract class ASmartData : ASmartElement
 	{

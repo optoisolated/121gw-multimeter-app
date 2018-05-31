@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
-using System.Reflection;
-using System.Resources;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using App_112GW;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public abstract class AChartRenderer : IComparable
     {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
+﻿using SkiaSharp;
 
-namespace rMultiplatform
+namespace App_121GW
 {
-	public abstract class GeneralRenderedView : GeneralView
+    public abstract class GeneralRenderedView : GeneralView
 	{
 		private GeneralRenderer mRenderer = null;
 		public void Disable()
@@ -47,10 +42,11 @@ namespace rMultiplatform
 				return new SKSize(0, 0);
 			}
 		}
-		public void InvalidateSurface()
-		{
-		    mRenderer?.InvalidateSurface();
-		}
+        public void InvalidateSurface()
+        {
+            mRenderer.InvalidateSurface();
+        }
+
 		private float ConvertWidthToPixel(float value)
 		{
 			return (CanvasSize.Width * value / (float)Width);

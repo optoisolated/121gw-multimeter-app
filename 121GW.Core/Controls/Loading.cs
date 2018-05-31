@@ -8,7 +8,7 @@ using Xamarin.Forms;
 using App_121GW;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class Loading : GeneralView
 	{

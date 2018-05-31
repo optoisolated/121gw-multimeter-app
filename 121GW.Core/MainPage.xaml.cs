@@ -1,8 +1,9 @@
-﻿using rMultiplatform;
-using rMultiplatform.BLE;
+﻿using App_121GW;
+using App_121GW.BLE;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
 

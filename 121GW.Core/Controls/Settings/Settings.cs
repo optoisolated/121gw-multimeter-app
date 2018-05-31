@@ -1,5 +1,5 @@
 ﻿using App_121GW;
-using rMultiplatform.BLE;
+using App_121GW.BLE;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class Settings : AutoGrid
 	{

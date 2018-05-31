@@ -7,7 +7,7 @@ using SkiaSharp.Views.Forms;
 using System.Runtime.CompilerServices;
 using App_121GW;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class LabelledControl : Grid
 	{

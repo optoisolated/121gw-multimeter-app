@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using rMultiplatform;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
-using System.Runtime.CompilerServices;
-using App_121GW;
-using System.Diagnostics;
 
-namespace rMultiplatform
+namespace App_121GW
 {
-	public abstract class AutoGrid : Grid
+    public abstract class AutoGrid : Grid
 	{
 		private void AddView(View pInput, int pX, int pY, int pXSpan = 1, int pYSpan = 1)
 		{

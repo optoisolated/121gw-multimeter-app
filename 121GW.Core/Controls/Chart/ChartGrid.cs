@@ -8,7 +8,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Runtime.CompilerServices;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class ChartGrid : AChartRenderer
     {

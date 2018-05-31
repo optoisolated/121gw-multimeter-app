@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public interface IObservableList<T>
 	{

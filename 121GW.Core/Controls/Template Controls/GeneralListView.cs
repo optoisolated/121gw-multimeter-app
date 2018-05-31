@@ -4,7 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class GeneralListView : ListView
 	{

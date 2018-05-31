@@ -8,7 +8,7 @@ using SkiaSharp.Views.Forms;
 using System.Runtime.CompilerServices;
 using System;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class ChartAxisEventArgs : EventArgs
     {

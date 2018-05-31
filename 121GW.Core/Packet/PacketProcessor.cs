@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class PacketProcessor
 	{

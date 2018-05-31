@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class SmartChartMenu : AutoGrid
 	{

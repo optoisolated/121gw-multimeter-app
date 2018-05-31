@@ -8,15 +8,15 @@ using Xamarin.Forms.Platform.Android;
 using Android.Views;
 using System.Diagnostics;
 
-[assembly: ResolutionGroupName("rMultiplatform")]
-[assembly: ExportEffect(typeof(rMultiplatform.Droid.Touch), "Touch")]
+[assembly: ResolutionGroupName("App_121GW")]
+[assembly: ExportEffect(typeof(App_121GW.Droid.Touch), "Touch")]
 
-namespace rMultiplatform.Droid
+namespace App_121GW.Droid
 {
 	public class Touch : PlatformEffect
 	{
 		private Android.Views.View	  view;
-		private rMultiplatform.Touch	effect;
+		private App_121GW.Touch	effect;
 
 		protected override void OnAttached()
 		{
@@ -24,7 +24,7 @@ namespace rMultiplatform.Droid
 			view = Control ?? Container;
 
 			// Get access to the Touch class in the PCL
-			effect = (rMultiplatform.Touch)Element.Effects.FirstOrDefault(e => e is rMultiplatform.Touch);
+			effect = (App_121GW.Touch)Element.Effects.FirstOrDefault(e => e is App_121GW.Touch);
 
 			//If view is valid add touch event
 			if (view != null)

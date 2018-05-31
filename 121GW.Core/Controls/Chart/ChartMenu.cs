@@ -1,11 +1,6 @@
-﻿using App_112GW;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Xamarin.Forms;
+﻿using System;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class ChartMenu : AutoGrid
     {

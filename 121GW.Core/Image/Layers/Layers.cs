@@ -5,7 +5,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class Layers
 	{

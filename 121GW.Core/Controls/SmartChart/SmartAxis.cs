@@ -1,12 +1,8 @@
 ﻿using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
-	public abstract class ASmartAxis : ASmartElement
+    public abstract class ASmartAxis : ASmartElement
 	{
 		public ASmartAxisPair Parent { get; }
 		public CappedRange Range { get; set; }

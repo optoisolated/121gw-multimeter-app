@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace App_121GW
 {
 	public partial class App : Application
 	{
 		public App ()
 		{
-
 			InitializeComponent();
-			MainPage = new App_121GW.MainPage();
+			MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

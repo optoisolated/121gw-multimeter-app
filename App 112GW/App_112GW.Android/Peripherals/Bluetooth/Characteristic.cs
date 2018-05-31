@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.BLE.Abstractions.Contracts;
-using rMultiplatform.BLE;
+using App_121GW.BLE;
 
-namespace rMultiplatform.BLEs
+namespace App_121GW.BLE
 {
 	public class CharacteristicBLE : ICharacteristicBLE
 	{

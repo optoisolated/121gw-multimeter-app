@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 
-namespace rMultiplatform.BLE
+namespace App_121GW.BLE
 {
-
-    #region unpaired
-    public class UnPairedDeviceBLE : IDeviceBLE
+    public class UnPairedDeviceBLE : App_121GW.BLE.IDeviceBLE
 	{
 		public volatile DeviceInformation Information;
 		public event DeviceSetupComplete Ready;
@@ -36,8 +32,6 @@ namespace rMultiplatform.BLE
 
 		public List<IServiceBLE> Services => null;
 	}
-    #endregion
-
 
     public class PairedDeviceBLE : IDeviceBLE
 	{

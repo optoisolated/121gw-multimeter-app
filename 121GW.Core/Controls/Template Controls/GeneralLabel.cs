@@ -8,7 +8,7 @@ using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class GeneralLabel : Label
 	{

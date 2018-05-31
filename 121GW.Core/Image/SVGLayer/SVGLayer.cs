@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class SVGLayer : ILayer
 	{

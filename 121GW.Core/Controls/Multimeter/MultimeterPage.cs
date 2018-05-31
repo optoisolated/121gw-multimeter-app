@@ -1,10 +1,10 @@
-﻿using rMultiplatform.BLE;
+﻿using App_121GW.BLE;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class MultimeterPage : GeneralPage
     {

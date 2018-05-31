@@ -9,6 +9,7 @@ using Android.OS;
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using App_112GW.Droid;
 
 [assembly: Application(Debuggable = false)]
 namespace App_121GW.Droid
@@ -40,7 +41,7 @@ namespace App_121GW.Droid
 			AppDomain.CurrentDomain.UnhandledException += HandleExceptions;
 			AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
 
-			global::Xamarin.Forms.Forms.Init (this, bundle);
+            Forms.Init (this, bundle);
 			LoadApplication (new App_121GW.App ());
 		}
 	}

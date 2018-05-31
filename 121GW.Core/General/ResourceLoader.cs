@@ -14,7 +14,7 @@ using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml.Internals;
 using System.Xml.Serialization;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class ResourceLoader
 	{
@@ -130,7 +130,7 @@ namespace rMultiplatform
 	}
 	class SVGLoader : ResourceLoader
 	{
-		public delegate bool ProcessImage(string Name, SKSvg Image);
+		public delegate bool ProcessImage(string Name, SkiaSharp.Extended.Svg.SKSvg Image);
 		private ProcessImage mImageFunction;
 
 		private bool HasSvgExtension(string source)
@@ -143,7 +143,7 @@ namespace rMultiplatform
 			{
 				//Is Image
 				var Name = GetFilename(Path);
-				var Imag = new SKSvg();
+				var Imag = new SkiaSharp.Extended.Svg.SKSvg();
 				Imag.Load(GetStream(Path));
 				mImageFunction(Name, Imag);
 			}

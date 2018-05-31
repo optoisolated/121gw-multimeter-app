@@ -5,7 +5,7 @@ using SkiaSharp;
 using Xamarin.Forms;
 using SkiaSharp.Views.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class PathLayer : ILayer
 	{

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using SkiaSharp;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class SmartChartLogger
 	{

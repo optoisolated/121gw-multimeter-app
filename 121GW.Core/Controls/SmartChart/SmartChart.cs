@@ -1,11 +1,11 @@
 ﻿using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using static rMultiplatform.GeneralControl;
+using static App_121GW.GeneralControl;
 using System;
 using System.Diagnostics;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public abstract class ASmartElement
     {

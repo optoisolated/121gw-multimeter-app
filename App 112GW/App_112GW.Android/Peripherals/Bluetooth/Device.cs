@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plugin.BLE.Abstractions.Contracts;
 
-namespace rMultiplatform.BLE
+namespace App_121GW.BLE
 {
 	public class UnPairedDeviceBLE : IDeviceBLE
 	{

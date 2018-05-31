@@ -7,14 +7,14 @@ using Windows.UI.Xaml.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
 
-[assembly: ResolutionGroupName("rMultiplatform")]
-[assembly: ExportEffect(typeof(rMultiplatform.UWP.Touch), "Touch")]
-namespace rMultiplatform.UWP
+[assembly: ResolutionGroupName("App_121GW")]
+[assembly: ExportEffect(typeof(App_121GW.UWP.Touch), "Touch")]
+namespace App_121GW.UWP
 {
 	class Touch : PlatformEffect
 	{
 		FrameworkElement		view;
-		rMultiplatform.Touch	effect;
+		App_121GW.Touch	effect;
 
 		//Required by Platform Effect
 		protected override void OnAttached()
@@ -23,9 +23,9 @@ namespace rMultiplatform.UWP
 			view = Control ?? Container;
 
 			// Get access to the TouchEffect class in the PCL
-			effect = (rMultiplatform.Touch)Element.Effects.FirstOrDefault(e => e is rMultiplatform.Touch);
-
-			if (effect != null && view != null)
+			effect = (App_121GW.Touch)Element.Effects.FirstOrDefault(e => e is App_121GW.Touch);
+            
+            if (effect != null && view != null)
 			{
                 // Set event handlers on FrameworkElement
                 view.PointerWheelChanged += ScrollHandler;

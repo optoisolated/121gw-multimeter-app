@@ -4,7 +4,7 @@ using System.Text;
 using Xamarin;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class GeneralView : ContentView
 	{

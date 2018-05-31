@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Text;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class Multimeter : AutoGrid
     {
@@ -185,9 +185,11 @@ namespace rMultiplatform
             AutoAdd(ChartMenu); FormatCurrentRow(GridUnitType.Auto);
 
             Item = ActiveItem.Both;
+            Screen.Enable();
+            Chart.Enable();
         }
         
-        public override void OrientationChanged(Orientation Update)
+        public override void OrientationChanged(AutoGrid.Orientation Update)
         {
             if (CurrentOrientation != Update)
             {

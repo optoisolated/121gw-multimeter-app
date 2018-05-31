@@ -1,5 +1,5 @@
-﻿using rMultiplatform;
-using rMultiplatform.BLE;
+﻿using App_121GW;
+using App_121GW.BLE;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -7,7 +7,7 @@ using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
 using Xamarin.Forms.Platform.UWP;
 
 [assembly: ExportRenderer(typeof(Xamarin.Forms.TabbedPage), typeof(CustomTabbedPageRenderer))]
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class CustomTabbedPageRenderer : TabbedPageRenderer
 	{

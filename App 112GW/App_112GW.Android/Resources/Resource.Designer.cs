@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("App_121GW.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("App_112GW.Droid.Resource", IsApplication=true)]
 
-namespace App_121GW.Droid
+namespace App_112GW.Droid
 {
 	
 	
@@ -26,8 +26,7 @@ namespace App_121GW.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::App_121GW.Droid.Resource.String.library_name;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App_121GW.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App_112GW.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
@@ -4049,9 +4048,6 @@ namespace App_121GW.Droid
 			
 			// aapt resource value: 0x7f080037
 			public const int character_counter_pattern = 2131230775;
-			
-			// aapt resource value: 0x7f08003e
-			public const int library_name = 2131230782;
 			
 			// aapt resource value: 0x7f080002
 			public const int mr_button_content_description = 2131230722;

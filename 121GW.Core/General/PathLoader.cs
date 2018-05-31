@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class PathLoader : ResourceLoader
 	{

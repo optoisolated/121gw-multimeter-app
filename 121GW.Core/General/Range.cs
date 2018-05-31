@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class Range
 	{

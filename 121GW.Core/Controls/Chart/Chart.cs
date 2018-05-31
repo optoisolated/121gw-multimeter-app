@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using System.Reflection;
-using System.Resources;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using App_112GW;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     public class Chart : GeneralView
     {
@@ -156,7 +149,7 @@ namespace rMultiplatform
             foreach (var Element in ChartElements)
                 Element.SetParentSize(Size.Width, Size.Height, Size.Width / Width);
         }
-        void PaintSurface(SKCanvas canvas, SKSize dimension)
+        void PaintSurface(SKCanvas canvas, SKSize dimension, SKSize v)
         {
             //Reinitialise the buffer canvas if it is undefined at all.
             if (Rescale)
@@ -208,15 +201,15 @@ namespace rMultiplatform
             }
         }
         private Touch mTouch;
-        private void MTouch_Press   (object sender, rMultiplatform.TouchActionEventArgs args)
+        private void MTouch_Press   (object sender, App_121GW.TouchActionEventArgs args)
         {
             State = eControlInputState.ePressed;
         }
-        private void MTouch_Hover   (object sender, rMultiplatform.TouchActionEventArgs args)
+        private void MTouch_Hover   (object sender, App_121GW.TouchActionEventArgs args)
         {
             State = eControlInputState.eHover;
         }
-        private void MTouch_Release (object sender, rMultiplatform.TouchActionEventArgs args)
+        private void MTouch_Release (object sender, App_121GW.TouchActionEventArgs args)
         {
             State = eControlInputState.eNone;
         }

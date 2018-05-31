@@ -1,7 +1,7 @@
 ﻿using SkiaSharp;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public abstract class ASmartAxisPair : ASmartElement
 	{

@@ -6,7 +6,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Diagnostics;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class MultimeterScreen : GeneralRenderedView
 	{
@@ -941,7 +941,7 @@ namespace rMultiplatform
 		private void SetupTouch()
 		{
 			//Add the gesture recognizer 
-			mTouch		  = new rMultiplatform.Touch();
+			mTouch		  = new App_121GW.Touch();
 			mTouch.Tap	  += MTouch_Tap;
 			mTouch.Pressed  += MTouch_Pressed;
 			mTouch.Hover	+= MTouch_Hover;

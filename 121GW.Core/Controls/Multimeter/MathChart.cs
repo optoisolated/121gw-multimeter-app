@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Specialized;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class MathChart : AutoGrid
 	{

@@ -6,11 +6,11 @@ using SkiaSharp.Views;
 using SkiaSharp.Views.Forms;
 using System.Collections.Generic;
 using System.Text;
-using App_112GW;
+using App_121GW;
 using System.Diagnostics;
 using System.Threading;
 
-namespace rMultiplatform
+namespace App_121GW
 {
     using Point = SKPoint;
     using Points = List<SKPoint>;
@@ -319,10 +319,10 @@ namespace rMultiplatform
             return false;
         }
 
-        public void Sample (double pPoint)
+        public void Sample (float pPoint)
         {
             TimeSpan t_diff  = DateTime.Now.Subtract(DataStart);
-            double ms_diff = t_diff.TotalMilliseconds / 1000;
+            float ms_diff = (float)t_diff.TotalMilliseconds / 1000;
             switch (Mode)
             {
                 case ChartDataMode.eRolling:

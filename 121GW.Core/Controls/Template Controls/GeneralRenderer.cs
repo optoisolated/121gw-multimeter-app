@@ -1,46 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using System.Reflection;
-using System.Resources;
+﻿using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using App_121GW;
 
-namespace rMultiplatform
+namespace App_121GW
 {
-	public class GeneralRenderer :
-#if __ANDROID__ && ! SOFTWARE_DRAW
-		SKGLView
-#elif __IOS__ && ! SOFTWARE_DRAW
+    //These need to be defined in the .Net Standard definions, this is not automatic. YET!
+
+    public class GeneralRenderer :
+#if __OPENGL__
 		SKGLView
 #else
-		SKCanvasView
+        SKCanvasView
 #endif
-	{
-		public delegate void PaintCanvas(SKCanvas c, SKSize s, SKSize v);
-		public event PaintCanvas Paint;
-		public GeneralRenderer(PaintCanvas PaintEvent)
-		{
-            Paint			   +=   PaintEvent;
-			HorizontalOptions   =   LayoutOptions.Fill;
-			VerticalOptions	    =   LayoutOptions.Fill;
-			BackgroundColor	    =   Globals.BackgroundColor;
+    {
+        public delegate void PaintCanvas(SKCanvas c, SKSize s, SKSize v);
+        public event PaintCanvas Paint;
+        public GeneralRenderer(PaintCanvas PaintEvent)
+        {
+            Paint += PaintEvent;
+            HorizontalOptions = LayoutOptions.Fill;
+            VerticalOptions = LayoutOptions.Fill;
+            BackgroundColor = Globals.BackgroundColor;
 
-		}
-
-#if __ANDROID__ && !SOFTWARE_DRAW
-		protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
-#elif __IOS__ && ! SOFTWARE_DRAW
-		protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
-#else
-		protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
-#endif
-		{
-			Paint?.Invoke(e.Surface.Canvas, CanvasSize, base.Bounds.Size.ToSKSize());
         }
-	}
+
+#if __OPENGL__
+		protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
+#else
+        protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
+#endif
+        {
+            Paint?.Invoke(e.Surface.Canvas, CanvasSize, base.Bounds.Size.ToSKSize());
+        }
+    }
 }

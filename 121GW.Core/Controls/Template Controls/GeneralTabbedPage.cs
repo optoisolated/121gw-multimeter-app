@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	class GeneralTabbedPage : Xamarin.Forms.TabbedPage
 	{

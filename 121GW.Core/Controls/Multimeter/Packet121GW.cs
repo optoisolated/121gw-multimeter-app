@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
-namespace rMultiplatform
+namespace App_121GW
 {
 	public class Range121GW
 	{
@@ -276,7 +276,6 @@ namespace rMultiplatform
 
 
         static List<string> History = new List<string>();
-        static int index = 0;
 
 
         static public bool Checksum( byte[] input )

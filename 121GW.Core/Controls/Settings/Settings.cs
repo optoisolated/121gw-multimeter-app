@@ -15,7 +15,7 @@ namespace App_121GW
 		public delegate void AddBluetoothDevice(IDeviceBLE pDevice);
 		public event AddBluetoothDevice AddDevice;
 
-		private BLEDeviceSelector BLESelectDevice = new BLEDeviceSelector();
+		private BluetoothDeviceSelector BluetoothSelectDevice = new BluetoothDeviceSelector();
 		private GeneralButton ButtonLeft;
 		private GeneralButton ButtonRight;
 
@@ -28,7 +28,7 @@ namespace App_121GW
 			DefineGrid(2, 2);
 
 			//Setup default display
-			AutoAdd(BLESelectDevice, 2);
+			AutoAdd(BluetoothSelectDevice, 2);
 			FormatCurrentRow(GridUnitType.Star);
 			
 			AutoAdd(ButtonLeft);
@@ -39,23 +39,19 @@ namespace App_121GW
 			ClearLeftButton();
 
 			SetLeftButton("Refresh", RefreshDevices);
-			BLESelectDevice.Connected += Connected;
+			BluetoothSelectDevice.Connected += Connected;
 		}
 
-		private void RefreshDevices(object sender, EventArgs e)
+		private async void RefreshDevices(object sender, EventArgs e)
 		{
-			BLESelectDevice.mClient.Reset();
-		}
-		public void RemoveDevice()
-		{
-			BLESelectDevice.RemoveDevices();
+			await BluetoothSelectDevice.Reset();
 		}
 		private void Connected(IDeviceBLE pDevice)
 		{
-			if (pDevice == null)
-				return;
+			if (pDevice == null) return;
 			Debug.WriteLine("Connected to device : " + pDevice.Name);
-			AddDevice?.Invoke(pDevice);
+
+			Globals.RunMainThread(() => AddDevice?.Invoke(pDevice));
 		}
 
 		private event EventHandler _LeftButtonEvent;

@@ -38,26 +38,22 @@ namespace App_121GW.BLE
 			}, (indexer.ToString() + " Adding"));
 		}
 
-		private bool AcceptRescan = false;
-		public void Start()
+		public async Task Start()
 		{
-			AcceptRescan = true;
-			mAdapter.StartScanningForDevicesAsync();
+			await mAdapter.StartScanningForDevicesAsync();
 		}
-		public void Stop()
+		public async Task Stop()
 		{
-			AcceptRescan = false;
-			mAdapter.StopScanningForDevicesAsync().Wait();
+            await mAdapter.StopScanningForDevicesAsync();
 		}
-		public void Rescan()
+		public async Task Rescan()
 		{
-			if (AcceptRescan)
-				mAdapter.StartScanningForDevicesAsync();
+            await mAdapter.StartScanningForDevicesAsync();
 		}
-		public void Reset()
+		public async Task Reset()
 		{
-			Stop();
-			Start();
+            await Stop();
+            await Start();
 		}
 
 		IDeviceBLE ConnectingDevice = null;
@@ -87,7 +83,6 @@ namespace App_121GW.BLE
 			if (inputType == searchType)
 			{
 				//Pair if the device is able to pair
-				AcceptRescan = false;
 				ConnectingDevice = pInput;
 				Debug.WriteLine("Connecting to new device.");
 				mAdapter.ConnectToDeviceAsync((ConnectingDevice as UnPairedDeviceBLE).mDevice).ContinueWith(StopScanning);
@@ -101,34 +96,22 @@ namespace App_121GW.BLE
 			//Setup bluetoth basic adapter
 			mDevice	 = CrossBluetoothLE.Current;
 			mAdapter	= CrossBluetoothLE.Current.Adapter;
-			mAdapter.ScanTimeoutElapsed += MAdapter_ScanTimeoutElapsed;
+			mAdapter.ScanTimeoutElapsed += async (s, e ) => await Rescan();
 			mAdapter.ScanTimeout = int.MaxValue;
 
 			//Add debug state change indications
-			mDevice.StateChanged += (s, e) =>
+			mDevice.StateChanged += async (s, e) =>
 			{
 				Debug.WriteLine($"The bluetooth state changed to " + e.NewState.ToString());
 				if (e.NewState == BluetoothState.TurningOn || e.NewState == BluetoothState.On)
-					Reset();
+					await Reset();
 			};
 
 			//
 			if (mDevice.IsOn && mDevice.IsAvailable)
 				mAdapter.DeviceDiscovered += DeviceWatcher_Added;
 			mAdapter.DeviceConnectionLost += DeviceConnection_Lost;
-
-			//Start the scan
-			Start();
 		}
-
-		private void MAdapter_ScanTimeoutElapsed(object sender, EventArgs e)
-		{
-			Debug.WriteLine("private void MAdapter_ScanTimeoutElapsed(object sender, EventArgs e).");
-			Rescan();
-		}
-
-
-
 
 		private async void DeviceConnection_Lost (object sender, DeviceErrorEventArgs e)
 		{
@@ -154,12 +137,17 @@ namespace App_121GW.BLE
 				}
 		}
 
-		~ClientBLE()
+        Task IClientBLE.Connect(IDeviceBLE pInput)
+        {
+            throw new NotImplementedException();
+        }
+
+        ~ClientBLE()
 		{
 			Debug.WriteLine("Deconstructing ClientBLE!");
 			try
 			{
-				Stop();
+				Stop().Wait();
 			}
 			catch (Exception e)
 			{

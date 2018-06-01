@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Foundation;
 using Plugin.BLE.Abstractions.Contracts;
-using UIKit;
 
 namespace App_121GW.BLE
 {
@@ -73,7 +69,7 @@ namespace App_121GW.BLE
     public class PairedDeviceBLE : IDeviceBLE
     {
         private IDevice mDevice;
-        private List<IServiceBLE> mServices;
+
         public event DeviceSetupComplete Ready;
 
         public event ChangeEvent Change;
@@ -123,7 +119,7 @@ namespace App_121GW.BLE
             foreach (var item in obj.Result)
             {
                 Debug.WriteLine("Service adding : " + item.Name);
-                mServices.Add(new ServiceBLE(item, ServiceReady, InvokeChange));
+                Services.Add(new ServiceBLE(item, ServiceReady, InvokeChange));
             }
         }
         private void ServiceReady()
@@ -137,7 +133,7 @@ namespace App_121GW.BLE
         }
         public PairedDeviceBLE(IDevice pDevice, DeviceSetupComplete ready)
         {
-            mServices = new List<IServiceBLE>();
+            Services = new List<IServiceBLE>();
             mDevice = pDevice;
             Ready = ready;
             Build();
@@ -152,8 +148,8 @@ namespace App_121GW.BLE
             var dev = o as IDevice;
             mDevice = null;
             mDevice = dev;
-            mServices = null;
-            mServices = new List<IServiceBLE>();
+            Services = null;
+            Services = new List<IServiceBLE>();
             Build();
         }
 
@@ -162,12 +158,6 @@ namespace App_121GW.BLE
 
         }
 
-        public List<IServiceBLE> Services
-        {
-            get
-            {
-                return mServices;
-            }
-        }
+        public List<IServiceBLE> Services { get; private set; }
     }
 }

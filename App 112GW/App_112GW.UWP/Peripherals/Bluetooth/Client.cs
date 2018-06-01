@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Enumeration;
 
@@ -7,94 +8,80 @@ namespace App_121GW.BLE
 {
     class ClientBLE : AClientBLE, IClientBLE
 	{
-		private static int index = 0;
+		private DeviceWatcher mDeviceWatcher;
 		private void DeviceWatcher_Added(DeviceWatcher sender, DeviceInformation args)
 		{
-			try
-			{
-				if (sender != mDeviceWatcher)
-					return;
-				if (args.Name == string.Empty)
-					return;
-				if (mVisibleDevices == null)
-					return;
-
-				var temp = new UnPairedDeviceBLE(args);
-				MutexBlock(() =>
-				{
-					Debug.WriteLine(args.Name);
-					AddUniqueItem(temp);
-				}, ((index++).ToString() + " Adding"));
-			}
-			catch { Debug.WriteLine("Caught Error : private void DeviceWatcher_Added(DeviceWatcher sender, DeviceInformation args)"); }
+			if (sender != mDeviceWatcher)	return;
+			if (args?.Name == string.Empty)	return;
+				
+			Debug.WriteLine(args?.Name);
+			AddUniqueItem(new UnPairedDeviceBLE(args));
 		}
 		private void DeviceWatcher_Updated(DeviceWatcher sender, DeviceInformationUpdate args)
 		{
-			try
-			{ 
-				if (sender != mDeviceWatcher)
-					return;
-				if (mVisibleDevices == null)
-					return;
+			if (sender != mDeviceWatcher) return;
 
-				MutexBlock(() =>
-				{
-					var removed_id = args.Id;
-					for (int i = 0; i < mVisibleDevices.Count; i++)
-					{
-						var item = mVisibleDevices[i];
-						if (item.Id == removed_id)
-							(mVisibleDevices[i] as UnPairedDeviceBLE).Information.Update(args);
-					}
-				}, ((index++).ToString() + " Updated"));
-			}
-			catch
+			var removed_id = args?.Id;
+			UpdateItem((item) =>
 			{
-				Debug.WriteLine("Caught Error : private void DeviceWatcher_Updated(DeviceWatcher sender, DeviceInformationUpdate args)");
-			}
-		}
-
-		private async void ConnectionComplete( UnPairedDeviceBLE input )
-		{
-            var obj = await BluetoothLEDevice.FromIdAsync(input.Information.Id);
-            Debug.WriteLine("Connection Complete.");
-			if (obj == null)
-				return;
-
-			var temp = new PairedDeviceBLE(obj, (dev) =>
-			{
-				Debug.WriteLine("Enumeration Complete.");
-
-                TriggerDeviceConnected(dev);
+				if (item?.Id == removed_id) (item as UnPairedDeviceBLE).Information.Update(args);
 			});
 		}
-		public void Connect(IDeviceBLE pInput)
+
+		private async Task<IDeviceBLE> ConnectionComplete( UnPairedDeviceBLE input )
+		{
+			var obj = await BluetoothLEDevice.FromIdAsync(input.Information.Id);
+			if (obj == null) return null;
+
+			Debug.WriteLine("Connection complete");
+			return new PairedDeviceBLE(obj, TriggerDeviceConnected);
+		}
+		public async Task<IDeviceBLE> Connect(IDeviceBLE pInput)
 		{
 			Debug.WriteLine("Connecting to : " + pInput.Id);
-            Stop();
+            await Stop();
 
             var inputType = pInput.GetType();
 			var searchType = typeof(UnPairedDeviceBLE);
 
 			if (inputType == searchType)
-				ConnectionComplete(pInput as UnPairedDeviceBLE);
+				return await ConnectionComplete(pInput as UnPairedDeviceBLE);
+
+            return null;
 		}
 
-		private DeviceWatcher mDeviceWatcher;
-		public void Start()
+		public async Task Start()
 		{
-			mDeviceWatcher.Start();
+			await Task.Run(() =>
+			{
+				bool stopped = false;
+				stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Stopped;
+				stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Aborted;
+
+				if (stopped) mDeviceWatcher.Start();
+			});
+
 		}
-		public void Stop()
+		public async Task Stop()
 		{
-			mDeviceWatcher.Stop();
+			await Task.Run(() =>
+			{
+				bool running = false;
+				running |= mDeviceWatcher.Status == DeviceWatcherStatus.Started;
+				running |= mDeviceWatcher.Status == DeviceWatcherStatus.EnumerationCompleted;
+
+				if (running) mDeviceWatcher.Stop();
+			});
 		}
-		public void Rescan()
+        public async Task Rescan()
 		{
-			Reset();
+			await Reset();
 		}
-		public void Reset()
-		{}
+		public async Task Reset()
+		{
+            await Stop();
+            await Start();
+        }
 
 		public ClientBLE()
 		{
@@ -111,8 +98,8 @@ namespace App_121GW.BLE
             mDeviceWatcher.Added	+=  DeviceWatcher_Added;
 			mDeviceWatcher.Updated  +=  DeviceWatcher_Updated;
 
-			// Start the watcher.
-			Start();
+			// Start the watcher, it should actually start...
+			mDeviceWatcher.Start();
 		}
 		~ClientBLE()
 		{
@@ -122,8 +109,8 @@ namespace App_121GW.BLE
 				mDeviceWatcher.Added	-=  DeviceWatcher_Added;
 				mDeviceWatcher.Updated  -=  DeviceWatcher_Updated;
 
-				// Stop the watcher.
-				Stop();
+				// Stop the watcher, it should actually stop...
+				Stop().Wait();
 			}
 		}
     }

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-
-using Foundation;
 using Plugin.BLE.Abstractions.Contracts;
-using UIKit;
 
 namespace App_121GW.BLE
 {
@@ -72,7 +67,6 @@ namespace App_121GW.BLE
             ValueChanged += pEvent;
             mCharacteristic = pInput;
             mCharacteristic.ValueUpdated += CharacteristicEvent_ValueChanged;
-
 
             if (mCharacteristic.CanUpdate)
                 mCharacteristic.StartUpdatesAsync().ContinueWith((obj) => { Ready?.Invoke(); });

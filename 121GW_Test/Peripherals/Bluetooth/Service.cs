@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Foundation;
 using Plugin.BLE.Abstractions.Contracts;
-using UIKit;
 
 namespace App_121GW.BLE
 {
@@ -20,25 +16,10 @@ namespace App_121GW.BLE
 
         private ChangeEvent mEvent;
         private volatile IService mService;
-        private List<ICharacteristicBLE> mCharacteristics;
-        public List<ICharacteristicBLE> Characteristics
-        {
-            get
-            {
-                return mCharacteristics;
-            }
-        }
-        public string Id
-        {
-            get
-            {
-                return mService.Id.ToString();
-            }
-        }
-        public override string ToString()
-        {
-            return Id;
-        }
+        public List<ICharacteristicBLE> Characteristics { get; }
+        public string Id => mService.Id.ToString();
+        public override string ToString() => Id;
+
         private void Build()
         {
             mService.GetCharacteristicsAsync().ContinueWith((obj) => { AddCharacteristics(obj); });
@@ -58,7 +39,7 @@ namespace App_121GW.BLE
             foreach (var item in obj.Result)
             {
                 Debug.WriteLine("Characteristic adding : " + item.Name);
-                mCharacteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
+                Characteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
             }
         }
 
@@ -74,7 +55,7 @@ namespace App_121GW.BLE
 
         public ServiceBLE(IService pInput, SetupComplete ready, ChangeEvent pEvent)
         {
-            mCharacteristics = new List<ICharacteristicBLE>();
+            Characteristics = new List<ICharacteristicBLE>();
             Ready += ready;
             mService = pInput;
             mEvent = pEvent;

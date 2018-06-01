@@ -146,10 +146,7 @@ namespace App_121GW
         {
             mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");
 
-            mDevice.Change += (o, e) => {
-                var temp = Encoding.UTF8.GetString(e.Bytes);
-                MyProcessor.Recieve(e.Bytes);
-            };
+            mDevice.Change += (o, e) => MyProcessor.Recieve(e.Bytes);
             MyProcessor.mCallback += ProcessPacket;
 
             Screen = new MultimeterScreen();
@@ -171,7 +168,7 @@ namespace App_121GW
                     new SmartAxisPair(
                         new SmartAxisHorizontal("Horizontal", -0.1f, 0.1f),
                         new SmartAxisVertical("Vertical", -0.2f, 0.1f)), Logger.Data));
-        
+
             Chart.Clicked += (o, e) => { FullscreenClicked(ActiveItem.Plot); };
 
             ChartMenu = new SmartChartMenu(true, true);

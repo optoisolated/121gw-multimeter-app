@@ -105,7 +105,7 @@ namespace App_121GW
 				switch (Device.RuntimePlatform)
 				{
 					case Device.iOS:
-						return Color.FromHex("#C5CCB9");
+						return Color.FromHex("#000000");
 					case Device.Android:
 						return Color.FromHex("#000000");
 					case Device.UWP:
@@ -137,7 +137,7 @@ namespace App_121GW
 				switch (Device.RuntimePlatform)
 				{
 					case Device.iOS:
-						return Color.FromHex("#111111");
+						return Color.FromHex("#FFFFFF");
 					case Device.Android:
 						return Color.FromHex("#FFFFFF");
 					case Device.UWP:

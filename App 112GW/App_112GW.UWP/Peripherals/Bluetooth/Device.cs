@@ -36,7 +36,7 @@ namespace App_121GW.BLE
     public class PairedDeviceBLE : IDeviceBLE
 	{
 		private BluetoothLEDevice mDevice;
-		private List<IServiceBLE> mServices;
+
 		public event DeviceSetupComplete Ready;
 		public event ChangeEvent Change;
 		void TriggerReady()
@@ -53,9 +53,9 @@ namespace App_121GW.BLE
         public override string      ToString()      => Name + "\n" + Id;
 		public  bool                Paired          => mDevice.DeviceInformation.Pairing.IsPaired;
 		public  bool                CanPair         => mDevice.DeviceInformation.Pairing.CanPair;
-		public  List<IServiceBLE>   Services        => mServices;
+		public List<IServiceBLE>	Services { get; private set; }
 
-        private int Uninitialised = 0;
+		private int Uninitialised = 0;
 		private void ItemReady()
 		{
 			--Uninitialised;
@@ -73,7 +73,7 @@ namespace App_121GW.BLE
 			var services = result.Services;
 			Uninitialised = services.Count;
 			foreach (var service in services)
-				mServices.Add(new ServiceBLE(service, ItemReady, InvokeChange));
+				Services.Add(new ServiceBLE(service, ItemReady, InvokeChange));
 		}
 		public void Remake(object o)
 		{
@@ -87,12 +87,12 @@ namespace App_121GW.BLE
 			{
 				mDevice.ConnectionStatusChanged -= MDevice_ConnectionStatusChanged;
 
-				if (mServices != null)
-					foreach (var service in mServices)
+				if (Services != null)
+					foreach (var service in Services)
 						service.Unregister();
 
-				mServices = null;
-				mServices = new List<IServiceBLE>();
+				Services = null;
+				Services = new List<IServiceBLE>();
 			}
 		}
 
@@ -121,7 +121,7 @@ namespace App_121GW.BLE
 
 		public PairedDeviceBLE(BluetoothLEDevice pInput, DeviceSetupComplete pReady)
 		{
-			mServices = new List<IServiceBLE>();
+			Services = new List<IServiceBLE>();
 			Ready = pReady;
 			mDevice = pInput;
 			Build();
@@ -132,7 +132,7 @@ namespace App_121GW.BLE
 			mDevice.Dispose();
 			mDevice = null;
 			Deregister();
-			mServices = null;
+			Services = null;
 		}
 	}
 }

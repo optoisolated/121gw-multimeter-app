@@ -26,7 +26,8 @@ namespace App_121GW
         }
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Id") Globals.RunMainThread(() => { Id = Device.Id;});
+            if (e.PropertyName == "Id")
+				Globals.RunMainThread(() => { Id = Device.Id;});
         }
     }
 }

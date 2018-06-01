@@ -26,11 +26,14 @@ namespace App_121GW
         }
 		private void Button_AddDevice(IDeviceBLE pDevice)
 		{
-			var dev = new MultimeterPage(pDevice);
+			Globals.RunMainThread(() =>
+			{
+				var dev = new MultimeterPage(pDevice);
 
-            AddDevice(dev);
-            Children.Add(dev);
-            CurrentPage = Children[Children.Count - 1];
+				AddDevice(dev);
+				Children.Add(dev);
+				CurrentPage = Children[Children.Count - 1];
+			});
         }
 
 		public MainPage()

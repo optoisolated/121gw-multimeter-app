@@ -49,9 +49,7 @@ namespace App_121GW
 		private void Connected(IDeviceBLE pDevice)
 		{
 			if (pDevice == null) return;
-			Debug.WriteLine("Connected to device : " + pDevice.Name);
-
-			Globals.RunMainThread(() => AddDevice?.Invoke(pDevice));
+			AddDevice?.Invoke(pDevice);
 		}
 
 		private event EventHandler _LeftButtonEvent;

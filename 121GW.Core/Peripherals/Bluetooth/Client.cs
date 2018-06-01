@@ -24,8 +24,7 @@ namespace App_121GW.BLE
         static ObservableCollection<IDeviceBLE> mVisibleDevices = new ObservableCollection<IDeviceBLE>();
 		protected static ObservableCollection<IDeviceBLE> mConnectedDevices = new ObservableCollection<IDeviceBLE>();
 
-		public ObservableCollection<IDeviceBLE> VisibleDevices  => mVisibleDevices;
-
+		public ObservableCollection<IDeviceBLE> VisibleDevices => mVisibleDevices;
 
         public void RemoveDevice(IDeviceBLE pInput)
         {
@@ -59,18 +58,15 @@ namespace App_121GW.BLE
                 Debug.WriteLine(ltag + " : Done");
                 mut.ReleaseMutex();
                 Debug.WriteLine(ltag + " : Released");
-            }
-            try
+			}
+			GetMutex(tag);
+			try
             {
-                GetMutex(tag);
                 Function();
-                ReleaseMutex(tag);
             }
-            catch
-            {
-                ReleaseMutex(tag);
-            }
-        }
+            catch{}
+			ReleaseMutex(tag);
+		}
 
         public void AddUniqueItem(IDeviceBLE pInput)
         {

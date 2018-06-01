@@ -1033,7 +1033,6 @@ namespace App_121GW
 		bool RemakeCanvas = true;
 		public override void PaintSurface ( SKCanvas canvas, SKSize dimension, SKSize viewsize)
 		{
-
 			if ( RemakeCanvas )
 			{
 				//Handles glitch in android.

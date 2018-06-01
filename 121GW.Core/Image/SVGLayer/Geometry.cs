@@ -549,9 +549,9 @@ namespace App_121GW
 				path.Transform(pTransform);
 
 				if (pth.Negative)
-					pSurface.DrawPath(path, pUndrawPaint);
+					pSurface?.DrawPath(path, pUndrawPaint);
 				else
-					pSurface.DrawPath(path, pDrawPaint);
+					pSurface?.DrawPath(path, pDrawPaint);
 			}
 		}
 	}

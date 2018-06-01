@@ -21,10 +21,8 @@ namespace App_121GW.BLE
 				mActivity.IsRunning = value;
 
 				Content = null;
-				if (value)
-					Content = mActivity;
-				else
-					Content = mDevices;
+				if ( value )	Content = mActivity;
+				else			Content = mDevices;
 			}
 		}
 

@@ -11,12 +11,17 @@ namespace App_121GW
 {
     public class Multimeter : AutoGrid
     {
-        public BLE.IDeviceBLE mDevice;
-        public SmartChart Chart;
-        public SmartChartMenu ChartMenu;
+        public BLE.IDeviceBLE	mDevice;
+        public SmartChart		Chart;
+        public SmartChartMenu	ChartMenu;
         public SmartChartLogger Logger = new SmartChartLogger(10, SmartChartLogger.LoggerMode.Rescaling);
 
-        public enum ActiveItem
+		private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 19);
+		private Packet121GW		Processor = new Packet121GW();
+		public MultimeterScreen Screen;
+		public MultimeterMenu	Menu;
+
+		public enum ActiveItem
         {
             Plot,
             Screen,
@@ -69,10 +74,6 @@ namespace App_121GW
             }
         }
 
-        private PacketProcessor MyProcessor = new PacketProcessor(0xF2, 19);
-        Packet121GW processor = new Packet121GW();
-        public MultimeterScreen Screen;
-        public MultimeterMenu Menu;
 
         private string _Id = "Device";
         public new string Id
@@ -118,16 +119,16 @@ namespace App_121GW
 
         void ProcessPacket(byte[] pInput)
         {
-            if (processor.ProcessPacket(pInput))
+            if (Processor.ProcessPacket(pInput))
             {
                 if (PacketReady)
                 {
                     try
                     {
-                        Id = processor.Serial.ToString();
-                        Logger.Sample(processor.MainValue);
-                        ChartTitle = processor.MainRangeLabel;
-                        Screen.Update(processor);
+                        Id = Processor.Serial.ToString();
+                        Logger.Sample(Processor.MainValue);
+                        ChartTitle = Processor.MainRangeLabel;
+                        Screen.Update(Processor);
                         Screen.InvalidateSurface();
                     }
                     catch
@@ -157,17 +158,18 @@ namespace App_121GW
             {
                 SendData(Packet121GW.GetKeycode(keycode));
             }
-            Menu.HoldClicked += (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD); };
-            Menu.RelClicked += (s, e) => { SendKeycode(Packet121GW.Keycode.REL); };
-            Menu.ModeChanged += (s, e) => { SendKeycode(Packet121GW.Keycode.MODE); };
-            Menu.RangeChanged += (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE); };
+
+            Menu.HoldClicked	+= (s, e) => { SendKeycode(Packet121GW.Keycode.HOLD); };
+            Menu.RelClicked		+= (s, e) => { SendKeycode(Packet121GW.Keycode.REL); };
+            Menu.ModeChanged	+= (s, e) => { SendKeycode(Packet121GW.Keycode.MODE); };
+            Menu.RangeChanged	+= (s, e) => { SendKeycode(Packet121GW.Keycode.RANGE); };
 
             Chart =
                 new SmartChart(
                 new SmartData(
                     new SmartAxisPair(
-                        new SmartAxisHorizontal("Horizontal", -0.1f, 0.1f),
-                        new SmartAxisVertical("Vertical", -0.2f, 0.1f)), Logger.Data));
+                        new SmartAxisHorizontal	("Horizontal",	-0.1f, 0.1f),
+                        new SmartAxisVertical	("Vertical",	-0.2f, 0.1f)), Logger.Data));
 
             Chart.Clicked += (o, e) => { FullscreenClicked(ActiveItem.Plot); };
 

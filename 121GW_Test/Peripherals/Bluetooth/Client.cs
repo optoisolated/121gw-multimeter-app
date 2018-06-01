@@ -20,15 +20,12 @@ namespace App_121GW.BLE
 
             Debug.WriteLine("Device discovered.");
 
-            MutexBlock(() =>
+            var devices = mAdapter.DiscoveredDevices;
+            foreach (var item in devices)
             {
-                var devices = mAdapter.DiscoveredDevices;
-                foreach (var item in devices)
-                {
-                    Debug.WriteLine(item.Name + " " + item.Id);
-                    AddUniqueItem(new UnPairedDeviceBLE(item));
-                }
-            }, (" Adding"));
+                Debug.WriteLine(item.Name + " " + item.Id);
+                AddUniqueItem(new UnPairedDeviceBLE(item));
+            }
         }
 
         public async Task Start()
@@ -48,7 +45,6 @@ namespace App_121GW.BLE
             await Stop();
             await Start();
         }
-
 
         public async Task<IDeviceBLE> Connect(IDeviceBLE pInput)
         {

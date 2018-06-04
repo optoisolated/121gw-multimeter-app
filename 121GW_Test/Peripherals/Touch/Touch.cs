@@ -15,7 +15,6 @@ namespace App_121GW.iOS
         protected override void OnAttached()
         {
             mView = Control ?? Container;
-
             touchRecognizer = new TouchRecognizer(Element, mView);
             mView.AddGestureRecognizer(touchRecognizer);
         }

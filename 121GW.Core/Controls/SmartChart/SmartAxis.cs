@@ -1,4 +1,5 @@
 ﻿using SkiaSharp;
+using System.Diagnostics;
 
 namespace App_121GW
 {
@@ -31,7 +32,9 @@ namespace App_121GW
 		SKSize LastDimension = new SKSize(0, 0);
 		public Map.Map1D ValueFromCoordinate(float dimension)
 		{
-			return Map.Create1D(AxisStart(dimension), AxisEnd(dimension), ValueStart, ValueEnd);
+            Debug.WriteLine("Axis Size\t" + AxisSize(dimension).ToString());
+
+            return Map.Create1D(AxisStart(dimension), AxisEnd(dimension), ValueStart, ValueEnd);
 		}
 		public Map.Map1D ScaleFromCoordinate(float dimension)
 		{
@@ -44,6 +47,7 @@ namespace App_121GW
 		public void Zoom(float Amount, float About)
 		{
 			if (Amount <= 0) return;
+
 
 			var dimension   = Dimension(LastDimension);
 			var map		    = ValueFromCoordinate(dimension);

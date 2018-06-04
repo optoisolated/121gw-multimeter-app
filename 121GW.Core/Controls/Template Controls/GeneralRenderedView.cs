@@ -44,9 +44,8 @@ namespace App_121GW
 		}
         public void InvalidateSurface()
         {
-            mRenderer.InvalidateSurface();
+            mRenderer?.InvalidateSurface();
         }
-
 		private float ConvertWidthToPixel(float value)
 		{
 			return (CanvasSize.Width * value / (float)Width);

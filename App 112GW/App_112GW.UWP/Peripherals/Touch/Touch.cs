@@ -1,17 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using Windows.UI.Input;
+﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
+using Windows.Graphics.Display;
 
 [assembly: ResolutionGroupName("App_121GW")]
 [assembly: ExportEffect(typeof(App_121GW.UWP.Touch), "Touch")]
 namespace App_121GW.UWP
 {
-	class Touch : PlatformEffect
+    class Touch : PlatformEffect
 	{
 		FrameworkElement view;
 		App_121GW.Touch	effect;
@@ -54,7 +52,8 @@ namespace App_121GW.UWP
 		{
 			var sndr = sender as UIElement;
 			var p = args.GetCurrentPoint(sndr).Position;
-			return new Point(p.X, p.Y);
+            var scale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            return new Point(p.X * scale, p.Y * scale);
 		}
 
         // Common handlers

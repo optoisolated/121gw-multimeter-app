@@ -11,9 +11,9 @@ namespace App_121GW.iOS
 {
     class TouchRecognizer : UIGestureRecognizer
     {
-        Element         element; // Forms element for firing events
-        private UIView  view;    // iOS UIView 
-        App_121GW.Touch effect;
+        private readonly Element element; // Forms element for firing events
+        private readonly UIView  view;    // iOS UIView 
+        private App_121GW.Touch effect;
         
         public TouchRecognizer(Element element, UIView view)
         {
@@ -27,7 +27,7 @@ namespace App_121GW.iOS
             CGPoint cgPoint = pInput.LocationInView(View);
             return new Point(cgPoint.X, cgPoint.Y);
         }
-        uint GetId(UITouch pInput)
+        static uint GetId(UITouch pInput)
         {
             return (uint)pInput.Handle.ToInt64();
         }

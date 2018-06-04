@@ -1,43 +1,39 @@
 ﻿using Xamarin.Forms;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using System.Collections.Generic;
 
 [assembly: Xamarin.Forms.Dependency(typeof(App_121GW.UWP.Files))]
 namespace App_121GW.UWP
 {
     class Files : IFiles
     {
-        DataTransferManager DataTransferManager = null;
-        private string mContent = "";
-
-        public Task<bool> Save(string pContent)
+        public async Task<bool> Save(string pContent)
         {
-            if (DataTransferManager == null)
-            {
-                mContent = pContent;
-                DataTransferManager = DataTransferManager.GetForCurrentView();
-                DataTransferManager.DataRequested += DataTransferManager_DataRequested;
-                DataTransferManager.ShowShareUI();
-                return Task.FromResult<bool>(true);
-            }
-            return Task.FromResult<bool>(false);
-        }
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            // Dropdown of file types the user can save the file as
+            savePicker.FileTypeChoices.Add("Comma seperated file", new List<string>() { ".csv" });
+            // Default file name if the user does not type one in or select a file to replace
+            savePicker.SuggestedFileName = "Logfile.csv";
 
-        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
-        {
-            DataRequest request = args.Request;
-            request.Data.Properties.Title = Windows.ApplicationModel.Package.Current.DisplayName + " logfile.csv";
-            DataRequestDeferral deferral = request.GetDeferral();
+            StorageFile file = await savePicker.PickSaveFileAsync();
+            if (file != null)
+            {
+                // Prevent updates to the remote version of the file until
+                // we finish making changes and call CompleteUpdatesAsync.
+                CachedFileManager.DeferUpdates(file);
+                // write to file
+                await FileIO.WriteTextAsync(file, pContent);
+                // Let Windows know that we're finished changing the file so
+                // the other app can update the remote version of the file.
+                // Completing updates may require Windows to ask for user input.
+                Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+            }
 
-            try
-            {
-                request.Data.SetText(mContent);
-            }
-            finally
-            {
-                deferral.Complete();
-                DataTransferManager = null;
-            }
+            return await Task.FromResult(true);
         }
     }
 }

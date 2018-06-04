@@ -15,81 +15,65 @@ namespace App_121GW.BLE
 {
 	public class ClientBLE : AClientBLE, IClientBLE
 	{
-		private volatile IBluetoothLE mDevice;
-		private volatile IAdapter mAdapter;
+        private volatile IBluetoothLE mDevice;
+        private volatile IAdapter mAdapter;
 
-		private static int index = 0;
-		private void DeviceWatcher_Added(object sender, Plugin.BLE.Abstractions.EventArgs.DeviceEventArgs args)
-		{
-			int indexer = index++;
-			if (args.Device.Name == string.Empty || mVisibleDevices == null)
-				return;
+        private void DeviceWatcher_Added(object sender, DeviceEventArgs args)
+        {
+            if (args.Device.Name == string.Empty)
+                return;
 
+            Debug.WriteLine("Device discovered.");
 
-            MutexBlock(() =>
-			{
-				mVisibleDevices.Clear();
-				var devices = mAdapter.DiscoveredDevices;
-				foreach (var item in devices)
-				{
-					Debug.WriteLine(item.Name + " " + item.Id);
-					AddUniqueItem(new UnPairedDeviceBLE(item));
-				}
-			}, (indexer.ToString() + " Adding"));
-		}
+            var devices = mAdapter.DiscoveredDevices;
+            foreach (var item in devices)
+            {
+                Debug.WriteLine(item.Name + " " + item.Id);
+                AddUniqueItem(new UnPairedDeviceBLE(item));
+            }
+        }
 
-		public async Task Start()
-		{
-			await mAdapter.StartScanningForDevicesAsync();
-		}
-		public async Task Stop()
-		{
-            await mAdapter.StopScanningForDevicesAsync();
-		}
-		public async Task Rescan()
-		{
+        public async Task Start()
+        {
             await mAdapter.StartScanningForDevicesAsync();
-		}
-		public async Task Reset()
-		{
+        }
+        public async Task Stop()
+        {
+            await mAdapter.StopScanningForDevicesAsync();
+        }
+        public async Task Rescan()
+        {
+            await mAdapter.StartScanningForDevicesAsync();
+        }
+        public async Task Reset()
+        {
             await Stop();
             await Start();
-		}
+        }
 
-		IDeviceBLE ConnectingDevice = null;
-		PairedDeviceBLE Device = null;
-		private void ConnectionComplete(Task obj)
-		{
-			Debug.WriteLine("Connection Complete.");
-			Device = new PairedDeviceBLE((ConnectingDevice as UnPairedDeviceBLE).mDevice, 
-			(dev) => {
-				TriggerDeviceConnected(dev);
-			});
-		}
-		private void StopScanning(Task obj)
-		{
-			Debug.WriteLine("Stopping scanning.");
-			mAdapter.StopScanningForDevicesAsync().ContinueWith(ConnectionComplete);
-		}
-		public void Connect(IDeviceBLE pInput)
-		{
-			if (pInput == null)
-				return;
+        public async Task<IDeviceBLE> Connect(IDeviceBLE pInput)
+        {
+            if (pInput == null) return null;
 
-			var inputType = pInput.GetType();
-			var searchType = typeof(UnPairedDeviceBLE);
+            var inputType = pInput.GetType();
+            var searchType = typeof(UnPairedDeviceBLE);
 
-			Device = null;
-			if (inputType == searchType)
-			{
-				//Pair if the device is able to pair
-				ConnectingDevice = pInput;
-				Debug.WriteLine("Connecting to new device.");
-				mAdapter.ConnectToDeviceAsync((ConnectingDevice as UnPairedDeviceBLE).mDevice).ContinueWith(StopScanning);
-			}
-		}
+            if (inputType == searchType)
+            {
+                //Pair if the device is able to pair
+                Debug.WriteLine("Connecting to new device.");
+                await mAdapter.ConnectToDeviceAsync((pInput as UnPairedDeviceBLE).mDevice);
 
-		public ClientBLE()
+                Debug.WriteLine("Stopping scanning.");
+                await mAdapter.StopScanningForDevicesAsync();
+
+                Debug.WriteLine("Connection Complete.");
+                return new PairedDeviceBLE((pInput as UnPairedDeviceBLE).mDevice, TriggerDeviceConnected);
+            }
+            return null;
+        }
+
+        public ClientBLE()
 		{
 			mConnectedDevices = new ObservableCollection<IDeviceBLE>();
 
@@ -136,11 +120,6 @@ namespace App_121GW.BLE
 					});
 				}
 		}
-
-        Task IClientBLE.Connect(IDeviceBLE pInput)
-        {
-            throw new NotImplementedException();
-        }
 
         ~ClientBLE()
 		{

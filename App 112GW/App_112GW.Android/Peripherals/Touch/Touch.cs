@@ -15,7 +15,7 @@ namespace App_121GW.Droid
 {
 	public class Touch : PlatformEffect
 	{
-		private Android.Views.View	  view;
+		private Android.Views.View view;
 		private App_121GW.Touch	effect;
 
 		protected override void OnAttached()

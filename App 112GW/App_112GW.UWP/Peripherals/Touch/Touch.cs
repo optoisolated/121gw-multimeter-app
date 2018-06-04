@@ -13,7 +13,7 @@ namespace App_121GW.UWP
 {
 	class Touch : PlatformEffect
 	{
-		FrameworkElement		view;
+		FrameworkElement view;
 		App_121GW.Touch	effect;
 
 		//Required by Platform Effect

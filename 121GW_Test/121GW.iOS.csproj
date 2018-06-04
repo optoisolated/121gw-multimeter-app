@@ -84,6 +84,8 @@
     <Compile Include="Peripherals\Bluetooth\Client.cs" />
     <Compile Include="Peripherals\Bluetooth\Device.cs" />
     <Compile Include="Peripherals\Bluetooth\Service.cs" />
+    <Compile Include="Peripherals\Touch\Touch.cs" />
+    <Compile Include="Peripherals\Touch\TouchRecognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -176,7 +178,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Peripherals\Touch\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

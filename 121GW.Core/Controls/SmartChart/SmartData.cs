@@ -58,7 +58,7 @@ namespace App_121GW
 			if (points.Count > 1)
 			{
 				//The fallback values of axis labels are X, Y
-				string horozontal_label = "time (s)";
+				string horozontal_label = "Time (s)";
 				string vertical_label = Parent.Title;
 
 				//The header row of the CSV

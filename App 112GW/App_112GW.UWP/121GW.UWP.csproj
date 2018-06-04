@@ -107,6 +107,7 @@
     <Compile Include="Peripherals\Bluetooth\Characteristic.cs" />
     <Compile Include="Peripherals\Bluetooth\Device.cs" />
     <Compile Include="Peripherals\Bluetooth\Service.cs" />
+    <Compile Include="Peripherals\Files\Files.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Peripherals\Touch\Touch.cs" />
     <Compile Include="Renderers\TabbedPageRenderer.cs" />

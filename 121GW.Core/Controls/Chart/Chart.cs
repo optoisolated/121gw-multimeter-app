@@ -102,14 +102,14 @@ namespace App_121GW
             Rescale = true;
         }
 
-        public void SaveCSV()
+        public async void SaveCSV()
         {
             string csv_string = "";
             foreach(var Element in ChartElements)
                 if (Element.GetType() == typeof (ChartData))
                     csv_string = (Element as ChartData).GetCSV();
 
-            Files.SaveFile(csv_string);
+            await Files.Save(csv_string);
         }
 
         //Renders the chart and child objects

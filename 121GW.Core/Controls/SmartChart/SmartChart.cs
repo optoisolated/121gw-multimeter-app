@@ -135,9 +135,9 @@ namespace App_121GW
 		}
 		#endregion
         
-		public void SaveCSV()
+		public async void SaveCSV()
 		{
-			Files.SaveFile(Data.GetCSV());
+			await Files.Save(Data.GetCSV());
 		}
 		public string Title
 		{

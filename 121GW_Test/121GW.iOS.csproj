@@ -76,6 +76,8 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Files.cs" />
+    <Compile Include="Peripherals\Files\Files.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Info.plist" />

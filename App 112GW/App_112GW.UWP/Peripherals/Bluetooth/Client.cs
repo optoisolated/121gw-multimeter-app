@@ -61,7 +61,6 @@ namespace App_121GW.BLE
 				stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Aborted;
 				if (stopped) mDeviceWatcher.Start();
 			});
-
 		}
 		public async Task Stop()
 		{

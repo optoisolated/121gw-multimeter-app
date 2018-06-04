@@ -15,13 +15,13 @@ namespace App_121GW.BLE
 
         private void DeviceWatcher_Added(object sender, DeviceEventArgs args)
         {
-            if (args.Device.Name == string.Empty)
+            if ( args.Device.Name == string.Empty )
                 return;
 
             Debug.WriteLine("Device discovered.");
 
             var devices = mAdapter.DiscoveredDevices;
-            foreach (var item in devices)
+            foreach ( var item in devices )
             {
                 Debug.WriteLine(item.Name + " " + item.Id);
                 AddUniqueItem(new UnPairedDeviceBLE(item));

@@ -38,15 +38,16 @@ namespace App_121GW.BLE
 		}
 		public async Task<IDeviceBLE> Connect(IDeviceBLE pInput)
 		{
-			Debug.WriteLine("Connecting to : " + pInput.Id);
+            if (pInput == null)
+                return null;
+
+            //Stops if running....
             await Stop();
-
-            var inputType = pInput.GetType();
-			var searchType = typeof(UnPairedDeviceBLE);
-
-			if (inputType == searchType)
+			if (pInput.GetType() == typeof(UnPairedDeviceBLE))
+            {
+			    Debug.WriteLine("Connecting to : " + pInput.Id);
 				return await ConnectionComplete(pInput as UnPairedDeviceBLE);
-
+            }
             return null;
 		}
 
@@ -55,9 +56,9 @@ namespace App_121GW.BLE
 			await Task.Run(() =>
 			{
 				bool stopped = false;
-				stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Stopped;
+                stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Created;
+                stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Stopped;
 				stopped |= mDeviceWatcher.Status == DeviceWatcherStatus.Aborted;
-
 				if (stopped) mDeviceWatcher.Start();
 			});
 
@@ -69,26 +70,24 @@ namespace App_121GW.BLE
 				bool running = false;
 				running |= mDeviceWatcher.Status == DeviceWatcherStatus.Started;
 				running |= mDeviceWatcher.Status == DeviceWatcherStatus.EnumerationCompleted;
-
 				if (running) mDeviceWatcher.Stop();
 			});
-		}
-        public async Task Rescan()
-		{
-			await Reset();
 		}
 		public async Task Reset()
 		{
             await Stop();
             await Start();
         }
+        public async Task Rescan() => await Reset();
 
 		public ClientBLE()
 		{
-			//Get all devices paired and not.
-			string query1 = "(" + BluetoothLEDevice.GetDeviceSelectorFromPairingState(true) + ")";
-			string query2 = "(" + BluetoothLEDevice.GetDeviceSelectorFromPairingState(false) + ")";
-			var query = query1 + " OR " + query2;
+			//Get all devices paired and not
+			var query = 
+                "(" +
+                    BluetoothLEDevice.GetDeviceSelectorFromPairingState( true  ) + ") OR (" + 
+                    BluetoothLEDevice.GetDeviceSelectorFromPairingState( false ) + 
+                ")";
 
 			//Create device watcher
 			mDeviceWatcher = DeviceInformation.CreateWatcher(query, new string[]{ "System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected" }, DeviceInformationKind.AssociationEndpoint);

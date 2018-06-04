@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
 namespace App_121GW.BLE
 {
-	public class ServiceBLE : IServiceBLE
+    public class ServiceBLE : IServiceBLE
 	{
 		private GattDeviceService mService;
 		public event SetupComplete Ready;
@@ -15,27 +14,11 @@ namespace App_121GW.BLE
 			Debug.WriteLine("Service ready.");
 			Ready?.Invoke();
 		}
+        public List<ICharacteristicBLE> Characteristics { get; private set; }
 
-		private List<ICharacteristicBLE> mCharacteristics;
-		public List<ICharacteristicBLE> Characteristics
-		{
-			get
-			{
-				return mCharacteristics;
-			}
-		}
+        public string Id => mService.Uuid.ToString();
+		public override string ToString() => Id;
 
-		public string Id
-		{
-			get
-			{
-				return mService.Uuid.ToString();
-			}
-		}
-		public override string ToString()
-		{
-			return Id;
-		}
 		async void Build(ChangeEvent pEvent)
 		{
             var arg = await mService.GetCharacteristicsAsync();
@@ -51,19 +34,19 @@ namespace App_121GW.BLE
 		private void CharacteristicsAquired(GattCharacteristicsResult result, ChangeEvent pEvent)
         {
             //Clear existing.
-            mCharacteristics = null;
-            mCharacteristics = new List<ICharacteristicBLE>();
+            Characteristics = null;
+            Characteristics = new List<ICharacteristicBLE>();
 
             //Build list
             var characteristics = result.Characteristics;
 			Uninitialised = characteristics.Count;
 			foreach (var item in result.Characteristics)
-				mCharacteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));
+				Characteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));
 		}
 		
 		public void Unregister()
 		{
-			foreach (var characteristic in mCharacteristics)
+			foreach (var characteristic in Characteristics)
 				characteristic.Unregister();
 		}
 		public ServiceBLE(GattDeviceService pInput, SetupComplete ready, ChangeEvent pEvent)
@@ -78,7 +61,7 @@ namespace App_121GW.BLE
 			Unregister();
 			mService.Dispose();
 			mService = null;
-			mCharacteristics = null;
+			Characteristics = null;
 		}
 	}
 }

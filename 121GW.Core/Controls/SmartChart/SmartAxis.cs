@@ -32,8 +32,6 @@ namespace App_121GW
 		SKSize LastDimension = new SKSize(0, 0);
 		public Map.Map1D ValueFromCoordinate(float dimension)
 		{
-            Debug.WriteLine("Axis Size\t" + AxisSize(dimension).ToString());
-
             return Map.Create1D(AxisStart(dimension), AxisEnd(dimension), ValueStart, ValueEnd);
 		}
 		public Map.Map1D ScaleFromCoordinate(float dimension)

@@ -3,6 +3,7 @@ using App_121GW.BLE;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
@@ -36,11 +37,13 @@ namespace App_121GW
 			});
         }
 
-		public MainPage()
+        public MainPage()
 		{
-			BackgroundColor = Globals.BackgroundColor;
-			On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
+            On<Android>().SetIsSwipePagingEnabled(false);
+            On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
+            BackgroundColor = Globals.BackgroundColor;
 			SettingsView.AddDevice += Button_AddDevice;
+
 
             AddPage("< Settings >", SettingsView);
 		}

@@ -71,8 +71,8 @@ namespace App_121GW.BLE
         public ClientBLE()
         {
             //Setup bluetoth basic adapter
-            mDevice = CrossBluetoothLE.Current;
-            mAdapter = CrossBluetoothLE.Current.Adapter;
+            mDevice     = CrossBluetoothLE.Current;
+            mAdapter    = CrossBluetoothLE.Current.Adapter;
 
             mAdapter.ScanTimeoutElapsed += async (sender, args) => await Rescan();
             mAdapter.ScanTimeout = int.MaxValue;
@@ -81,7 +81,7 @@ namespace App_121GW.BLE
             mDevice.StateChanged += async (s, e) => 
             {
                 Debug.WriteLine("The bluetooth state changed to " + e.NewState.ToString());
-                if (e.NewState == BluetoothState.TurningOn || e.NewState == BluetoothState.On)
+                if (e.NewState == BluetoothState.TurningOn || e.NewState == BluetoothState.On )
                 {
                     await Reset();
                     if (mDevice.IsOn && mDevice.IsAvailable)
@@ -91,6 +91,12 @@ namespace App_121GW.BLE
 
             //
             mAdapter.DeviceConnectionLost += DeviceConnection_Lost;
+
+            Task.Factory.StartNew(async () =>
+            {
+                await Start();
+                await Reset();
+            });
         }
 
 

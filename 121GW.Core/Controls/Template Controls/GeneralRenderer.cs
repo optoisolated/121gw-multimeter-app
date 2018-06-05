@@ -21,7 +21,6 @@ namespace App_121GW
             HorizontalOptions = LayoutOptions.Fill;
             VerticalOptions = LayoutOptions.Fill;
             BackgroundColor = Globals.BackgroundColor;
-
         }
 
 #if __OPENGL__
@@ -30,6 +29,8 @@ namespace App_121GW
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 #endif
         {
+            if (e.Surface == null) return;
+            if (e.Surface.Canvas == null) return;
             Paint?.Invoke(e.Surface.Canvas, CanvasSize, base.Bounds.Size.ToSKSize());
         }
     }

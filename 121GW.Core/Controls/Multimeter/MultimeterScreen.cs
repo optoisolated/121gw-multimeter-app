@@ -949,16 +949,20 @@ namespace App_121GW
 			Effects.Add(mTouch);
 		}
 
+        private void RedrawLayers()
+        {
+            //Add render on change
+            for (int i = 0; i < mSegments.Count; i++)
+                mSegments[i].Redraw();
+            for (int i = 0; i < mSubSegments.Count; i++)
+                mSubSegments[i].Redraw();
+            mBargraph.Redraw();
+            mOther.Redraw();
+        }
 		private void Redraw()
 		{
-			//Add render on change
-			for (int i = 0; i < mSegments.Count; i++)
-				mSegments[i].Redraw();
-			for (int i = 0; i < mSubSegments.Count; i++)
-				mSubSegments[i].Redraw();
-			mBargraph.Redraw();
-			mOther.Redraw();
-			InvalidateSurface();
+            RedrawLayers();
+            InvalidateSurface();
 		}
 		private void Invalidate() => InvalidateSurface();
 
@@ -1042,13 +1046,14 @@ namespace App_121GW
 				else return;
 
 				Rescale();
-				Redraw();
-				if (dimension.Width == 0 || dimension.Height == 0)
+                RedrawLayers();
+
+                if (dimension.Width == 0 || dimension.Height == 0)
 					return;
 
 				//Setup a clear bitmap
 				mLayer = new SKBitmap((int)mDrawRectangle.Width, (int)mDrawRectangle.Height);
-				mLayer.Erase(SKColors.Transparent);
+				mLayer.Erase(Globals.BackgroundColor.ToSKColor());
 
 				//Setup a clear canvas
 				mCanvas = new SKCanvas(mLayer);

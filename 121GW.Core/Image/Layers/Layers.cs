@@ -102,7 +102,7 @@ namespace App_121GW
 			return (x, y);
 		}
 
-		public void			 Render(ref SKCanvas pSurface, SKRect pRectangle)
+		public void Render(ref SKCanvas pSurface, SKRect pRectangle)
 		{
 			if (mChange)
 				foreach (ILayer Layer in mLayers)

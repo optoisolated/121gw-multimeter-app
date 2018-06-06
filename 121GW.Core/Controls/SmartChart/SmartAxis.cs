@@ -14,16 +14,16 @@ namespace App_121GW
 		public ASmartTick Ticker;
 		public float Position { get; set; }
 
-		public abstract float Dimension (SKSize dimensions);
-		public abstract float AxisStart (float WidthXorHeight);
-		public abstract float AxisEnd   (float WidthXorHeight);
-		public float          AxisSize  (float WidthXorHeight) => (AxisEnd(WidthXorHeight) - AxisStart(WidthXorHeight));
+		public abstract float Dimension( SKSize dimensions );
+		public abstract float AxisStart( float WidthXorHeight );
+		public abstract float AxisEnd( float WidthXorHeight );
+		public float AxisSize( float WidthXorHeight ) => (AxisEnd(WidthXorHeight) - AxisStart(WidthXorHeight));
 
 		public float ValueStart => Range.Minimum;
-		public float ValueEnd   => Range.Maximum;
+		public float ValueEnd => Range.Maximum;
 
-		public  float MinorTicks  { get; set; } = 5;
-        public  float MajorTicks  { get; set; } = 4;
+		public  float MinorTicks { get; set; } = 5;
+        public  float MajorTicks { get; set; } = 4;
 
 		private float MajorTickDistance => Distance / MajorTicks;
 		private float MinorTickDistance => MajorTickDistance / MinorTicks;

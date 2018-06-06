@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Threading;
-using App_121GW;
 using Xamarin.Forms;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Text;
 
 namespace App_121GW
 {
-    public class Multimeter : AutoGrid
+	public class Multimeter : AutoGrid
     {
         public BLE.IDeviceBLE	mDevice;
         public SmartChart		Chart;
@@ -74,7 +68,6 @@ namespace App_121GW
             }
         }
 
-
         private string _Id = "Device";
         public new string Id
         {
@@ -126,7 +119,7 @@ namespace App_121GW
                     try
                     {
                         Id = Processor.Serial.ToString();
-                        Logger.Sample(Processor.MainValue);
+                        Logger.Sample(Processor.MainValue * (float)Processor.MainRangeMultiple);
                         ChartTitle = Processor.MainRangeLabel;
                         Screen.Update(Processor);
                         Screen.InvalidateSurface();
@@ -188,7 +181,7 @@ namespace App_121GW
             Chart.Enable();
         }
         
-        public override void OrientationChanged(AutoGrid.Orientation Update)
+        public override void OrientationChanged(Orientation Update)
         {
             if (CurrentOrientation != Update)
             {
@@ -203,7 +196,6 @@ namespace App_121GW
             //Must be called at end.
             base.OrientationChanged(Update);
         }
-
 
 		private void SendData   (byte[] pData)
 		{

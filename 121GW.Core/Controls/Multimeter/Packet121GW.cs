@@ -241,7 +241,7 @@ namespace App_121GW
         {
             get
             {
-                var val = (float)SubIntValue / (float)Math.Pow((float)10, (float)SubPoint);
+                var val = SubIntValue / (float)Math.Pow((float)10, (float)SubPoint);
                 return (SubSign == eSign.eNegative)  ? - val : val;
             }
         }

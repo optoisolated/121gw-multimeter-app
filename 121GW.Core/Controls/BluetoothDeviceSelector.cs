@@ -36,7 +36,7 @@ namespace App_121GW.BLE
             template.	SetBinding	(TextCell.TextProperty,			"Name"					);
             template.	SetBinding	(TextCell.DetailProperty,		"Id"					);
             template.	SetValue	(TextCell.TextColorProperty,	Globals.TextColor		);
-            template.	SetValue	(TextCell.DetailColorProperty,	Globals.HighlightColor	);
+            template.	SetValue	(TextCell.DetailColorProperty,	Globals.TextColor		);
 
             return template;
         }

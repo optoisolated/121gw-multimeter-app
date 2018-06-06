@@ -14,31 +14,17 @@ namespace App_121GW
 
 		public float Position(float dimension) => Parent.CoordinateFromValue(dimension).Calculate(Value);
 
-		public static bool  ShowTick			 { get; set; } = true;
-		public static bool  ShowMajorLabel	   { get; set; } = true;
-		public static bool  ShowMajorGridline	{ get; set; } = true;
-		public static bool  ShowMinorGridline	{ get; set; } = false;
+		public static bool  ShowTick { get; set; } = true;
+		public static bool  ShowMajorLabel { get; set; } = true;
+		public static bool  ShowMajorGridline { get; set; } = true;
+		public static bool  ShowMinorGridline { get; set; } = false;
 
-		public bool ShowGridline    => (TickType == SmartTickType.Major) ? ShowMajorGridline : ShowMinorGridline;
-		public bool IsMajorTick     => (TickType == SmartTickType.Major);
-		public bool IsMinorTick     => (TickType == SmartTickType.Minor);
+		public bool ShowGridline => (TickType == SmartTickType.Major) ? ShowMajorGridline : ShowMinorGridline;
+		public bool IsMajorTick => (TickType == SmartTickType.Major);
+		public bool IsMinorTick => (TickType == SmartTickType.Minor);
 		private static float MajorTickLength { get; set; } = 5.0f;
-
-		private static float MinorTickLength
-		{
-			get
-			{
-				return MajorTickLength / 2;
-			}
-		}
-
-		public float			TickLength
-		{
-			get
-			{
-				return (TickType == SmartTickType.Major)? MajorTickLength : MinorTickLength;
-			}
-		}
+		private static float MinorTickLength => MajorTickLength / 2;
+		public float TickLength => (TickType == SmartTickType.Major)? MajorTickLength : MinorTickLength;
 
 		public enum TickLabelSide
 		{
@@ -62,7 +48,7 @@ namespace App_121GW
 		protected abstract (SKPoint x, SKPoint y) LabelLine(float scale, SKSize dimension, string Text);
 		private (string, SKPath) LabelPath(float scale, SKSize dimension)
 		{
-			var txt = SIPrefix.ToString(Value);
+			var txt = SIPrefix.ToString(Value, 4);
 			(var pt1, var pt2) = LabelLine(scale, dimension, txt);
 			var pts = new SKPoint[] { pt1, pt2 };
 			var pth = new SKPath();

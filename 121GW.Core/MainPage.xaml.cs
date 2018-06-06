@@ -15,12 +15,9 @@ namespace App_121GW
 	{
 		private Settings SettingsView = new Settings();
         private MathChart MathChart = new MathChart();
+        private void AddPage(string Title, View Content) => Children.Add(new GeneralPage(Title, Content));
 
-        private void AddPage(string Title, View Content)
-        {
-            Children.Add(new GeneralPage(Title, Content));
-        }
-        private void AddDevice(MultimeterPage Device)
+		private void AddDevice(MultimeterPage Device)
 		{
             MathChart.AddDevice(Device);
 			if (MathChart.Devices.Count == 1)
@@ -40,14 +37,11 @@ namespace App_121GW
 
         public MainPage()
 		{
-            for (float i = -0.001f; Math.Abs(i) < 10000.0f; i *= 1.25f)
-               Debug.WriteLine(new SIValue(i).ToString());
-
             On<Android>().SetIsSwipePagingEnabled(false);
             On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
+
             BackgroundColor = Globals.BackgroundColor;
 			SettingsView.AddDevice += Button_AddDevice;
-
 
             AddPage("< Settings >", SettingsView);
 		}

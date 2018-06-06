@@ -18,14 +18,8 @@ namespace App_121GW
 		public bool EnableTouchHorizontal = true;
 
         Mutex mutex = new Mutex();
-        public void Wait()
-        {
-            mutex.WaitOne();
-        }
-        public void Release()
-        {
-            mutex.ReleaseMutex();
-        }
+        public void Wait() => mutex.WaitOne();
+        public void Release() => mutex.ReleaseMutex();
         public void Reset()
         {
             Wait();
@@ -43,10 +37,7 @@ namespace App_121GW
 			Parent.Parent.InvalidateSurface();
             Release();
         }
-		public void Zoom(SKPoint Amount, SKPoint About)
-        {
-            Zoom(Amount.X, Amount.Y, About.X, About.Y);
-		}
+		public void Zoom(SKPoint Amount, SKPoint About) => Zoom(Amount.X, Amount.Y, About.X, About.Y);
 		public void Pan(float dx, float dy)
         {
             Wait();
@@ -56,14 +47,11 @@ namespace App_121GW
 			Parent.Parent.InvalidateSurface();
             Release();
 		}
-		public void Pan(SKPoint Amount)
-		{
-			Pan(Amount.X, Amount.Y);
-		}
+		public void Pan(SKPoint Amount) => Pan(Amount.X, Amount.Y);
 
-        public void Set( SKRect Boundary )
+        public void Set(SKRect Boundary)
 		{
-			int ticks	=	(int)Vertical.MajorTicks + 2;
+			int ticks	=	(int)Vertical.MajorTicks;
 
 			var top_si	=	new SIValue(Boundary.Bottom);
 			var bot_si	=	new SIValue(Boundary.Top);

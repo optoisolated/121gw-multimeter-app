@@ -1,12 +1,8 @@
 ﻿using App_121GW.BLE;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 
 namespace App_121GW
 {
-    public class MultimeterPage : GeneralPage
+	public class MultimeterPage : GeneralPage
     {
         public Multimeter Device { get; set; }
         public MultimeterPage(IDeviceBLE pDevice) : base ("", new Multimeter(pDevice))

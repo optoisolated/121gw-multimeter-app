@@ -25,13 +25,13 @@ namespace App_121GW
 		private List<T> Data = new List<T>();
 
 		#region IOBSERVABLE_FUNCTIONS
-		private T at(int key)
+		private T At(int key)
 		{
 			T output;
 			lock(Data) output = Data[key];
 			return output;
 		}
-		public T this[int key] => at(key);
+		public T this[int key] => At(key);
 		public int  Count => Data.Count;
 		public void RemoveAt(int Index)
 		{
@@ -65,13 +65,13 @@ namespace App_121GW
 		private List<T> Data = new List<T>();
 
 		#region IOBSERVABLE_FUNCTIONS
-		private T at(int key)
+		private T At(int key)
 		{
 			T output;
 			lock (Data) output = Data[key];
 			return output;
 		}
-		T IObservableList<T>.this[int key] => at(key);
+		T IObservableList<T>.this[int key] => At(key);
 		public int  Count => Data.Count;
 		public void RemoveAt(int Index)
 		{

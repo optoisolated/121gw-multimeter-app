@@ -1,7 +1,4 @@
 ﻿using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App_121GW
 {
@@ -25,19 +22,8 @@ namespace App_121GW
 		public bool ShowGridline    => (TickType == SmartTickType.Major) ? ShowMajorGridline : ShowMinorGridline;
 		public bool IsMajorTick     => (TickType == SmartTickType.Major);
 		public bool IsMinorTick     => (TickType == SmartTickType.Minor);
+		private static float MajorTickLength { get; set; } = 5.0f;
 
-		private static float _MajorTickLength = 5.0f;
-		private static float MajorTickLength
-		{
-			get
-			{
-				return _MajorTickLength;
-			}
-			set
-			{
-				_MajorTickLength = value;
-			}
-		}
 		private static float MinorTickLength
 		{
 			get

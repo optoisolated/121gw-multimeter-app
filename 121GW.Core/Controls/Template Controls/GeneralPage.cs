@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace App_121GW
 {
@@ -10,9 +6,9 @@ namespace App_121GW
 	{
 		public GeneralPage(string pTitle, View pContent)
 		{
-			Title		   = pTitle;
-			Content		 = pContent;
-			Padding		 = Globals.Padding;
+			Title = pTitle;
+			Content = pContent;
+			Padding = Globals.Padding;
 			BackgroundColor = Globals.BackgroundColor;
 		}
 	}

@@ -16,9 +16,9 @@ namespace App_121GW
 			Screen
 		}
 
-		private float FrameLength					   = 10;
-		private LoggerMode Mode						 = LoggerMode.Rescaling;
-		private DateTime DataStart					  = DateTime.Now;
+		private readonly float FrameLength = 10;
+		private readonly LoggerMode Mode = LoggerMode.Rescaling;
+		private DateTime DataStart = DateTime.Now;
 		public  ObservableList<SKPoint> Data = new ObservableList<SKPoint>();
 
 		public void Reset()

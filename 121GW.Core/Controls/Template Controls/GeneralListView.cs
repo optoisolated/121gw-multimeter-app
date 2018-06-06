@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using Xamarin;
+﻿using Xamarin.Forms;
 
 namespace App_121GW
 {
@@ -10,9 +6,9 @@ namespace App_121GW
 	{
 		public GeneralListView()
 		{
-			BackgroundColor	 = Globals.BackgroundColor;
-			HorizontalOptions   = LayoutOptions.Fill;
-			VerticalOptions	 = LayoutOptions.Fill;
+			BackgroundColor = Globals.BackgroundColor;
+			HorizontalOptions = LayoutOptions.Fill;
+			VerticalOptions = LayoutOptions.Fill;
 		}
 	}
 }

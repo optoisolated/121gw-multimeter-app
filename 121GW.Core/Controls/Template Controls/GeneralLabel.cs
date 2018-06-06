@@ -1,12 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Xamarin.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
+﻿using Xamarin.Forms;
 
 namespace App_121GW
 {

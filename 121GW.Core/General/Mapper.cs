@@ -19,10 +19,7 @@ namespace App_121GW
 				Gradient = m;
 				Offset = b;
 			}
-			public float Calculate(float value)
-			{
-				return value * Gradient + Offset;
-			}
+			public float Calculate(float value) => value * Gradient + Offset;
 		}
 		public static Map1D Create1D(float MinA, float MaxA, float MinB, float MaxB)
 		{
@@ -32,18 +29,9 @@ namespace App_121GW
 			var offset = MinB - MinA * gradient;
 			return new Map1D(gradient, offset);
 		}
-		public static Map1D Create1D(Range A, Range B)
-		{
-			return Create1D(A.Minimum, A.Maximum, B.Minimum, B.Maximum);
-		}
-		public static Map1D Create1D(float MinA, float MaxA, Range B)
-		{
-			return Create1D(MinA, MaxA, B.Minimum, B.Maximum);
-		}
-		public static Map1D Create1D(Range A, float MinB, float MaxB)
-		{
-			return Create1D(A.Minimum, A.Maximum, MinB, MaxB);
-		}
+		public static Map1D Create1D(Range A, Range B) => Create1D(A.Minimum, A.Maximum, B.Minimum, B.Maximum);
+		public static Map1D Create1D(float MinA, float MaxA, Range B) => Create1D(MinA, MaxA, B.Minimum, B.Maximum);
+		public static Map1D Create1D(Range A, float MinB, float MaxB) => Create1D(A.Minimum, A.Maximum, MinB, MaxB);
 
 		public static SkiaSharp.SKMatrix CreateMatrix(Map1D Horizontal, Map1D Vertical)
 		{

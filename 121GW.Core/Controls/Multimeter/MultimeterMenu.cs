@@ -11,10 +11,10 @@ namespace App_121GW
 		public event EventHandler ModeChanged;
 		public event EventHandler RangeChanged;
 
-		private GeneralButton mMode;
-		private GeneralButton mHold;
-		private GeneralButton mRange;
-		private GeneralButton mRelative;
+		private readonly GeneralButton mMode;
+		private readonly GeneralButton mHold;
+		private readonly GeneralButton mRange;
+		private readonly GeneralButton mRelative;
 
 		private void ButtonPress_Hold	    (object sender, EventArgs e) => HoldClicked?.Invoke (sender, e);
 		private void ButtonPress_Relative   (object sender, EventArgs e) => RelClicked?.Invoke  (sender, e);

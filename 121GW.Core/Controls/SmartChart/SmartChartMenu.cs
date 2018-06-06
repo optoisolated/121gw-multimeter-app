@@ -9,8 +9,8 @@ namespace App_121GW
 {
 	public class SmartChartMenu : AutoGrid
 	{
-		private GeneralButton mSave;
-		private GeneralButton mReset;
+		private readonly GeneralButton mSave;
+		private readonly GeneralButton mReset;
 		public event EventHandler SaveClicked;
 		public event EventHandler ResetClicked;
 

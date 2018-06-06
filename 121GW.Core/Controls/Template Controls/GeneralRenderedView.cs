@@ -42,23 +42,11 @@ namespace App_121GW
 				return new SKSize(0, 0);
 			}
 		}
-        public void InvalidateSurface()
-        {
-            mRenderer?.InvalidateSurface();
-        }
-		private float ConvertWidthToPixel(float value)
-		{
-			return (CanvasSize.Width * value / (float)Width);
-		}
-		private float ConvertHeightToPixel(float value)
-		{
-			return (CanvasSize.Height * value / (float)Height);
-		}
+        public void InvalidateSurface() => mRenderer?.InvalidateSurface();
+		private float ConvertWidthToPixel(float value) => (CanvasSize.Width * value / (float)Width);
+		private float ConvertHeightToPixel(float value) => (CanvasSize.Height * value / (float)Height);
 		public abstract void PaintSurface(SKCanvas canvas, SKSize dimension, SKSize viewsize);
 
-		public GeneralRenderedView()
-		{
-			Enable();
-		}
+		public GeneralRenderedView() => Enable();
 	}
 }

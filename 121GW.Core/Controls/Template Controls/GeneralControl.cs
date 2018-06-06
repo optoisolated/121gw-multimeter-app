@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 
-using App_121GW;
 namespace App_121GW
 {
 	public class GeneralControl : GeneralView
@@ -49,8 +44,8 @@ namespace App_121GW
 				mRenderer.InvalidateSurface();
 		}
 
-		public bool		 ShowPoly;
-		public new float	Scale = 0.5f;
+		public bool ShowPoly;
+		public new float Scale = 0.5f;
 
 		public enum eControlInputState
 		{
@@ -158,31 +153,33 @@ namespace App_121GW
 		}
 
 		private SKPoint[]	mPoints;
-		private SKPoint[]   scaledpoints;
+		private readonly SKPoint[]   mScaledPoints;
 		
 		public GeneralControl(SKPoint[] pPoints)
 		{
 			mPoints = pPoints;
 
-			IdleStyle = new SKPaint();
-			PressStyle = new SKPaint();
-			HoverStyle = new SKPaint();
-
-			IdleStyle.StrokeJoin = SKStrokeJoin.Round;
-			PressStyle.StrokeJoin = SKStrokeJoin.Round;
-			HoverStyle.StrokeJoin = SKStrokeJoin.Round;
-
-			IdleStyle.Style = SKPaintStyle.Stroke;
-			PressStyle.Style = SKPaintStyle.Stroke;
-			HoverStyle.Style = SKPaintStyle.Stroke;
-
-			IdleStyle.StrokeCap = SKStrokeCap.Round;
-			PressStyle.StrokeCap = SKStrokeCap.Round;
-			HoverStyle.StrokeCap = SKStrokeCap.Round;
-
-			IdleStyle.IsAntialias = true;
-			PressStyle.IsAntialias = true;
-			HoverStyle.IsAntialias = true;
+			IdleStyle = new SKPaint
+			{
+				StrokeJoin = SKStrokeJoin.Round,
+				Style = SKPaintStyle.Stroke,
+				StrokeCap = SKStrokeCap.Round,
+				IsAntialias = true
+			};
+			PressStyle = new SKPaint
+			{
+				StrokeJoin = SKStrokeJoin.Round,
+				Style = SKPaintStyle.Stroke,
+				StrokeCap = SKStrokeCap.Round,
+				IsAntialias = true
+			};
+			HoverStyle = new SKPaint
+			{
+				StrokeJoin = SKStrokeJoin.Round,
+				Style = SKPaintStyle.Stroke,
+				StrokeCap = SKStrokeCap.Round,
+				IsAntialias = true
+			};
 
 			BorderWidth = Globals.BorderWidth;
 			PressColor = Globals.FocusColor.ToSKColor();
@@ -194,7 +191,7 @@ namespace App_121GW
 
 			OffsetAngle = 0;
 			ShiftPoints(-0.5f, -0.5f);
-			scaledpoints = new SKPoint[3];
+			mScaledPoints = new SKPoint[3];
 
 			State = eControlInputState.eNone;
 			Padding = Globals.Padding;
@@ -237,10 +234,10 @@ namespace App_121GW
 				X += midx;
 				Y += midy;
 
-				scaledpoints[i].X = X;
-				scaledpoints[i].Y = Y;
+				mScaledPoints[i].X = X;
+				mScaledPoints[i].Y = Y;
 			}
-			return scaledpoints;
+			return mScaledPoints;
 		}
 		private SKRect			  PaddRectangle(SKRect pInput, float pPadding)
 		{

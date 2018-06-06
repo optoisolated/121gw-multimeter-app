@@ -30,32 +30,22 @@ namespace App_121GW
             return output;
         }
 
-        private static SKPaint _MajorPaint  = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MajorFontSize,  Globals.Typeface);
-        private static SKPaint _MinorPaint  = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MinorFontSize,  Globals.Typeface);
-        private static SKPaint _GridPaint   = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MinorFontSize,  Globals.Typeface, Dotted: true);
-        private static SKPaint _MaskPaint   = MakeDefaultPaint(Globals.BackgroundColor, 1,  Globals.MinorFontSize,  Globals.Typeface);
+        private static readonly SKPaint _MajorPaint  = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MajorFontSize,  Globals.Typeface);
+        private static readonly SKPaint _MinorPaint  = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MinorFontSize,  Globals.Typeface);
+        private static readonly SKPaint _GridPaint   = MakeDefaultPaint(Globals.TextColor,       1,  Globals.MinorFontSize,  Globals.Typeface, Dotted: true);
 
-        public static SKPaint ScaledPaint   (float scale, SKPaint paint)
+		public static SKPaint ScaledPaint (float scale, SKPaint paint)
         {
             var cpy = paint.Clone();
             cpy.TextSize *= scale;
             return cpy;
         }
-        public static SKPaint MajorPaint    (float scale) => ScaledPaint(scale, _MajorPaint);
-        public static SKPaint MinorPaint    (float scale) => ScaledPaint(scale, _MajorPaint);
+        public static SKPaint MajorPaint (float scale) => ScaledPaint(scale, _MajorPaint);
+        public static SKPaint MinorPaint (float scale) => ScaledPaint(scale, _MajorPaint);
+		public static SKPaint MaskPaint { get; private set; } = MakeDefaultPaint(Globals.BackgroundColor, 1, Globals.MinorFontSize, Globals.Typeface);
 
-        public static SKPaint MaskPaint
-        {
-            get
-            {
-                return _MaskPaint;
-            }
-            private set
-            {
-                _MaskPaint = value;
-            }
-        }
-        public static SKPaint GridPaint(float scale)
+
+		public static SKPaint GridPaint(float scale)
         {
             var temp = ScaledPaint(scale, _GridPaint);
             temp.ColorFilter = SKColorFilter.CreateBlendMode(temp.Color, SKBlendMode.Dst);

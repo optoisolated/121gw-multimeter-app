@@ -11,10 +11,10 @@ namespace App_121GW
 		public GeneralView()
 		{
 			//Must always fill parent container
-			HorizontalOptions   = LayoutOptions.Fill;
-			VerticalOptions	 = LayoutOptions.Fill;
-			Padding			 = Globals.Padding;
-			BackgroundColor	 = Globals.BackgroundColor;
+			HorizontalOptions = LayoutOptions.Fill;
+			VerticalOptions = LayoutOptions.Fill;
+			Padding = Globals.Padding;
+			BackgroundColor = Globals.BackgroundColor;
 		}
 	}
 }

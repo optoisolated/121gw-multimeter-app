@@ -251,10 +251,12 @@ namespace App_121GW
 		static LayoutOptions ColumnLayout = LayoutOptions.Fill;
 		static Picker MakePicker( EventHandler SelectedHandler, string Title)
 		{
-			var output = new Picker();
-			output.Title = Title;
-			output.VerticalOptions = LayoutOptions.StartAndExpand;
-			output.HorizontalOptions = ColumnLayout;
+			var output = new Picker
+			{
+				Title = Title,
+				VerticalOptions = LayoutOptions.StartAndExpand,
+				HorizontalOptions = ColumnLayout
+			};
 			output.SelectedIndexChanged += SelectedHandler;
 
 			//TODO : This is a bug in xamarin, row height need to be made automatic

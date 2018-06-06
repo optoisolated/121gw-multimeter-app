@@ -52,40 +52,11 @@ namespace App_121GW
 			AddDevice?.Invoke(pDevice);
 		}
 
-		private event EventHandler _LeftButtonEvent;
-		private event EventHandler _RightButtonEvent;
+		private event EventHandler RightButtonEvent;
+		private event EventHandler LeftButtonEvent;
 
-		private event EventHandler LeftButtonEvent
-		{
-			add
-			{
-				_LeftButtonEvent += value;
-			}
-			remove
-			{
-				_LeftButtonEvent -= value;
-			}
-		}
-		private event EventHandler RightButtonEvent
-		{
-			add
-			{
-				_RightButtonEvent += value;
-			}
-			remove
-			{
-				_RightButtonEvent -= value;
-			}
-		}
-
-		private void ButtonRight_Clicked(object sender, EventArgs e)
-		{
-			_RightButtonEvent?.Invoke(sender, e);
-		}
-		private void ButtonLeft_Clicked(object sender, EventArgs e)
-		{
-			_LeftButtonEvent?.Invoke(sender, e);
-		}
+		private void ButtonRight_Clicked(object sender, EventArgs e) => RightButtonEvent?.Invoke(sender, e);
+		private void ButtonLeft_Clicked(object sender, EventArgs e) => LeftButtonEvent?.Invoke(sender, e);
 		
 		private string LeftButtonText
 		{
@@ -104,27 +75,26 @@ namespace App_121GW
 
 		public void SetLeftButton(string LeftText, EventHandler LeftEvent)
 		{
-			_LeftButtonEvent = null;
+			LeftButtonEvent = null;
 			LeftButtonEvent += LeftEvent;
 			LeftButtonText = LeftText;
 			ButtonLeft.IsVisible = true;
 		}
 		public void SetRightButton(string RightText, EventHandler RightEvent)
 		{
-			_RightButtonEvent = null;
+			RightButtonEvent = null;
 			RightButtonEvent += RightEvent;
 			RightButtonText = RightText;
 			ButtonRight.IsVisible = true;
 		}
-
 		public void ClearRightButton()
 		{
-			_RightButtonEvent = null;
+			RightButtonEvent = null;
 			ButtonRight.IsVisible = false;
 		}
 		public void ClearLeftButton()
 		{
-			_LeftButtonEvent = null;
+			LeftButtonEvent = null;
 			ButtonLeft.IsVisible = false;
 		}
 	}

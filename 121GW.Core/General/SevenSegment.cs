@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App_121GW
 {
-	public class SevenSegment
+	public static class SevenSegment
 	{
 		private enum SevenSegmentLetters
 		{
@@ -81,7 +81,7 @@ namespace App_121GW
 
 			return pCHR;
 		}
-		private static int ToSegment(char pCHR)
+		private static int	ToSegment(char pCHR)
 		{
 			switch (pCHR)
 			{
@@ -152,9 +152,7 @@ namespace App_121GW
 			}
 			return 0;
 		}
-
-		SevenSegment() { }
-		public static void SetSegment(char pInput, bool dp, ref Layers pImages)
+		public	static void SetSegment(char pInput, bool dp, ref Layers pImages)
 		{
 			//Make len a member 
 			int len = pImages.mLayers.Count;
@@ -173,13 +171,7 @@ namespace App_121GW
 				pValue >>= 1;
 			}
 		}
-		public static void Blank(Layers pImages)
-		{
-			SetSegment(' ', false, ref pImages);
-		}
-		public static void Blank(ref Layers pImages)
-		{
-			SetSegment(' ', false, ref pImages);
-		}
+		public	static void Blank(Layers pImages) => SetSegment(' ', false, ref pImages);
+		public	static void Blank(ref Layers pImages) => SetSegment(' ', false, ref pImages);
 	}
 }

@@ -23,7 +23,7 @@ namespace App_121GW
 	}
     public class Packet121GW
     {
-        byte[] m_Data;
+        byte[] mData;
 
         public enum eMode
         {
@@ -85,7 +85,7 @@ namespace App_121GW
             e1000 = 3
         }
 
-        Range121GW[] RangeLookup =
+		readonly Range121GW[] mRangeLookup =
         {
             new Range121GW("V",     "Voltage Low Z (V)",    new int[]{4}            ," "        ),      //0
 			new Range121GW("V",     "Voltage DC (V)",       new int[]{1,2,3,4}      ,"    "     ),      //1
@@ -118,7 +118,7 @@ namespace App_121GW
 
         public byte Nibble(int pIndex, bool pHigh)
         {
-            var data = m_Data[pIndex];
+            var data = mData[pIndex];
             if (pHigh) data >>= 4;
             data &= 0xf;
 
@@ -127,7 +127,7 @@ namespace App_121GW
 
         //Start decimal coded nibbles protocol
         //Don't know why this is a seperate protocol...
-        public int Year                 => m_Data[1] + 2000;
+        public int Year                 => mData[1] + 2000;
         public int Month                => Nibble(2, true);
         public int Serial               => 
             Nibble(2, false )   * 10000 + 
@@ -137,15 +137,15 @@ namespace App_121GW
             Nibble(4, false );
 
         //Start hex coded bytes protocol
-        public eMode        Mode            => (eMode)m_Data[5];
+        public eMode        Mode            => (eMode)mData[5];
         public bool         MainOverload    => (Nibble(6, true) & 0x8) > 0;
         public eSign        MainSign        => (eSign)BoolToInt((Nibble(6, true) & 0x4) > 0);
 
         public int          MainRangeIndex  => Nibble(6, false);
         public int          MainRangeValue  => MainRange.mValues[MainRangeIndex];
         public char         MainRangeUnits  => MainRange.mNotation[MainRangeIndex];
-        public int          MainIntValue    => (m_Data[7] << 8) | m_Data[8];
-        public eMode        SubMode         => (eMode)m_Data[9];
+        public int          MainIntValue    => (mData[7] << 8) | mData[8];
+        public eMode        SubMode         => (eMode)mData[9];
         public bool         SubOverload     => (Nibble(10, true) & 0x8) != 0;
         public eSign        SubSign         => ((eSign)BoolToInt((Nibble(10, true) & 0x4) > 0));
         public bool         SubK            => ((Nibble(10, true) & 0x2) > 0);
@@ -157,8 +157,8 @@ namespace App_121GW
         {
             get
             {
-                uint MSB = m_Data[11u];
-                uint LSB = m_Data[12u];
+                uint MSB = mData[11u];
+                uint LSB = mData[12u];
                 return (int)((MSB * 256u) + LSB);
             }
         }
@@ -198,10 +198,10 @@ namespace App_121GW
         public bool         Bar0_150        => ((Nibble(13, false) & 0x8) != 0);
         public eSign        BarSign         => (eSign)BoolToInt((Nibble(13, false) & 0x4) == 0);
         public eBarRange    Bar1000_500     => (eBarRange)(Nibble(13, false) & 3);
-        public int          BarValue        => m_Data[14] & 0x1F;
-        public byte         Status1         => m_Data[15];
-        public byte         Status2         => m_Data[16];
-        public byte         Status3         => m_Data[17];
+        public int          BarValue        => mData[14] & 0x1F;
+        public byte         Status1         => mData[15];
+        public byte         Status2         => mData[16];
+        public byte         Status3         => mData[17];
 
         public bool         Status1KHz      => (Status1 & 0x40) != 0;
         public bool         Status1ms       => (Status1 & 0x20) != 0;
@@ -224,10 +224,10 @@ namespace App_121GW
 
         public Packet121GW()
         {
-            m_Data = new byte[19];
+            mData = new byte[19];
         }
 
-        public Range121GW MainRange => RangeLookup[(int)Mode];
+        public Range121GW MainRange => mRangeLookup[(int)Mode];
 
         public float MainValue
         {
@@ -271,13 +271,6 @@ namespace App_121GW
 
         //Note the above properties should not be read until this subroutine
         // completes
-
-        static string cancel_string = ((char)0x18).ToString();
-
-
-        static List<string> History = new List<string>();
-
-
         static public bool Checksum( byte[] input )
         {
             byte output = 0;
@@ -285,38 +278,34 @@ namespace App_121GW
                 output ^= (byte)input[ i ];
             return ( output == input[ input.Length - 1u ] );
         }
-        
-        bool is_valid( byte[] input )
-        {
-            return Checksum( input ) && ( input.Length == 19u );
-        }
 
+		bool IsValid(byte[] input) => Checksum(input) && (input.Length == 19u);
 		public bool ProcessPacket( byte[] pInput )
 		{
-            if ( is_valid( pInput ) )
+            if ( IsValid( pInput ) )
             {
-                m_Data = pInput;
+                mData = pInput;
                 return true;
             }
             return false;
         }
 
-		private static byte[] KEYCODE_RANGE			= { 0xF4, 0x30, 0x31, 0x30, 0x31 };
-		private static byte[] KEYCODE_HOLD			= { 0xF4, 0x30, 0x32, 0x30, 0x32 };
-		private static byte[] KEYCODE_REL			= { 0xF4, 0x30, 0x33, 0x30, 0x33 };
-		private static byte[] KEYCODE_PEAK			= { 0xF4, 0x30, 0x34, 0x30, 0x34 };
-		private static byte[] KEYCODE_MODE			= { 0xF4, 0x30, 0x35, 0x30, 0x35 };
-		private static byte[] KEYCODE_MINMAX		= { 0xF4, 0x30, 0x36, 0x30, 0x36 };
-		private static byte[] KEYCODE_MEM			= { 0xF4, 0x30, 0x37, 0x30, 0x37 };
-		private static byte[] KEYCODE_SETUP			= { 0xF4, 0x30, 0x38, 0x30, 0x38 };
-		private static byte[] KEYCODE_LONG_RANGE	= { 0xF4, 0x38, 0x31, 0x38, 0x31 };
-		private static byte[] KEYCODE_LONG_HOLD		= { 0xF4, 0x38, 0x32, 0x38, 0x32 };
-		private static byte[] KEYCODE_LONG_REL		= { 0xF4, 0x38, 0x33, 0x38, 0x33 };
-		private static byte[] KEYCODE_LONG_PEAK		= { 0xF4, 0x38, 0x34, 0x38, 0x34 };
-		private static byte[] KEYCODE_LONG_MODE		= { 0xF4, 0x38, 0x35, 0x38, 0x35 };
-		private static byte[] KEYCODE_LONG_MINMAX	= { 0xF4, 0x38, 0x36, 0x38, 0x36 };
-		private static byte[] KEYCODE_LONG_MEM		= { 0xF4, 0x38, 0x37, 0x38, 0x37 };
-		private static byte[] KEYCODE_LONG_SETUP	= { 0xF4, 0x38, 0x38, 0x38, 0x38 };
+		private static readonly byte[] KEYCODE_RANGE		= { 0xF4, 0x30, 0x31, 0x30, 0x31 };
+		private static readonly byte[] KEYCODE_HOLD			= { 0xF4, 0x30, 0x32, 0x30, 0x32 };
+		private static readonly byte[] KEYCODE_REL			= { 0xF4, 0x30, 0x33, 0x30, 0x33 };
+		private static readonly byte[] KEYCODE_PEAK			= { 0xF4, 0x30, 0x34, 0x30, 0x34 };
+		private static readonly byte[] KEYCODE_MODE			= { 0xF4, 0x30, 0x35, 0x30, 0x35 };
+		private static readonly byte[] KEYCODE_MINMAX		= { 0xF4, 0x30, 0x36, 0x30, 0x36 };
+		private static readonly byte[] KEYCODE_MEM			= { 0xF4, 0x30, 0x37, 0x30, 0x37 };
+		private static readonly byte[] KEYCODE_SETUP		= { 0xF4, 0x30, 0x38, 0x30, 0x38 };
+		private static readonly byte[] KEYCODE_LONG_RANGE	= { 0xF4, 0x38, 0x31, 0x38, 0x31 };
+		private static readonly byte[] KEYCODE_LONG_HOLD	= { 0xF4, 0x38, 0x32, 0x38, 0x32 };
+		private static readonly byte[] KEYCODE_LONG_REL		= { 0xF4, 0x38, 0x33, 0x38, 0x33 };
+		private static readonly byte[] KEYCODE_LONG_PEAK	= { 0xF4, 0x38, 0x34, 0x38, 0x34 };
+		private static readonly byte[] KEYCODE_LONG_MODE	= { 0xF4, 0x38, 0x35, 0x38, 0x35 };
+		private static readonly byte[] KEYCODE_LONG_MINMAX	= { 0xF4, 0x38, 0x36, 0x38, 0x36 };
+		private static readonly byte[] KEYCODE_LONG_MEM		= { 0xF4, 0x38, 0x37, 0x38, 0x37 };
+		private static readonly byte[] KEYCODE_LONG_SETUP	= { 0xF4, 0x38, 0x38, 0x38, 0x38 };
 		
 		public enum Keycode
 		{

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace App_121GW
 {
-	class GeneralTabbedPage : Xamarin.Forms.TabbedPage
+	class GeneralTabbedPage : TabbedPage
 	{
 		GeneralTabbedPage()
 		{

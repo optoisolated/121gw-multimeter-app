@@ -7,14 +7,6 @@ namespace App_121GW
 {
 	class SmartTitle : ASmartElement
 	{
-		#region PARENT_FUNCTIONS
-		SmartChart Parent;
-		private void InvalidateSurface()
-		{
-			Parent.InvalidateSurface();
-		}
-		#endregion
-
 		public string Title { get; set; } = "";
 		public SKPaint TitlePaint = MakeDefaultPaint(Globals.TextColor, 2, Globals.TitleFontSize, Globals.Typeface);
 		public enum LabelPosition

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 namespace App_121GW
@@ -26,27 +25,13 @@ namespace App_121GW
 		private int current_row = 0;
 		private int current_column = 0;
 
-		public void FormatRow(int x, GridUnitType Format)
-		{
-			RowDefinitions[x].Height = new GridLength(1, Format);
-		}
-		public void FormatColumn(int y, GridUnitType Format)
-		{
-			ColumnDefinitions[y].Width = new GridLength(1, Format);
-		}
+		public void FormatRow(int x, GridUnitType Format) => RowDefinitions[x].Height = new GridLength(1, Format);
+		public void FormatColumn(int y, GridUnitType Format) => ColumnDefinitions[y].Width = new GridLength(1, Format);
 
-		public void FormatFirstRow(GridUnitType Format)
-		{
-			FormatRow(0, Format);
-		}
-		public void FormatLastRow(GridUnitType Format)
-		{
-			FormatRow(RowDefinitions.Count - 1, Format);
-		}
-		public void FormatCurrentRow(GridUnitType Format)
-		{
-			FormatRow(current_row - 1, Format);
-		}
+		public void FormatFirstRow(GridUnitType Format) => FormatRow(0, Format);
+		public void FormatLastRow(GridUnitType Format) => FormatRow(RowDefinitions.Count - 1, Format);
+		public void FormatCurrentRow(GridUnitType Format) => FormatRow(current_row - 1, Format);
+
 		public void AutoAdd(View Item, int Width = 1)
 		{
 			if (current_row == RowDefinitions.Count) throw new Exception("Adding too many items to multimeter menu.");

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using SkiaSharp;
 using Xamarin.Forms;
 using SkiaSharp.Views.Forms;
@@ -34,10 +32,10 @@ namespace App_121GW
 
 		public string		mName;
 		public Polycurve	mImage;
-		private bool		mActive;
 		private SKPaint		mDrawPaint;
 		private SKPaint		mUndrawPaint;
 
+		private bool		mActive;
 		private VariableMonitor<bool>   _RenderChanged;
 		private VariableMonitor<bool>   _Changed;
 		public event EventHandler	   OnChanged

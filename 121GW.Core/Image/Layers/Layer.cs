@@ -9,39 +9,21 @@ namespace App_121GW
 {
 	public interface ILayer
 	{
-		SKColor BackgroundColor
-		{
-			get;
-			set;
-		}
-		SKColor DrawColor
-		{
-			get;
-			set;
-		}
+		SKColor BackgroundColor{ get; set; }
+		SKColor DrawColor{ get; set; }
+		int Width { get; }
+		int Height { get; }
+		string Name { get; }
 
-		event EventHandler	  OnChanged;
-		void					Set(bool pState);
-		void					Off();
-		void					On();
-		void					Redraw();
+		event EventHandler OnChanged;
 
-		string				  ToString();
-		string				  Name
-		{
-			get;
-			set;
-		}
-		void					Render(ref SKCanvas pSurface, SKRect pDestination);
+		void Set(bool pState);
+		void Off();
+		void On();
+		void Redraw();
 
-		int Width
-		{
-			get;
-		}
-		int Height
-		{
-			get;
-		}
+		string ToString();
+		void Render(ref SKCanvas pSurface, SKRect pDestination);
 	}
 	public class LayerCompare : Comparer<ILayer>
 	{

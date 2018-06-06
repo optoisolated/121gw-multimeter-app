@@ -1,115 +1,114 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
-
-using Xamarin;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml.Internals;
-
 using SkiaSharp;
+using SkiaSharp.Views.Forms;
+using Xamarin.Forms;
 
 namespace App_121GW
 {
-	public class SVGPath
+	public class SVGPath : ILayer
 	{
-		SKMatrix LocalTransform;
+		private SKPath mPath = null;
+		private SKPaint	mDrawPaint;
+		private SKPaint	mUndrawPaint;
 
-		public static SKMatrix BuildTransformMatrix(string Transform)
+		private bool mActive = false;
+		private VariableMonitor<bool> mRenderChanged;
+		private VariableMonitor<bool> mChanged;
+		public event EventHandler OnChanged
 		{
-			var Output = SKMatrix.MakeIdentity();
-
-			char[] delim = {',',' ', '(', ')'};
-			var v_s = Transform.Split(delim, StringSplitOptions.RemoveEmptyEntries);
-
-			if (v_s.Length == 0)
-				throw (new Exception("Malformed transform."));
-
-			//Get the name of the transform type
-			int i = 0;
-			var Type = v_s[i++].ToLower();
-
-			//Switch to correct transform type
-			switch (Type)
+			add
 			{
-				case "matrix":
-					var a = float.Parse(v_s[i++]);
-					var b = float.Parse(v_s[i++]);
-					var c = float.Parse(v_s[i++]);
-					var d = float.Parse(v_s[i++]);
-					var e = float.Parse(v_s[i++]);
-					var f = float.Parse(v_s[i++]);
+				mChanged.OnChanged += value;
+			}
+			remove
+			{
+				mChanged.OnChanged -= value;
+			}
+		}
+	
+		public SVGPath(string pSvgData, string pName, bool pActive = true)
+		{
+			mPath = SKPath.ParseSvgPathData(pSvgData);
+			if (mPath == null) throw new Exception("Could not create path from SVG.");
 
-				   
-					Output.ScaleX   = a;
-					Output.ScaleY   = d;
-					Output.SkewX	= c;
-					Output.SkewY	= b;
-					Output.TransX   = e;
-					Output.TransY   = f;
+			mChanged = new VariableMonitor<bool>();
+			mRenderChanged = new VariableMonitor<bool>();
 
-					break;
-				case "translate":
-					var tx = float.Parse(v_s[i++]);
+			Name	= pName;
+			mActive	= pActive;
 
-					var ty = 0.0f;
-					if (i < v_s.Length)
-						ty = float.Parse(v_s[i++]);
-
-					//
-					Output = SKMatrix.MakeTranslation(tx, ty);
-					break;
-				case "scale":
-					var sx = float.Parse(v_s[i++]);
-
-					var sy = 0.0f;
-					if (i < v_s.Length)
-						sy = float.Parse(v_s[i++]);
-
-					//
-					Output = SKMatrix.MakeScale(sx, sy);
-					break;
-				case "rotate":
-					//
-					var angle = float.Parse(v_s[i++]);
-
-					//
-					var cx = 0.0f;
-					if (i < v_s.Length)
-						cx = float.Parse(v_s[i++]);
-					
-					//
-					var cy = 0.0f;
-					if (i < v_s.Length)
-						cy = float.Parse(v_s[i++]);
-
-					//
-					Output = SKMatrix.MakeRotationDegrees(angle, cx, cy);
-					break;
-				case "skewX":
-					var sk_x_angle = float.Parse(v_s[i++]);
-					var anglx_radians = ((float)Math.PI/180.0f) * sk_x_angle;
-					Output = SKMatrix.MakeSkew((float)Math.Tan(anglx_radians), 0);
-					break;
-				case "skewY":
-					var sk_y_angle = float.Parse(v_s[i++]);
-					var angly_radians = ((float)Math.PI / 180.0f) * sk_y_angle;
-					Output = SKMatrix.MakeSkew(0, (float)Math.Tan(angly_radians));
-					break;
+			var transparency = Color.FromRgba(0, 0, 0, 0).ToSKColor();
+			mDrawPaint = new SKPaint
+			{
+				BlendMode = SKBlendMode.Src,
+				Color = Globals.TextColor.ToSKColor(),
+				ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst)
+			};
+			mUndrawPaint = new SKPaint
+			{
+				BlendMode = SKBlendMode.Src,
+				Color = Globals.BackgroundColor.ToSKColor(),
+				ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst)
 			};
 
-			// SVG always have these settings
-			Output.Persp0   = 0;
-			Output.Persp1   = 0;
-			Output.Persp2   = 1;
-			return Output;
+			Off();
 		}
 
-		public SVGPath(string pPath, string Transform)
+		public SKColor BackgroundColor
 		{
-			//Identity matrix must always be default
-			LocalTransform = SKMatrix.MakeIdentity();
+			get
+			{
+				return mUndrawPaint.Color;
+			}
+			set
+			{
+				mUndrawPaint.Color = value;
+			}
+		}
+		public SKColor DrawColor
+		{
+			get
+			{
+				return mDrawPaint.Color;
+			}
+			set
+			{
+				mDrawPaint.Color = value;
+			}
+		}
+
+		public string Name { get; private set; }
+
+		public int Width		=> (int)mPath.Bounds.Width;
+		public int Height		=> (int)mPath.Bounds.Height;
+
+		public void Set(bool pState)
+		{
+			bool temp = mActive;
+			mActive = pState;
+			mChanged.Update(ref mActive);
+		}
+		public void On()
+		{
+			Set(true);
+		}
+		public void Off()
+		{
+			Set(false);
+		}
+		public void Redraw()
+		{
+			mChanged.UpdateOverride = true;
+			mRenderChanged.UpdateOverride = true;
+		}
+
+		public void Render(ref SKCanvas pSurface, SKRect pDestination)
+		{
+			if (mRenderChanged.Update(ref mActive))
+			{
+				if (mActive)	pSurface.DrawPath(mPath, mDrawPaint);
+				else			pSurface.DrawPath(mPath, mUndrawPaint);
+			}
 		}
 	}
 }

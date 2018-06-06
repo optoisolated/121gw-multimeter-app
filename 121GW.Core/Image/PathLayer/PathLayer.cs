@@ -32,11 +32,11 @@ namespace App_121GW
 			}
 		}
 
-		public string				   mName;
-		public Polycurve				mImage;
-		private bool					mActive;
-		private SKPaint				 mDrawPaint;
-		private SKPaint				 mUndrawPaint;
+		public string		mName;
+		public Polycurve	mImage;
+		private bool		mActive;
+		private SKPaint		mDrawPaint;
+		private SKPaint		mUndrawPaint;
 
 		private VariableMonitor<bool>   _RenderChanged;
 		private VariableMonitor<bool>   _Changed;
@@ -65,15 +65,18 @@ namespace App_121GW
 			//
 			var transparency = Color.FromRgba(0, 0, 0, 0).ToSKColor();
 
-			mDrawPaint = new SKPaint();
-			mDrawPaint.BlendMode = SKBlendMode.Src;
-			mDrawPaint.Color = Globals.TextColor.ToSKColor();
-			mDrawPaint.ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst);
-
-			mUndrawPaint = new SKPaint();
-			mUndrawPaint.BlendMode = SKBlendMode.Src;
-			mUndrawPaint.Color = Globals.BackgroundColor.ToSKColor();
-			mUndrawPaint.ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst);
+			mDrawPaint = new SKPaint
+			{
+				BlendMode = SKBlendMode.Src,
+				Color = Globals.TextColor.ToSKColor(),
+				ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst)
+			};
+			mUndrawPaint = new SKPaint
+			{
+				BlendMode = SKBlendMode.Src,
+				Color = Globals.BackgroundColor.ToSKColor(),
+				ColorFilter = SKColorFilter.CreateBlendMode(transparency, SKBlendMode.Dst)
+			};
 
 			Off();
 		}

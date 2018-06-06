@@ -1,61 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using App_121GW;
 using System.Threading;
 
 namespace App_121GW
 {
 	class Loading : GeneralView
 	{
-		private TimeSpan	Now	 = new TimeSpan(0, 0, 0, 0, 0);
-		private TimeSpan	Period  = new TimeSpan(0, 0, 0, 0, 250);
-		private Timer	   Updater;
+		private static readonly TimeSpan Now	= new TimeSpan(0, 0, 0, 0, 0);
+		private static readonly TimeSpan Period	= new TimeSpan(0, 0, 0, 0, 250);
 
-		const string dots_string = ".....";
-		private int dots = 0;
-		private string _Text;
-		public string Text
-		{
-			set
-			{
-				_Text = value;
-			}
-			private get
-			{
-				return _Text;
-			}
-		}
+		private Timer			mTimer			= null;
+		const	string			mDotsString		= ".....";
+		private int				mDots			= 0;
+		private readonly string	mText			= "";
+		private GeneralLabel	mLoadingText	= new GeneralLabel();
 
-		private GeneralLabel LoadingText = new GeneralLabel();
 		private void Update()
 		{
-			Device.BeginInvokeOnMainThread(() =>
+			Globals.RunMainThread(() =>
 			{
-				var dot_string = dots_string.Substring(dots_string.Length - dots);
-				LoadingText.Text = Text + dot_string;
-				dots++; if (dots >= dots_string.Length) dots = 0;
+				var dot_string = mDotsString.Substring(mDotsString.Length - mDots);
+				mLoadingText.Text = mText + dot_string;
+				mDots++; if (mDots >= mDotsString.Length) mDots = 0;
 			});
 		}
 
-		public bool IsRunning
-		{
-			set
-			{
-				if (value)  Updater = new Timer((obj) => { Update(); }, null, Now, Period);
-				else		Updater = null;
-			}
-		}
+		private Timer	MakeTimer	=> new Timer((obj) => { Update(); }, null, Now, Period);
+		public	void	Run()		=> mTimer = MakeTimer;
+		public	void	Stop()		=> mTimer = null;
 
 		public Loading(string pText)
 		{
-			Updater = new Timer((obj) => { Update(); }, null, Now, Period);
-			Content = LoadingText;
-			Text = pText;
+			Content = mLoadingText;
+			mText = pText;
 		}
 	}
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace App_121GW.BLE
@@ -9,20 +7,25 @@ namespace App_121GW.BLE
 	{
 		public event DeviceConnected Connected;
 
-		public async Task	Reset()		=>	await mClient?.Reset();
-        IClientBLE			mClient		=	Bluetooth.Client();
-		GeneralListView		mDevices	=	new GeneralListView { ItemTemplate = DefaultTemplate() };
-		Loading				mActivity	=	new Loading("connecting");
+        private IClientBLE		mClient		= Bluetooth.Client(); 
+		private Loading			mActivity	= new Loading("connecting");
+		private GeneralListView	mDevices	= new GeneralListView { ItemTemplate = DefaultTemplate() };
 
-		bool IsBusy
+		private bool IsBusy
 		{
 			set
 			{
-				mActivity.IsRunning = value;
-
 				Content = null;
-				if ( value )	Content = mActivity;
-				else			Content = mDevices;
+				if (value)
+				{
+					mActivity.Run();
+					Content = mActivity;
+				}
+				else
+				{
+					mActivity.Stop();
+					Content = mDevices;
+				}
 			}
 		}
 
@@ -38,17 +41,24 @@ namespace App_121GW.BLE
             return template;
         }
 
+		public async Task Reset() => await mClient?.Reset();
+
 		public BluetoothDeviceSelector()
 		{
+			IsBusy = false;
 			mDevices.ItemSelected += async (o, e) =>
 			{
-				IsBusy = true;
-				try		{ Connected?.Invoke(await mClient?.Connect((e.SelectedItem as IDeviceBLE))); }
-				catch	{ }
-				IsBusy = false;
+				try
+				{
+					IsBusy = true;
+					Connected?.Invoke(await mClient?.Connect((e.SelectedItem as IDeviceBLE)));
+				}
+				finally
+				{
+					IsBusy = false;
+				}
 			};
 			mDevices.ItemsSource = mClient.VisibleDevices;
-			IsBusy = false;
 		}
         
     }

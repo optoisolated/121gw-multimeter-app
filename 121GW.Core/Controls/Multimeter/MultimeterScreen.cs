@@ -276,7 +276,7 @@ namespace App_121GW
 		public ILayer   GetOther(string Label)
 		{
 			foreach (var other in mOther.mLayers)
-				if (other.Name.Contains(Label))
+				if (other.Name.StartsWith(Label))
 					return other;
 			throw new Exception("Cannot find layer.");
 		}
@@ -876,7 +876,7 @@ namespace App_121GW
 
 		Layers segments	 = new Layers("mSegments");
 		Layers subsegments  = new Layers("mSubsegments");
-		CacheImage CacheFunction = (image) => { mLayerCache.Add(image); };
+		private readonly CacheImage CacheFunction = (image) => { mLayerCache.Add(image); };
 		bool ProcessImage(string filename, Polycurve Image)
 		{
 			CacheFunction?.Invoke((new PathLayer(Image, filename) as ILayer));
@@ -966,7 +966,10 @@ namespace App_121GW
 		}
 		private void Invalidate() => InvalidateSurface();
 
-		float LayerAspect = 1, LayerX = 0, LayerY = 0;
+		private readonly float LayerAspect = 1;
+		private readonly float LayerX = 0;
+		private readonly float LayerY = 0;
+
 		public (float aspect, float width, float height) GetResultSize(double Width = 0) => (LayerAspect, LayerX, LayerY);
 
 		//Only maintains aspect ratio
@@ -1075,10 +1078,10 @@ namespace App_121GW
 		public MultimeterScreen()
 		{
 			//New layer images
-			mSegments	   = new List<Layers>();
+			mSegments		= new List<Layers>();
 			mSubSegments	= new List<Layers>();
-			mBargraph	   = new Layers("mBargraph");
-			mOther		  = new Layers("mOther");
+			mBargraph		= new Layers("mBargraph");
+			mOther			= new Layers("mOther");
 
 			//Setup the image cache if it doesn't exist
 			CacheFunction = null;

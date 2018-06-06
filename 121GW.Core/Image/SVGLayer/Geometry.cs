@@ -201,36 +201,17 @@ namespace App_121GW
 	{
 		public class EnhancedPath
 		{
-			private SKPath _Path;
-			public SKPath Path
-			{
-				get
-				{
-					return _Path;
-				}
-			}
-
-			private bool _Negative;
-			public bool Negative
-			{
-				get
-				{
-					return _Negative;
-				}
-				set
-				{
-					_Negative = value;
-				}
-			}
+			public SKPath Path { get; }
+			public bool Negative { get; set; }
 
 			public EnhancedPath()
 			{
-				_Path = null;
+				Path = null;
 				Negative = false;
 			}
 			public EnhancedPath(SKPath pPath, bool pNegative)
 			{
-				_Path = pPath;
+				Path = pPath;
 				Negative = pNegative;
 			}
 		}
@@ -273,7 +254,7 @@ namespace App_121GW
 			}
 		}
 
-		private string mName;
+		private readonly string mName;
 		private List<Curve> mCurves;
 
 		//Interface functions
@@ -365,8 +346,7 @@ namespace App_121GW
 		{
 			mPath = new List<EnhancedPath>();
 			mName = name;
-			mCurves = new List<Curve>();
-			mCurves.Add(new Start(pStart));
+			mCurves = new List<Curve>{new Start(pStart)};
 			mBoundary = new SKSize(0, 0);
 		}
 

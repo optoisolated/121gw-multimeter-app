@@ -23,29 +23,20 @@ namespace App_121GW
 		public float ValueEnd   => Range.Maximum;
 
 		public  float MinorTicks  { get; set; } = 5;
-		private float MajorTicks  { get; set; } = 4;
+        public  float MajorTicks  { get; set; } = 4;
 
 		private float MajorTickDistance => Distance / MajorTicks;
 		private float MinorTickDistance => MajorTickDistance / MinorTicks;
 
 		//Used to interface with touch screen
 		SKSize LastDimension = new SKSize(0, 0);
-		public Map.Map1D ValueFromCoordinate(float dimension)
-		{
-            return Map.Create1D(AxisStart(dimension), AxisEnd(dimension), ValueStart, ValueEnd);
-		}
-		public Map.Map1D ScaleFromCoordinate(float dimension)
-		{
-			return Map.Create1D(0, AxisSize(dimension), 0, Range.Distance);
-		}
-		public Map.Map1D CoordinateFromValue(float dimension)
-		{
-			return Map.Create1D(ValueStart, ValueEnd, AxisStart(dimension), AxisEnd(dimension));
-		}
-		public void Zoom(float Amount, float About)
+		public Map.Map1D ValueFromCoordinate(float dimension) => Map.Create1D(AxisStart(dimension), AxisEnd(dimension), ValueStart, ValueEnd);
+		public Map.Map1D ScaleFromCoordinate(float dimension) => Map.Create1D(0, AxisSize(dimension), 0, Range.Distance);
+		public Map.Map1D CoordinateFromValue(float dimension) => Map.Create1D(ValueStart, ValueEnd, AxisStart(dimension), AxisEnd(dimension));
+
+        public void Zoom(float Amount, float About)
 		{
 			if (Amount <= 0) return;
-
 
 			var dimension   = Dimension(LastDimension);
 			var map		    = ValueFromCoordinate(dimension);

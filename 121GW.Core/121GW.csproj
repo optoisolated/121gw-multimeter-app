@@ -200,182 +200,535 @@
     <None Remove="Image\Layer Resources\TEST.svg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Image\Layer Resources\!bar_range.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\1 kHz.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\A-.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\AC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\AC_DC+.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\apo.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\auto.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\AVG.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar+.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar01.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar02.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar03.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar04.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar05.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar06.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar07.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar08.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar09.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar10.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_1.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_2.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_3.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar1000_1_0.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar11.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar12.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar13.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar14.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar15.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar16.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar17.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar18.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar19.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar20.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar21.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar22.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar23.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar24.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar25.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bar26.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_1.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_2.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Bar500_5_0.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick-.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick0_0.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick1_1.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick1_2.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick2_2.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick2_4.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick3_3.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick3_6.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick4_4.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick4_8.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick5_0.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick5_1.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\BarTick5_5.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Battery.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Beep.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\bt.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\DC+AC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\DC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Diode.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\HOLD.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\LowZ.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\MAX.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\MEM.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\MIN.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\REL.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Seg-.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg1g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg2g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg3g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg4g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\seg5g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegA.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegCapF.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegHz.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Segk.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegM.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegmV.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Segn.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegR.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Segs_unA.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegTempC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegTempF.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Segu.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SegV.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Shock.svg" />
+    <EmbeddedResource Include="Image\Layer Resources\!bar_range.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\1 kHz.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\A-.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\AC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\AC_DC+.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\apo.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\auto.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\AVG.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar+.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar01.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar02.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar03.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar04.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar05.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar06.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar07.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar08.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar09.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar10.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_1.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_2.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_0_3.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar1000_1_0.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar11.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar12.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar13.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar14.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar15.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar16.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar17.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar18.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar19.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar20.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar21.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar22.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar23.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar24.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar25.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bar26.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_1.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_0_2.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Bar500_5_0.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick-.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick0_0.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick1_1.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick1_2.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick2_2.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick2_4.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick3_3.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick3_6.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick4_4.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick4_8.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_0.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_1.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\BarTick5_5.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Battery.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Beep.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\bt.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\DC+AC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\DC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Diode.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\HOLD.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\LowZ.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MAX.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MEM.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\MIN.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\REL.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Seg-.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg1g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg2g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg3g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg4g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\seg5g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegA.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegCapF.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegHz.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segk.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegM.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegmV.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segn.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegR.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segs_unA.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegTempC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegTempF.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Segu.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SegV.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Shock.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Image\Layer Resources\Sub%.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Sub-.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Sub1.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub1g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub2g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub3g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4dp.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub4g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5a.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5b.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5c.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5d.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5e.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5f.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\sub5g.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubA.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubAC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubdB.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubDC.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubHz.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Subk.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Subm.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Subms.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\Subn.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubR.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubS.svg" />
-    <EmbeddedResource Include="Image\Layer Resources\SubV.svg" />
+    <EmbeddedResource Include="Image\Layer Resources\Sub-.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Sub1.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub1g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub2g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub3g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4dp.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub4g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5a.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5b.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5c.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5d.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5e.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5f.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\sub5g.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubA.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubAC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubdB.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubDC.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubHz.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subk.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subm.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subms.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\Subn.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubR.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubS.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Layer Resources\SubV.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Image\Layer Resources\TEST.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Image\Layer Resources\Sub%25.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
+using System;
 
 namespace App_121GW
 {
@@ -39,6 +40,9 @@ namespace App_121GW
 
         public MainPage()
 		{
+            for (float i = -0.001f; Math.Abs(i) < 10000.0f; i *= 1.25f)
+               Debug.WriteLine(new SIValue(i).ToString());
+
             On<Android>().SetIsSwipePagingEnabled(false);
             On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
             BackgroundColor = Globals.BackgroundColor;

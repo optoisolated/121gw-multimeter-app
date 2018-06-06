@@ -1,4 +1,5 @@
 ﻿using SkiaSharp;
+using System;
 using System.Threading;
 
 namespace App_121GW
@@ -33,7 +34,6 @@ namespace App_121GW
             Release();
         }
 
-
         public void Zoom(float dx, float dy, float cx, float cy)
 		{
             Wait();
@@ -61,24 +61,35 @@ namespace App_121GW
 			Pan(Amount.X, Amount.Y);
 		}
 
-        public float VerticalPadding
-        {
-            get; set;
-        } = 0.1f;
-        public float MinimumPadding
-        {
-            get; set;
-        } = 0.000001f;
-
-		public void Set(SKRect Boundary)
+        public void Set( SKRect Boundary )
 		{
-            //Prevents zero size axis and padds by a ratio defined by Vertical Padding
-            var padding_vert = Boundary.Height * VerticalPadding;
-            if (padding_vert <= MinimumPadding)
-                padding_vert = MinimumPadding;
+			int ticks	=	(int)Vertical.MajorTicks + 2;
+
+			var top_si	=	new SIValue(Boundary.Bottom);
+			var bot_si	=	new SIValue(Boundary.Top);
+
+			float top	=	top_si.SI_Ceiling;
+			float bot	=	bot_si.SI_Floor;
+			
+			while (true)
+			{
+				{
+					var dist = (int)(top - bot);
+					if ((dist % ticks) == 0) break;
+					else top += 1;
+				}
+				{
+					var dist = (int)(top - bot);
+					if ((dist % ticks) == 0) break;
+					else bot -= 1;
+				}
+			}
+
+			top /= (float)top_si.Multiply;
+			bot /= (float)bot_si.Multiply;
 
             Horizontal.Range.SetBoundary(Boundary.Left, Boundary.Right);
-			Vertical.Range.SetBoundary(Boundary.Top - padding_vert, Boundary.Bottom + padding_vert);
+			Vertical.Range.SetBoundary(top, bot);
 		}
 
 		public abstract void Draw(SKCanvas canvas, SKSize dimension, SKSize view);

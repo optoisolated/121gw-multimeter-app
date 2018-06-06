@@ -196,7 +196,6 @@ namespace App_121GW
 		}
 	}
 
-
 	public class Polycurve : ICurve
 	{
 		public class EnhancedPath
@@ -332,6 +331,11 @@ namespace App_121GW
 			if (LastStart.Equals(End))
 				return;
 			AddLine(LastStart);
+		}
+
+		public void AddPath(SKPath pInput, bool pNegative = false)
+		{
+			mPath.Add(new EnhancedPath(pInput, pNegative));
 		}
 
 		//Constructor

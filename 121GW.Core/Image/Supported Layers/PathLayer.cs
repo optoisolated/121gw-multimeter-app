@@ -30,35 +30,39 @@ namespace App_121GW
 			}
 		}
 
-		public string		mName;
-		public Polycurve	mImage;
-		private SKPaint		mDrawPaint;
-		private SKPaint		mUndrawPaint;
+		public string Name
+		{
+			get;
+			private set;
+		}
+		public Polycurve mImage;
+		private SKPaint mDrawPaint;
+		private SKPaint mUndrawPaint;
 
-		private bool		mActive;
-		private VariableMonitor<bool>   _RenderChanged;
-		private VariableMonitor<bool>   _Changed;
-		public event EventHandler	   OnChanged
+		private bool mActive;
+		private VariableMonitor<bool> mRenderChanged;
+		private VariableMonitor<bool> mChanged;
+		public event EventHandler OnChanged
 		{
 			add
 			{
-				_Changed.OnChanged += value;
+				mChanged.OnChanged += value;
 			}
 			remove
 			{
-				_Changed.OnChanged -= value;
+				mChanged.OnChanged -= value;
 			}
 		}
 
 		public PathLayer(Polycurve pImage, string pName, bool pActive = true)
 		{
-			_Changed = new VariableMonitor<bool>();
-			_RenderChanged = new VariableMonitor<bool>();
+			mChanged = new VariableMonitor<bool>();
+			mRenderChanged = new VariableMonitor<bool>();
 
 			//Open the defined image
 			mActive = pActive;
 			mImage = pImage;
-			mName = pName;
+			Name = pName;
 
 			//
 			var transparency = Color.FromRgba(0, 0, 0, 0).ToSKColor();
@@ -79,57 +83,28 @@ namespace App_121GW
 			Off();
 		}
 
-		public void	 Set(bool pState)
+		public void Set(bool pState)
 		{
 			bool temp = mActive;
 			mActive = pState;
-			_Changed.Update(ref mActive);
+			mChanged.Update(ref mActive);
 		}
-		public void	 On()
+		public void On() => Set(true);
+		public void	Off() => Set(false);
+		public void	Redraw()
 		{
-			Set(true);
-		}
-		public void	 Off()
-		{
-			Set(false);
-		}
-		public void	 Redraw()
-		{
-			_Changed.UpdateOverride = true;
-			_RenderChanged.UpdateOverride = true;
+			mChanged.UpdateOverride = true;
+			mRenderChanged.UpdateOverride = true;
 		}
 
-		public override string ToString()
-		{
-			return mName;
-		}
-
-		public string   Name
-		{
-			get
-			{ return mName; }
-			set
-			{ mName = value; }
-		}
-		public int	  Width
-		{
-			get
-			{
-				return (int)mImage.Width;
-			}
-		}
-		public int	  Height
-		{
-			get
-			{
-				return (int)mImage.Height;
-			}
-		}
+		public override string ToString() => Name;
+		public int Width => (int)mImage.Width;
+		public int Height => (int)mImage.Height;
 
 		public void Render (ref SKCanvas pSurface, SKRect pDestination)
 		{
 			//This is render changed variable, don't move it to set, that is wrong
-			if (_RenderChanged.Update(ref mActive))
+			if (mRenderChanged.Update(ref mActive))
 			{
 				var isize   = mImage.CanvasSize;
 

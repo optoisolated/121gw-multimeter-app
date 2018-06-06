@@ -1038,7 +1038,7 @@ namespace App_121GW
 			}
 		}
 		bool RemakeCanvas = true;
-		public override void PaintSurface ( SKCanvas canvas, SKSize dimension, SKSize viewsize)
+		public override void PaintSurface( SKCanvas canvas, SKSize dimension, SKSize viewsize )
 		{
 			if ( RemakeCanvas )
 			{
@@ -1080,12 +1080,12 @@ namespace App_121GW
 			//New layer images
 			mSegments		= new List<Layers>();
 			mSubSegments	= new List<Layers>();
-			mBargraph		= new Layers("mBargraph");
-			mOther			= new Layers("mOther");
+			mBargraph		= new Layers( "mBargraph" );
+			mOther			= new Layers( "mOther" );
 
 			//Setup the image cache if it doesn't exist
 			CacheFunction = null;
-			if (mLayerCache == null)
+			if ( mLayerCache == null )
 			{
 				mLayerCache = new List<ILayer>();
 				CacheFunction = (image) => { mLayerCache.Add(image); };

@@ -18,7 +18,9 @@ namespace App_121GW.Droid
             var intent = new Intent(Intent.ActionSend);
             intent.SetType("text/plain");
             intent.PutExtra(Intent.ExtraText, pContent ?? string.Empty);
-            var chooserIntent = Intent.CreateChooser(intent, "Save your logged data." ?? string.Empty);
+			intent.PutExtra(Intent.ExtraTitle, Globals.StandardDateTime() + "_Log.csv");
+			intent.PutExtra(Intent.ExtraSubject, Globals.StandardDateTime() + "_Log.csv");
+			var chooserIntent = Intent.CreateChooser(intent, "Save your logged data." ?? string.Empty);
             chooserIntent.SetFlags(ActivityFlags.ClearTop);
             chooserIntent.SetFlags(ActivityFlags.NewTask);
             global::Android.App.Application.Context.StartActivity(chooserIntent);

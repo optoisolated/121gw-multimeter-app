@@ -12,74 +12,49 @@ namespace App_121GW.BLE
 {
 	public class ServiceBLE : IServiceBLE
 	{
-		public event SetupComplete		  Ready;
-		void TriggerReady()
-		{
-			Ready?.Invoke();
-		}
+		public event SetupComplete			Ready;
 
-		private ChangeEvent				 mEvent;
-		private volatile IService		   mService;
-		private List<ICharacteristicBLE>	mCharacteristics;
-		public  List<ICharacteristicBLE>	Characteristics
-		{
-			get
-			{
-				return mCharacteristics;
-			}
-		}
-		public string Id
-		{
-			get
-			{
-				return mService.Id.ToString();
-			}
-		}
-		public override string ToString()
-		{
-			return Id;
-		}
-		private void Build()
-		{
-			mService.GetCharacteristicsAsync().ContinueWith((obj) => { AddCharacteristics(obj); });
-		}
+		private ChangeEvent					mEvent;
+		private volatile IService			mService;
 
+		public List<ICharacteristicBLE>		Characteristics { get; }
+		public string						Id => mService.Id.ToString();
+
+		void TriggerReady() => Ready?.Invoke();
+		public override string ToString() => Id;
 
 		private int Uninitialised = 0;
 		private void ItemReady()
 		{
-			--Uninitialised;
-			if (Uninitialised == 0)
+			if (--Uninitialised == 0)
 				TriggerReady();
 		}
-		private void AddCharacteristics(Task<IList<ICharacteristic>> obj)
+		private void AddCharacteristics(IList<ICharacteristic> obj)
 		{
-			Uninitialised = obj.Result.Count;
-			foreach (var item in obj.Result)
+			Uninitialised = obj.Count;
+			foreach (var item in obj)
 			{
 				Debug.WriteLine("Characteristic adding : " + item.Name);
-				mCharacteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
+				Characteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
 			}
 		}
-
-		public void Remake()
+		private async void Build()
 		{
-			throw new NotImplementedException();
-		}
-
-		public void Unregister()
-		{
-			throw new NotImplementedException();
+			var characteristics = await mService.GetCharacteristicsAsync();
+			AddCharacteristics(characteristics);
 		}
 
 		public ServiceBLE(IService pInput, SetupComplete ready, ChangeEvent pEvent)
 		{
-			mCharacteristics = new List<ICharacteristicBLE>();
-			Ready	   +=  ready;
-			mService	=   pInput;
-			mEvent	  =   pEvent;
+			Characteristics = new List<ICharacteristicBLE>();
+			Ready			+=  ready;
+			mService		=   pInput;
+			mEvent			=   pEvent;
 
-			Build();
+			Task.Factory.StartNew(Build);
 		}
+
+		public void Remake() => throw new NotImplementedException();
+		public void Unregister() => throw new NotImplementedException();
 	}
 }

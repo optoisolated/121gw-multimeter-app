@@ -24,11 +24,11 @@ namespace App_121GW
 		public void Reset()
 		{
 			Data.Clear();
-			DataStart = DateTime.Now;
 		}
 		public void Sample(float pValue)
 		{
-			TimeSpan t_diff = DateTime.Now.Subtract(DataStart);
+			TimeSpan t_diff = (Data.Count == 0) ? ((DataStart = DateTime.Now).Subtract(DataStart)) : DateTime.Now.Subtract(DataStart);
+
 			float ms_diff = (float)t_diff.TotalMilliseconds / 1000;
 			switch (Mode)
 			{

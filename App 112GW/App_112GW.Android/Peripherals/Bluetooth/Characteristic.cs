@@ -16,29 +16,15 @@ namespace App_121GW.BLE
 		public event ChangeEvent ValueChanged;
 		public volatile ICharacteristic mCharacteristic;
 
-		public string Id
-		{
-			get
-			{
-				return mCharacteristic.Id.ToString();
-			}
-		}
-		public string Description
-		{
-			get
-			{
-				return mCharacteristic.Name;
-			}
-		}
-		public bool Send(string pInput)
-		{
-			return Send(Encoding.UTF8.GetBytes(pInput));
-		}
+		public string Id => mCharacteristic.Id.ToString();
+		public string Description => mCharacteristic.Name;
+		public bool Send(string pInput) => Send(Encoding.UTF8.GetBytes(pInput));
+
 		public bool Send(byte[] pInput)
 		{
 			try
 			{
-				mCharacteristic.WriteAsync(pInput);
+				Task.Factory.StartNew(async () => await mCharacteristic.WriteAsync(pInput));
 				return true;
 			}
 			catch (Exception e)
@@ -56,28 +42,26 @@ namespace App_121GW.BLE
 			var charEvent = new CharacteristicEvent(buffer);
 			ValueChanged?.Invoke(sender, charEvent);
 		}
-		public void Remake()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Unregister()
-		{
-			throw new NotImplementedException();
-		}
 
 		public CharacteristicBLE(ICharacteristic pInput, SetupComplete ready, ChangeEvent pEvent)
 		{
-			Ready						   +=  ready;
-			ValueChanged					+=  pEvent;
-			mCharacteristic				 =   pInput;
-			mCharacteristic.ValueUpdated	+=  CharacteristicEvent_ValueChanged;
-
+			Ready += ready;
+			ValueChanged += pEvent;
+			mCharacteristic = pInput;
+			mCharacteristic.ValueUpdated +=  CharacteristicEvent_ValueChanged;
 
 			if (mCharacteristic.CanUpdate)
-				mCharacteristic.StartUpdatesAsync().ContinueWith((obj) => { Ready?.Invoke(); });
-			else
-				Ready?.Invoke();
+			{
+				Task.Factory.StartNew(async () =>
+				{
+					await mCharacteristic.StartUpdatesAsync();
+					Ready?.Invoke();
+				});
+			}
+			else Ready?.Invoke();
 		}
+
+		public void Remake() => throw new NotImplementedException();
+		public void Unregister() => throw new NotImplementedException();
 	}
 }

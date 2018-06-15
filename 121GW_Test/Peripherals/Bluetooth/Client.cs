@@ -15,8 +15,7 @@ namespace App_121GW.BLE
 
         private void DeviceWatcher_Added(object sender, DeviceEventArgs args)
         {
-            if ( args.Device.Name == string.Empty )
-                return;
+            if ( args.Device.Name == string.Empty ) return;
 
             Debug.WriteLine("Device discovered.");
 
@@ -28,18 +27,15 @@ namespace App_121GW.BLE
             }
         }
 
-        public async Task Start()
-        {
-            await mAdapter.StartScanningForDevicesAsync();
-        }
-        public async Task Stop()
-        {
-            await mAdapter.StopScanningForDevicesAsync();
-        }
-        public async Task Rescan()
-        {
-            await mAdapter.StartScanningForDevicesAsync();
-        }
+		public async Task Start()
+		{
+			if (mAdapter.IsScanning)
+				await Stop();
+			await mAdapter.StartScanningForDevicesAsync();
+		}
+
+        public async Task Stop() => await mAdapter.StopScanningForDevicesAsync();
+        public async Task Rescan() => await mAdapter.StartScanningForDevicesAsync();
         public async Task Reset()
         {
             await Stop();
@@ -63,13 +59,13 @@ namespace App_121GW.BLE
                 await mAdapter.StopScanningForDevicesAsync();
 
                 Debug.WriteLine("Connection Complete.");
-                return new PairedDeviceBLE((pInput as UnPairedDeviceBLE).mDevice, TriggerDeviceConnected);
+                return DeviceConnected(new PairedDeviceBLE((pInput as UnPairedDeviceBLE).mDevice));
             }
             return null;
         }
 
-        public ClientBLE()
-        {
+		public ClientBLE(IBluetoothDeviceFilter pFilter) : base(pFilter)
+		{
             //Setup bluetoth basic adapter
             mDevice     = CrossBluetoothLE.Current;
             mAdapter    = CrossBluetoothLE.Current.Adapter;
@@ -83,7 +79,8 @@ namespace App_121GW.BLE
                 Debug.WriteLine("The bluetooth state changed to " + e.NewState.ToString());
                 if (e.NewState == BluetoothState.TurningOn || e.NewState == BluetoothState.On )
                 {
-                    await Reset();
+					//Don't know why but it doesn't run unless it is run twice, ?!
+                    await Start();
                     if (mDevice.IsOn && mDevice.IsAvailable)
                         mAdapter.DeviceDiscovered += DeviceWatcher_Added;
                 }
@@ -92,21 +89,14 @@ namespace App_121GW.BLE
             //
             mAdapter.DeviceConnectionLost += DeviceConnection_Lost;
 
-            Task.Factory.StartNew(async () =>
-            {
-                await Start();
-                await Reset();
-            });
+			Globals.RunMainThread( ()=> Start().RunSynchronously() );
         }
-
-
-
 
         private async void DeviceConnection_Lost(object sender, DeviceErrorEventArgs e)
         {
             string disconnect_Id = e.Device.Id.ToString();
             Debug.WriteLine("DeviceConnection_Lost : " + disconnect_Id);
-            foreach (var item in mConnectedDevices)
+            foreach (var item in ConnectedDevices)
                 if (item.Id == disconnect_Id)
                 {
                     Debug.WriteLine(item.Id);
@@ -122,7 +112,7 @@ namespace App_121GW.BLE
                 }
         }
 
-        ~ClientBLE()
+		~ClientBLE()
         {
             Debug.WriteLine("Deconstructing ClientBLE!");
             try

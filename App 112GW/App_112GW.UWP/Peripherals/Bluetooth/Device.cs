@@ -7,7 +7,7 @@ using Windows.Devices.Enumeration;
 
 namespace App_121GW.BLE
 {
-    public class UnPairedDeviceBLE : App_121GW.BLE.IDeviceBLE
+    public class UnPairedDeviceBLE : IDeviceBLE
 	{
 		public volatile DeviceInformation Information;
 		public event DeviceSetupComplete Ready;
@@ -30,6 +30,11 @@ namespace App_121GW.BLE
 			throw new NotImplementedException();
 		}
 
+		public void Dispose()
+		{
+			throw new NotImplementedException();
+		}
+
 		public List<IServiceBLE> Services => null;
 	}
 
@@ -37,13 +42,10 @@ namespace App_121GW.BLE
 	{
 		private BluetoothLEDevice mDevice;
 
-		public event DeviceSetupComplete Ready;
 		public event ChangeEvent Change;
 		void TriggerReady()
 		{
 			mDevice.ConnectionStatusChanged += MDevice_ConnectionStatusChanged;
-			Ready?.Invoke(this);
-			Ready = null;
 		}
 
 		private void                InvokeChange(object o, CharacteristicEvent v) => Change?.Invoke(o, v);
@@ -80,7 +82,6 @@ namespace App_121GW.BLE
 			Deregister();
 			Build();
 		}
-
 		void Deregister()
 		{
 			if (mDevice != null)
@@ -89,7 +90,7 @@ namespace App_121GW.BLE
 
 				if (Services != null)
 					foreach (var service in Services)
-						service.Unregister();
+						service.Remake();
 
 				Services = null;
 				Services = new List<IServiceBLE>();
@@ -118,11 +119,9 @@ namespace App_121GW.BLE
 			Debug.WriteLine("Connection complete end.");
 		}
 
-
-		public PairedDeviceBLE(BluetoothLEDevice pInput, DeviceSetupComplete pReady)
+		public PairedDeviceBLE(BluetoothLEDevice pInput)
 		{
 			Services = new List<IServiceBLE>();
-			Ready = pReady;
 			mDevice = pInput;
 			Build();
 		}

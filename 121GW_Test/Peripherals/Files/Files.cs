@@ -25,9 +25,18 @@ namespace App_121GW.iOS
         public async Task<bool> Save(string pContent)
         {
             var item = new NSObject[] { NSObject.FromObject(pContent) };
-            var activityController = new UIActivityViewController(item, null);
-            var vc = GetVisibleViewController();
-            await vc.PresentViewControllerAsync(activityController, true);
+            var activityController = new UIActivityViewController( item, null );
+			activityController.SetValueForKey(NSObject.FromObject(Globals.StandardDateTime() + "_Log"), new NSString("subject"));
+			var vc = GetVisibleViewController();
+
+			//Work around for iPad crash
+			var popover = activityController.PopoverPresentationController;
+			if (popover != null) popover.SourceView = vc.View;
+			//End work around
+
+			await vc.PresentViewControllerAsync(activityController, true);
+
+
             return await Task.FromResult<bool>(true);
         }
     }

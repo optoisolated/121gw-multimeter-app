@@ -17,7 +17,7 @@ namespace App_121GW.UWP
             // Dropdown of file types the user can save the file as
             savePicker.FileTypeChoices.Add("Comma seperated file", new List<string>() { ".csv" });
             // Default file name if the user does not type one in or select a file to replace
-            savePicker.SuggestedFileName = "Logfile.csv";
+            savePicker.SuggestedFileName = Globals.StandardDateTime() + "_Log.csv";
 
             StorageFile file = await savePicker.PickSaveFileAsync();
             if (file != null)

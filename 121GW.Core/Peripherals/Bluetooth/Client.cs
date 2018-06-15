@@ -18,74 +18,52 @@ namespace App_121GW.BLE
         Task Reset();
 
         Task<IDeviceBLE> Connect(IDeviceBLE pInput);
-    }
+	}
     public abstract class AClientBLE
     {
-        static ObservableCollection<IDeviceBLE> mVisibleDevices = new ObservableCollection<IDeviceBLE>();
-		protected static ObservableCollection<IDeviceBLE> mConnectedDevices = new ObservableCollection<IDeviceBLE>();
+		private readonly IBluetoothDeviceFilter mFilter;
+		public ObservableCollection<IDeviceBLE> ConnectedDevices { get; private set; } = new ObservableCollection<IDeviceBLE>();
+		public ObservableCollection<IDeviceBLE> VisibleDevices { get; private set; } = new ObservableCollection<IDeviceBLE>();
 
-		public ObservableCollection<IDeviceBLE> VisibleDevices => mVisibleDevices;
-
-        public void RemoveDevice(IDeviceBLE pInput)
-        {
-            var pId = pInput.Id;
-            foreach (var dev in mVisibleDevices)
-                if (dev.Id == pId)
-                    mVisibleDevices.Remove(dev);
-        }
-
-        public void TriggerDeviceConnected(IDeviceBLE pInput)
-        {
-            MutexBlock(() =>
-            {
-                Debug.WriteLine("Finished connecting to : " + pInput.Id);
-                mConnectedDevices?.Add(pInput);
-                RemoveDevice(pInput);
-            });
-        }
+		public IDeviceBLE DeviceConnected( IDeviceBLE pInput )
+		{
+			MutexBlock(() => ConnectedDevices?.Add(pInput));
+			return pInput;
+		}
 
         private Mutex mut = new Mutex();
-        void MutexBlock(Action Function, string tag = "")
-        {
-            void GetMutex(string ltag = "")
-            {
-                Debug.WriteLine(ltag + " : Waiting");
-                mut.WaitOne();
-                Debug.WriteLine(ltag + " : Started");
-            }
-            void ReleaseMutex(string ltag = "")
-            {
-                Debug.WriteLine(ltag + " : Done");
-                mut.ReleaseMutex();
-                Debug.WriteLine(ltag + " : Released");
-			}
-			GetMutex(tag);
+        void MutexBlock( Action Function, string tag = "" )
+		{
+			void GetMutex() => mut.WaitOne();
+            void ReleaseMutex() => mut.ReleaseMutex();
+			GetMutex();
 			try
             {
                 Function();
             }
             catch{}
-			ReleaseMutex(tag);
+			ReleaseMutex();
 		}
 
-        public void AddUniqueItem(IDeviceBLE pInput)
-        {
-            if (pInput != null && pInput?.Name != null)
+        public void AddUniqueItem( IDeviceBLE pInput )
+		{
+			if ( pInput != null && pInput?.Name != null )
             {
                 try
 				{
 					MutexBlock(() =>
 					{
 						bool add = true;
-						foreach (var device in mVisibleDevices)
+						foreach (var device in VisibleDevices)
 							if (device.Id == pInput.Id)
 								add = false;
 
 						if (add && (pInput.Name.Length > 0))
-							mVisibleDevices.Add(pInput);
+							if (mFilter.IdAccepted(pInput) && mFilter.NameAccepted(pInput))
+								VisibleDevices.Add(pInput);
 					}, "Adding");
                 }
-                catch (Exception e)
+                catch ( Exception e )
                 {
                     Debug.WriteLine("Error Caught : public bool AddUniqueItem(IDeviceBLE pInput)");
                     Debug.WriteLine(e);
@@ -93,13 +71,17 @@ namespace App_121GW.BLE
             }
         }
 
-		public void UpdateItem(Action<IDeviceBLE> pAction)
+		public void UpdateItem( Action<IDeviceBLE> pAction )
 		{
 			MutexBlock(() =>
 			{
-				foreach (var item in mVisibleDevices)
-					pAction(item);
+				foreach (var item in VisibleDevices) pAction(item);
 			}, "Updating");
+		}
+
+		public AClientBLE(IBluetoothDeviceFilter pFilter)
+		{
+			mFilter = pFilter;
 		}
 	}
 }

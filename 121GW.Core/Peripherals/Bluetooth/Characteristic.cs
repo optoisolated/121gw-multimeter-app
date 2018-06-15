@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Diagnostics;
 
 namespace App_121GW.BLE
 {
@@ -12,20 +13,20 @@ namespace App_121GW.BLE
         {
             Bytes = pNewValue;
             NewValue = Encoding.UTF8.GetString(Bytes);
+
+			Debug.WriteLine("CE : " + NewValue);
         }
     }
     public interface ICharacteristicBLE
-    {
-        event SetupComplete Ready;
+	{
+		event ChangeEvent ValueChanged;
 
-        string Id { get; }
+		string Id { get; }
         string Description { get; }
 
         bool Send(string pInput);
         bool Send(byte[] pInput);
 
-        event ChangeEvent ValueChanged;
-
-        void Unregister();
-    }
+        void Remake();
+	}
 }

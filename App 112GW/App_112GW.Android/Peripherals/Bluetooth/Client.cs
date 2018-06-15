@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Diagnostics;
-using System.Collections.Generic;
-
-using System.Text;
-using Android.Bluetooth;
 using System.Threading.Tasks;
-using Plugin.BLE.Abstractions.Contracts;
-using Plugin.BLE;
-using Plugin.BLE.Abstractions.EventArgs;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
+using Android.Bluetooth;
+
+using Plugin.BLE;
+using Plugin.BLE.Abstractions.Contracts;
+using Plugin.BLE.Abstractions.EventArgs;
 
 namespace App_121GW.BLE
 {
@@ -20,11 +21,8 @@ namespace App_121GW.BLE
 
         private void DeviceWatcher_Added(object sender, DeviceEventArgs args)
         {
-            if (args.Device.Name == string.Empty)
-                return;
-
-            Debug.WriteLine("Device discovered.");
-
+            if (args.Device.Name == string.Empty) return;
+			
             var devices = mAdapter.DiscoveredDevices;
             foreach (var item in devices)
             {
@@ -33,18 +31,9 @@ namespace App_121GW.BLE
             }
         }
 
-        public async Task Start()
-        {
-            await mAdapter.StartScanningForDevicesAsync();
-        }
-        public async Task Stop()
-        {
-            await mAdapter.StopScanningForDevicesAsync();
-        }
-        public async Task Rescan()
-        {
-            await mAdapter.StartScanningForDevicesAsync();
-        }
+        public async Task Start() => await mAdapter.StartScanningForDevicesAsync();
+        public async Task Stop() => await mAdapter.StopScanningForDevicesAsync();
+        public async Task Rescan() => await mAdapter.StartScanningForDevicesAsync();
         public async Task Reset()
         {
             await Stop();
@@ -73,13 +62,13 @@ namespace App_121GW.BLE
             return null;
         }
 
-        public ClientBLE()
+		public ClientBLE(IBluetoothDeviceFilter pFilter) : base(pFilter)
 		{
 			mConnectedDevices = new ObservableCollection<IDeviceBLE>();
 
 			//Setup bluetoth basic adapter
 			mDevice	 = CrossBluetoothLE.Current;
-			mAdapter	= CrossBluetoothLE.Current.Adapter;
+			mAdapter = CrossBluetoothLE.Current.Adapter;
 			mAdapter.ScanTimeoutElapsed += async (s, e ) => await Rescan();
 			mAdapter.ScanTimeout = int.MaxValue;
 
@@ -95,6 +84,8 @@ namespace App_121GW.BLE
 			if (mDevice.IsOn && mDevice.IsAvailable)
 				mAdapter.DeviceDiscovered += DeviceWatcher_Added;
 			mAdapter.DeviceConnectionLost += DeviceConnection_Lost;
+
+			Task.Factory.StartNew(Start);
 		}
 
 		private async void DeviceConnection_Lost (object sender, DeviceErrorEventArgs e)
@@ -121,17 +112,6 @@ namespace App_121GW.BLE
 				}
 		}
 
-        ~ClientBLE()
-		{
-			Debug.WriteLine("Deconstructing ClientBLE!");
-			try
-			{
-				Stop().Wait();
-			}
-			catch (Exception e)
-			{
-				Debug.WriteLine(e.Message);
-			}
-		}
+        ~ClientBLE() => Stop().Wait();
 	}
 }

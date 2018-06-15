@@ -44,11 +44,12 @@ namespace App_121GW.BLE
 				Characteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));
 		}
 		
-		public void Unregister()
+		public void Remake()
 		{
 			foreach (var characteristic in Characteristics)
-				characteristic.Unregister();
+				characteristic.Remake();
 		}
+
 		public ServiceBLE(GattDeviceService pInput, SetupComplete ready, ChangeEvent pEvent)
 		{
 			Ready	   = ready;
@@ -58,7 +59,7 @@ namespace App_121GW.BLE
 		~ServiceBLE()
 		{
 			Debug.WriteLine("Deregistering Service.");
-			Unregister();
+			Remake();
 			mService.Dispose();
 			mService = null;
 			Characteristics = null;

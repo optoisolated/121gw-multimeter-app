@@ -21,73 +21,78 @@ namespace App_121GW
 			mValues = pValues;
 		}
 	}
-    public class Packet121GW
-    {
-        byte[] mData;
+	//TODO : Hold logging when HOLD is enabled.
+	public class Packet121GW
+	{
+		byte[] mData;
 
-        public enum eMode
-        {
-            Low_Z = 0,
-            DCV = 1,
-            ACV = 2,
-            DCmV = 3,
-            ACmV = 4,
-            Temp = 5,
-            Hz = 6,
-            mS = 7,
-            Duty = 8,
-            Resistor = 9,
-            Continuity = 10,
-            Diode = 11,
-            Capacitor = 12,
-            ACuVA = 13,
-            ACmVA = 14,
-            ACVA = 15,
-            ACuA = 16,
-            DCuA = 17,
-            ACmA = 18,
-            DCmA = 19,
-            ACA = 20,
-            DCA = 21,
-            DCuVA = 22,
-            DCmVA = 23,
-            DCVA = 24,
-            _TempC = 100,
-            _TempF = 105,
-            _Battery = 110,
-            _APO_On = 120,
-            _APO_Off = 125,
-            _YEAR = 130,
-            _DATE = 135,
-            _TIME = 140,
-            _BURDEN_VOLTAGE = 150,
-            _LCD = 160,
-            _dBm = 180,
-            _Interval = 190
-        }
-        public enum eSign
-        {
-            ePositive = 0,
-            eNegative = 1
-        }
-        public enum eAD_DC
-        {
-            eNone = 0,
-            eDC,
-            eAC,
-            eACDC
-        }
-        public enum eBarRange
-        {
-            e5 = 0,
-            e50 = 1,
-            e500 = 2,
-            e1000 = 3
-        }
+		public enum eMode
+		{
+			Low_Z = 0,
+			DCV = 1,
+			ACV = 2,
+			DCmV = 3,
+			ACmV = 4,
+			Temp = 5,
+			Hz = 6,
+			mS = 7,
+			Duty = 8,
+			Resistor = 9,
+			Continuity = 10,
+			Diode = 11,
+			Capacitor = 12,
+			ACuVA = 13,
+			ACmVA = 14,
+			ACVA = 15,
+			ACuA = 16,
+			DCuA = 17,
+			ACmA = 18,
+			DCmA = 19,
+			ACA = 20,
+			DCA = 21,
+			DCuVA = 22,
+			DCmVA = 23,
+			DCVA = 24,
+
+			TempC = 25,
+			TempF = 26,
+
+			_TempC = 100,
+			_TempF = 105,
+			_Battery = 110,
+			_APO_On = 120,
+			_APO_Off = 125,
+			_YEAR = 130,
+			_DATE = 135,
+			_TIME = 140,
+			_BURDEN_VOLTAGE = 150,
+			_LCD = 160,
+			_dBm = 180,
+			_Interval = 190
+		}
+		public enum eSign
+		{
+			ePositive = 0,
+			eNegative = 1
+		}
+		public enum eAD_DC
+		{
+			eNone = 0,
+			eDC,
+			eAC,
+			eACDC
+		}
+		public enum eBarRange
+		{
+			e5 = 0,
+			e50 = 1,
+			e500 = 2,
+			e1000 = 3
+		}
 
 		readonly Range121GW[] mRangeLookup =
-        {
-            new Range121GW("V",     "Voltage Low Z (V)",    new int[]{4}            ," "        ),      //0
+		{
+			new Range121GW("V",     "Voltage Low Z (V)",    new int[]{4}            ," "        ),      //0
 			new Range121GW("V",     "Voltage DC (V)",       new int[]{1,2,3,4}      ,"    "     ),      //1
 			new Range121GW("V",     "Voltage AC (V)",       new int[]{1,2,3,4}      ,"    "     ),      //2
 			new Range121GW("mV",    "Voltage DC (V)",       new int[]{2,3}          ,"mm"       ),      //3 
@@ -111,37 +116,54 @@ namespace App_121GW
 			new Range121GW("A",     "Current DC (A)",       new int[]{3,1,2}        ,"m  "      ),      //21
 			new Range121GW("uVA",   "Power DC (VA)",        new int[]{3,4,4,5}      ,"    "     ),      //22
 			new Range121GW("mVA",   "Power DC (VA)",        new int[]{2,3,3,4}      ,"mm  "     ),      //23
-			new Range121GW("VA",    "Power DC (VA)",        new int[]{4,5,2,3}      ,"mm  "     )       //24
+			new Range121GW("VA",    "Power DC (VA)",        new int[]{4,5,2,3}      ,"mm  "     ),      //24
+			new Range121GW("°C",    "Temp (°C)",            new int[]{4}            ," "        ),      //25
+			new Range121GW("°F",    "Temp (°F)",            new int[]{4}            ," "        ),      //26
 		};
 
-        public int BoolToInt(bool value) => (value) ? 1 : 0;
+		public int BoolToInt(bool value) => (value) ? 1 : 0;
 
-        public byte Nibble(int pIndex, bool pHigh)
-        {
-            var data = mData[pIndex];
-            if (pHigh) data >>= 4;
-            data &= 0xf;
+		public byte Nibble(int pIndex, bool pHigh)
+		{
+			var data = mData[pIndex];
+			if (pHigh) data >>= 4;
+			data &= 0xf;
 
-            return data;
-        }
+			return data;
+		}
 
-        //Start decimal coded nibbles protocol
-        //Don't know why this is a seperate protocol...
-        public int Year                 => mData[1] + 2000;
-        public int Month                => Nibble(2, true);
-        public int Serial               => 
-            Nibble(2, false )   * 10000 + 
-            Nibble(3, true  )   * 1000 + 
-            Nibble(3, false )   * 100 + 
-            Nibble(4, true  )   * 10 + 
-            Nibble(4, false );
+		//Start decimal coded nibbles protocol
+		//Don't know why this is a seperate protocol...
+		public int Year => mData[1] + 2000;
+		public int Month => Nibble(2, true);
+		public int Serial =>
+			Nibble(2, false) * 10000 +
+			Nibble(3, true) * 1000 +
+			Nibble(3, false) * 100 +
+			Nibble(4, true) * 10 +
+			Nibble(4, false);
 
-        //Start hex coded bytes protocol
-        public eMode        Mode            => (eMode)mData[5];
+		//Start hex coded bytes protocol
+		public eMode Mode
+		{
+			get
+			{
+				var output = (eMode)mData[5];
+				if (output == eMode.Temp)
+				{
+					if (MainC) return eMode.TempC;
+					if (MainF) return eMode.TempF;
+				}
+				return output;
+			}
+		}
         public bool         MainOverload    => (Nibble(6, true) & 0x8) > 0;
         public eSign        MainSign        => (eSign)BoolToInt((Nibble(6, true) & 0x4) > 0);
+		public bool			MainC			=> (Nibble(6, true) & 0x2) > 0;
+		public bool			MainF			=> (Nibble(6, true) & 0x1) > 0;
 
-        public int          MainRangeIndex  => Nibble(6, false);
+		public Range121GW	MainRange		=> mRangeLookup[(int)Mode];
+		public int          MainRangeIndex  => Nibble(6, false);
         public int          MainRangeValue  => MainRange.mValues[MainRangeIndex];
         public char         MainRangeUnits  => MainRange.mNotation[MainRangeIndex];
         public int          MainIntValue    => (mData[7] << 8) | mData[8];
@@ -151,7 +173,6 @@ namespace App_121GW
         public bool         SubK            => ((Nibble(10, true) & 0x2) > 0);
         public bool         SubHz           => ((Nibble(10, true) & 0x1) > 0);
         public int          SubPoint        => Nibble(10, false);
-
 
         public int          SubIntValue
         {
@@ -227,7 +248,6 @@ namespace App_121GW
             mData = new byte[19];
         }
 
-        public Range121GW MainRange => mRangeLookup[(int)Mode];
 
         public float MainValue
         {

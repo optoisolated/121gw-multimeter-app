@@ -10,12 +10,21 @@ using Xamarin.Forms;
 
 namespace App_121GW
 {
+	public class Bluetooth121GWFilter : IBluetoothDeviceFilter
+	{
+		public bool IdAccepted(IDeviceBLE pInput) => true;
+		public bool NameAccepted(IDeviceBLE pInput)
+		{
+			var name = pInput.Name;
+			return name.Contains("121GW") || name.Contains("Bluegiga");
+		}
+	}
+
 	public class Settings : AutoGrid
 	{
 		public delegate void AddBluetoothDevice(IDeviceBLE pDevice);
 		public event AddBluetoothDevice AddDevice;
-
-		private BluetoothDeviceSelector BluetoothSelectDevice = new BluetoothDeviceSelector();
+		private BluetoothDeviceSelector BluetoothSelectDevice = new BluetoothDeviceSelector(new Bluetooth121GWFilter());
 		private GeneralButton ButtonLeft;
 		private GeneralButton ButtonRight;
 

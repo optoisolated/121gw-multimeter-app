@@ -4,8 +4,7 @@ namespace App_121GW.BLE
 {
     public interface IDeviceBLE
     {
-        event DeviceSetupComplete Ready;
-        event ChangeEvent Change;
+		ChangeEvent ValueChanged { get; set; }
 
         string Id { get; }
         string Name { get; }
@@ -17,5 +16,5 @@ namespace App_121GW.BLE
 
         string ToString();
         List<IServiceBLE> Services { get; }
-    }
+	}
 }

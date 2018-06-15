@@ -84,77 +84,45 @@ namespace App_121GW
 
 	public class TouchPinch
 	{
-		private Point   _PointA;
-		private Point   _PointB;
-		public Point	PointA
-		{
-			get { return _PointA; }
-			private set { _PointA = value; }
-		}
-		public Point	PointB
-		{
-			get			 { return _PointB; }
-			private set	 { _PointB = value; }
-		}
+		public Point PointA { get; private set; }
+		public Point PointB { get; private set; }
+
 		private float  _XDistance;
 		public float   XDistance
 		{
-			get		 { return _XDistance;  }
+			get	=> _XDistance;
 			private set
 			{
 				var dist = Math.Abs(value);
 				XDistanceDelta = dist - _XDistance;
 				_XDistance = dist;
 				ZoomX = 1 + XDistanceDelta / _XDistance;
+
+				if (float.IsInfinity(ZoomX)) ZoomX = 1;
+				if (ZoomX < 0) ZoomX = 1;
 			}
 		}
 		private float  _YDistance;
 		public float   YDistance
 		{
-			get		 { return _YDistance;  }
+			get	=> _YDistance;
 			private set
 			{
 				var dist = Math.Abs(value);
 				YDistanceDelta = dist - _YDistance;
 				_YDistance = dist;
 				ZoomY = 1 + YDistanceDelta / _YDistance;
+
+				if (float.IsInfinity(ZoomY)) ZoomY = 1;
+				if (ZoomY < 0) ZoomY = 1;
 			}
 		}
         public float Distance => (float)Math.Sqrt(XDistance * XDistance + YDistance * YDistance);
         public float Angle => (float)Math.Atan(YDistance / XDistance);
 		public Point Center => new Point((PointA.X + PointB.X) / 2, (PointA.Y + PointB.Y) / 2);
-
-		private float _ZoomX;
-		public float   ZoomX
-		{
-			get
-			{
-				return _ZoomX;
-			}
-			private set
-			{
-				_ZoomX = value;
-			}
-		}
-		private float _ZoomY;
-		public float   ZoomY
-		{
-			get
-			{
-				return _ZoomY;
-			}
-			private set
-			{
-				_ZoomY = value;
-			}
-		}
-		public bool	 Threshold
-		{
-			get
-			{
-				return (XDistanceDelta != 0 || YDistanceDelta != 0);
-			}
-		}
+		public float ZoomX { get; private set; }
+		public float ZoomY { get; private set; }
+		public bool	 Threshold =>  (XDistanceDelta != 0 || YDistanceDelta != 0);
 
 		private bool	Ready;
 		public float   XDistanceDelta	{ get; private set; }
@@ -166,8 +134,8 @@ namespace App_121GW
 			PointA = A;
 			PointB = B;
 			////////////////////////
-			XDistance = (float)(B.X - A.X);
-			YDistance = (float)(B.Y - A.Y);
+			XDistance = (float)Math.Abs(B.X - A.X);
+			YDistance = (float)Math.Abs(B.Y - A.Y);
 			////////////////////////
 			if (Ready)  return true;
 			else		Ready = true;
@@ -175,14 +143,8 @@ namespace App_121GW
 			return false;
 			////////////////////////
 		}
-		public void Clear()
-		{
-			Ready = false;
-		}
-		public TouchPinch ()
-		{
-			Ready = false;
-		}
+		public void Clear() => Ready = false;
+		public TouchPinch () => Ready = false;
 	}
 	public class TouchPinchActionEventArgs : EventArgs
 	{
@@ -291,16 +253,16 @@ namespace App_121GW
         public delegate void	TouchDoubleTapActionEventHandler(object sender, TouchDoubleTapEventArgs	    args);
 		public delegate void	TouchTapEventArgs			    (object sender, TouchTapEventArgs		    args);
 
-		public event TouchActionEventHandler			Pressed;
-		public event TouchActionEventHandler			Released;
-		public event TouchActionEventHandler			Hover;
-		public event TouchActionEventHandler			PressedMoved;
+		public event TouchActionEventHandler		Pressed;
+		public event TouchActionEventHandler		Released;
+		public event TouchActionEventHandler		Hover;
+		public event TouchActionEventHandler		PressedMoved;
 
-        public event ScrollActionEventHandler           Scroll;
-		public event TouchPanActionEventHandler		    Pan;
-		public event TouchPinchActionEventHandler	    Pinch;
+        public event ScrollActionEventHandler		Scroll;
+		public event TouchPanActionEventHandler		Pan;
+		public event TouchPinchActionEventHandler	Pinch;
 
-		private float                                   GestureThreshold;
+		private float									GestureThreshold;
 		CancellableTimer								TapTimer;
 		private int									    TapTimeout;
 		private int									    TapCount;

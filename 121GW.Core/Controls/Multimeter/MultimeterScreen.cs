@@ -211,7 +211,8 @@ namespace App_121GW
 			SegmV, 
 			AC, 
 			DC, 
-			SegTempC, 
+			SegTempC,
+			SegTempF,
 			SegHz, 
 			SubPercent, 
 			SegCapF, 
@@ -293,6 +294,7 @@ namespace App_121GW
 			AC			    = GetOther("AC"		 );
 			DC			    = GetOther("DC"		 );
 			SegTempC		= GetOther("SegTempC"   );
+			SegTempF		= GetOther("SegTempF");
 			SegHz		    = GetOther("SegHz"	  );
 			SubPercent	    = GetOther("Sub%"	   );
 			SegCapF		    = GetOther("SegCapF"	);
@@ -381,7 +383,10 @@ namespace App_121GW
 						SetLayer(SegmV, true);
 						break;
 					case Packet121GW.eMode.Temp:
-						SetLayer(SegTempC, true);
+					case Packet121GW.eMode.TempC:
+					case Packet121GW.eMode.TempF:
+						SetLayer(SegTempC, value.MainC);
+						SetLayer(SegTempF, value.MainF);
 						break;
 					case Packet121GW.eMode.Hz:
 						SetLayer(SegHz, true);

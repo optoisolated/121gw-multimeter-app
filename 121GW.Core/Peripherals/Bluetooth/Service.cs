@@ -3,13 +3,14 @@
 namespace App_121GW.BLE
 {
     public interface IServiceBLE
-    {
-        event SetupComplete Ready;
+	{
+		ChangeEvent ValueChanged { get; set; }
 
-        string Id { get; }
+		string Id { get; }
         string ToString();
-        void Unregister();
+
+		void Remake();
 
         List<ICharacteristicBLE> Characteristics { get; }
-    }
+	}
 }

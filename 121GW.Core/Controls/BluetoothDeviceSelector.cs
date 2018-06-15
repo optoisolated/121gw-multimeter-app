@@ -6,8 +6,7 @@ namespace App_121GW.BLE
 	public class BluetoothDeviceSelector : GeneralView
 	{
 		public event DeviceConnected Connected;
-
-        private IClientBLE		mClient		= Bluetooth.Client(); 
+        private IClientBLE		mClient; 
 		private Loading			mActivity	= new Loading("connecting");
 		private GeneralListView	mDevices	= new GeneralListView { ItemTemplate = DefaultTemplate() };
 
@@ -43,8 +42,9 @@ namespace App_121GW.BLE
 
 		public async Task Reset() => await mClient?.Reset();
 
-		public BluetoothDeviceSelector()
+		public BluetoothDeviceSelector(IBluetoothDeviceFilter pFilter)
 		{
+			mClient = Bluetooth.Client(pFilter);
 			IsBusy = false;
 			mDevices.ItemSelected += async (o, e) =>
 			{

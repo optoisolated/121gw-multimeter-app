@@ -14,7 +14,7 @@ namespace App_121GW
 			return new SKRect(Horizontal.AxisStart(dimension.Width), Vertical.AxisStart(dimension.Height), Horizontal.AxisEnd(dimension.Width), Vertical.AxisEnd(dimension.Height));
 		}
 
-		public bool EnableTouchVertical = false;
+		public bool EnableTouchVertical = true;
 		public bool EnableTouchHorizontal = true;
 
         Mutex mutex = new Mutex();
@@ -33,7 +33,6 @@ namespace App_121GW
             Wait();
             if (EnableTouchHorizontal)  Horizontal.Zoom(dx, cx);
 			if (EnableTouchVertical)    Vertical.Zoom(dy, cy);
-
 			Parent.Parent.InvalidateSurface();
             Release();
         }

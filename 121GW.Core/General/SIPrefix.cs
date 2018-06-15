@@ -7,8 +7,7 @@ namespace App_121GW
 {
     public class SIValue
     {
-		private char[]  UnitLookup	=	{ 'p','n','u','m',' ','k','M','G','T' };
-		
+		private char[]  UnitLookup	=	{ 'a', 'f', 'p','n','u','m',' ','k','M','G','T', 'P', 'E'};
 		public double	Value			{ get; }
 		public int		SigFigures		{ get; }
 		public double	Power		=>	Math.Floor(Math.Log10(Math.Abs(Value)));

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace App_121GW.BLE.UWP
 {
     class Bluetooth : IBluetooth
-    {
-        public IClientBLE Create() => new ClientBLE();
-    }
+	{
+		public IClientBLE Create(IBluetoothDeviceFilter pFilter) => new ClientBLE(pFilter);
+	}
 }

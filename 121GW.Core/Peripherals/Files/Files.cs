@@ -14,6 +14,6 @@ namespace App_121GW
         public static async Task<bool> Save(string pContent)
         {
             return await DependencyService.Get<IFiles>().Save(pContent);
-        }
+        } 
     }
 }

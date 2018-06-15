@@ -8,52 +8,46 @@ namespace App_121GW
 	public class PacketProcessor
 	{
 		public delegate void ProcessPacket(byte[] pPacket);
-		public  event ProcessPacket mCallback;
-		private bool mStartFound;
-		private byte mStart;
-		private int mLength;
-		private List<byte> mBuffer;
+		public event ProcessPacket mCallback;
+
+		private readonly byte		mStart;
+		private readonly int		mLength;
+
+		private List<byte>			mBuffer = new List<byte>();
 
 		public PacketProcessor(byte start, int length)
-		{ 
-			mBuffer	 = new List<byte>();
-			mStart	  = start;
-			mLength	 = length;
-			mStartFound = false;
+		{
+			mStart = start;
+			mLength = length;
 		}
 		public void Reset()
 		{
 			mBuffer.Clear();
-			mStartFound = false;
+
 		}
 		public void Recieve( byte[] pBytes )
 		{
-            foreach ( var byt in pBytes )
+			Debug.WriteLine("Recieve");
+			Debug.WriteLine(pBytes.Length.ToString());
+
+			mBuffer.AddRange(pBytes);
+			var start_index = mBuffer.FindIndex((item) => item == mStart);
+
+			//Start was found remove useless items infront of it
+			if (start_index > 0) mBuffer.RemoveRange(0, start_index);
+
+			//Check that there is sufficient length for a packet
+			if (mBuffer.Count >= mLength)
 			{
-                var character = (char) byt;
-                if ( character == mStart )
-                {
-                    if ( mStartFound )
-                    {
-                        if ( mBuffer.Count >= mLength )
-                        {
-                            mCallback?.Invoke( mBuffer.ToArray() );
-                            
-                            Debug.WriteLine(BitConverter.ToString(mBuffer.ToArray()));
+				var array = mBuffer.GetRange(0, mLength).ToArray();
+				mCallback?.Invoke(array);
 
-                            mBuffer.Clear( );
-                        }
-                    }
-                    else
-                        Debug.WriteLine("FAILED : " + BitConverter.ToString(mBuffer.ToArray()));
-
-                    mStartFound = true;
-                    mBuffer.Clear( );
-                    mBuffer.Add( byt );
-
-                } else if ( mStartFound )
-                    mBuffer.Add( byt );
-            }
+				try
+				{
+					mBuffer.RemoveRange(0, mLength);
+				}
+				catch { }
+			}
 		}
 	}
 }

@@ -13,11 +13,11 @@ namespace App_121GW.BLE
 
     public interface IBluetooth
     {
-        IClientBLE Create();
+        IClientBLE Create(IBluetoothDeviceFilter pFilter);
     }
 
     class Bluetooth
     {
-        public static IClientBLE Client() => DependencyService.Get<IBluetooth>().Create();
+        public static IClientBLE Client(IBluetoothDeviceFilter pFilter) => DependencyService.Get<IBluetooth>().Create(pFilter);
     }
 }

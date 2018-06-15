@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,8 +12,20 @@ namespace App_121GW
 {
 	public partial class App : Application
 	{
+
+		void SetLocale()
+		{
+			CultureInfo ci = new CultureInfo("es-US");
+
+			Thread.CurrentThread.CurrentCulture = ci;
+			Thread.CurrentThread.CurrentUICulture = ci;
+
+			Console.WriteLine("CurrentCulture set: " + ci.Name);
+		}
+
 		public App ()
 		{
+			SetLocale();
 			InitializeComponent();
 			MainPage = new MainPage();
 		}

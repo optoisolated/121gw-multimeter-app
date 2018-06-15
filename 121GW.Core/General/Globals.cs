@@ -24,6 +24,16 @@ namespace App_121GW
 			});
 		}
 
+		public static void Alert(string pText)
+		{
+			
+		}
+
+		public static string StandardDateTime()
+		{
+			return DateTime.Now.ToString("yyyyMMdd_HHmmss");
+		}
+
 		public static SKTypeface Typeface
 		{
 			get

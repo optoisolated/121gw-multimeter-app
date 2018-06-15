@@ -122,6 +122,22 @@ namespace App_121GW
                 DelayedInvalidateLayout();
             }
 		}
+		public void MinimiseItems(params View[] pItems)
+		{
+			if (RestoreList == null)
+			{
+				RestoreList = new List<ItemState>();
+				base.BatchBegin();
+				foreach (var item in pItems)
+				{
+					var restoreitem = new ItemState(item);
+					RestoreList.Add(restoreitem);
+					restoreitem.SetVisibility(item, false);
+				}
+				base.BatchCommit();
+				DelayedInvalidateLayout();
+			}
+		}
 
         public void RestoreItems()
         {

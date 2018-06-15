@@ -32,12 +32,12 @@ namespace App_121GW
                 {
                     case ActiveItem.Screen:
                         RestoreItems();
-                        MaximiseItem(Screen);
+						MaximiseItem(Screen);
                         break;
                     case ActiveItem.Plot:
                         RestoreItems();
-                        MaximiseItem(Chart);
-                        break;
+						MinimiseItems(Menu, Screen);
+						break;
                     case ActiveItem.Both:
                         RestoreItems();
                         break;
@@ -140,7 +140,7 @@ namespace App_121GW
         {
             mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");
 
-            mDevice.Change += (o, e) => MyProcessor.Recieve(e.Bytes);
+            mDevice.ValueChanged += (o, e) => MyProcessor.Recieve(e.Bytes);
             MyProcessor.mCallback += ProcessPacket;
 
             Screen = new MultimeterScreen();

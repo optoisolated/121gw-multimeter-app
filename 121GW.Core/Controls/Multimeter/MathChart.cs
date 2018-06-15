@@ -17,7 +17,8 @@ namespace App_121GW
 	class MathChart : AutoGrid
 	{
 		SmartChart Chart;
-		SmartChartMenu Menu = new SmartChartMenu();
+		SmartChartMenu Menu = new SmartChartMenu(ShowReset:false);
+
 
 		public class EventMonitor<T>
 		{
@@ -269,9 +270,8 @@ namespace App_121GW
 			DeviceBEvent.CollectionChanged += Data_Changed;
 
 			//Setup listviews
-			Menu = new SmartChartMenu(true, true);
+			Menu = new SmartChartMenu(true, false);
 			Menu.SaveClicked    += (o, e) => { Chart.SaveCSV(); };
-            Menu.ResetClicked   += (o, e) => { InvalidateLayout();};
 
             //
             A_List = MakePicker((o, e) => { List_ItemSelected(ref DeviceA, o, e); }, "Device A");
@@ -291,7 +291,7 @@ namespace App_121GW
 							new SmartAxisPair(
 								new SmartAxisHorizontal ("Horizontal",  +0, 1),
 								new SmartAxisVertical   ("Vertical",	-1, 1)), Data));
-			Chart.Clicked += Plot_FullscreenClicked;
+			//Chart.Clicked += Plot_FullscreenClicked;
 
 			//
 			DefineGrid(3, 3);
@@ -303,6 +303,8 @@ namespace App_121GW
 			AutoAdd(Chart, 3);  FormatCurrentRow(GridUnitType.Star);
 			AutoAdd(Menu, 3);   FormatCurrentRow(GridUnitType.Auto);
 		}
+
+		//Currently disabled
 		private void Plot_FullscreenClicked(object sender, EventArgs e)
 		{
 			if (Fullscreen) MaximiseItem(Chart);

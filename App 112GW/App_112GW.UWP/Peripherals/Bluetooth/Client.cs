@@ -34,7 +34,7 @@ namespace App_121GW.BLE
 			if (obj == null) return null;
 
 			Debug.WriteLine("Connection complete");
-			return new PairedDeviceBLE(obj, TriggerDeviceConnected);
+			return new PairedDeviceBLE(obj);
 		}
 		public async Task<IDeviceBLE> Connect(IDeviceBLE pInput)
 		{
@@ -79,14 +79,10 @@ namespace App_121GW.BLE
         }
         public async Task Rescan() => await Reset();
 
-		public ClientBLE()
+		public ClientBLE(IBluetoothDeviceFilter pFilter) : base(pFilter)
 		{
 			//Get all devices paired and not
-			var query = 
-                "(" +
-                    BluetoothLEDevice.GetDeviceSelectorFromPairingState( true  ) + ") OR (" + 
-                    BluetoothLEDevice.GetDeviceSelectorFromPairingState( false ) + 
-                ")";
+			var query = "(" + BluetoothLEDevice.GetDeviceSelectorFromPairingState( true  ) + ") OR (" + BluetoothLEDevice.GetDeviceSelectorFromPairingState( false ) + ")";
 
 			//Create device watcher
 			mDeviceWatcher = DeviceInformation.CreateWatcher(query, new string[]{ "System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected" }, DeviceInformationKind.AssociationEndpoint);

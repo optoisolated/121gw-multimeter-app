@@ -70,7 +70,7 @@ namespace App_121GW.BLE
 			}
 			else TriggerReady();
 		}
-		public void Unregister()
+		public void Remake()
 		{
 			if (mCharacteristic != null)
 				mCharacteristic.ValueChanged -= CharacteristicEvent_ValueChanged;
@@ -86,7 +86,8 @@ namespace App_121GW.BLE
 		~CharacteristicBLE()
 		{
 			Debug.WriteLine("Destructing Characteristic.");
-			Unregister();
+
+			Remake();
 			Ready = null;
 			ValueChanged = null;
 			mCharacteristic = null;

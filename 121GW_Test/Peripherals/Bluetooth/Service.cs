@@ -8,59 +8,43 @@ namespace App_121GW.BLE
 {
     public class ServiceBLE : IServiceBLE
     {
-        public event SetupComplete Ready;
-        void TriggerReady()
-        {
-            Ready?.Invoke();
-        }
-
-        private ChangeEvent mEvent;
         private volatile IService mService;
-        public List<ICharacteristicBLE> Characteristics { get; }
-        public string Id => mService.Id.ToString();
-        public override string ToString() => Id;
 
-        private void Build()
+		public ChangeEvent ValueChanged { get; set; }
+		public List<ICharacteristicBLE> Characteristics { get; private set; }
+		
+		private void AddCharacteristics(IList<ICharacteristic> obj)
+		{
+			foreach (var item in obj)
+				Characteristics.Add(new CharacteristicBLE(item));
+
+			foreach (var ch in Characteristics)
+				ch.ValueChanged += ValueChanged;
+		}
+		private void Build()
         {
-            mService.GetCharacteristicsAsync().ContinueWith((obj) => { AddCharacteristics(obj); });
+			Task.Factory.StartNew(async () => AddCharacteristics(await mService.GetCharacteristicsAsync()) );
         }
-
-
-        private int Uninitialised = 0;
-        private void ItemReady()
-        {
-            --Uninitialised;
-            if (Uninitialised == 0)
-                TriggerReady();
-        }
-        private void AddCharacteristics(Task<IList<ICharacteristic>> obj)
-        {
-            Uninitialised = obj.Result.Count;
-            foreach (var item in obj.Result)
-            {
-                Debug.WriteLine("Characteristic adding : " + item.Name);
-                Characteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
-            }
-        }
-
-        public void Remake()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Unregister()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ServiceBLE(IService pInput, SetupComplete ready, ChangeEvent pEvent)
+        public ServiceBLE(IService pInput)
         {
             Characteristics = new List<ICharacteristicBLE>();
-            Ready += ready;
             mService = pInput;
-            mEvent = pEvent;
-
             Build();
-        }
-    }
-}
+		}
+		public void Remake()
+		{
+			Debug.WriteLine("Service remaking...");
+			foreach (var ch in Characteristics) ch.Remake();
+			Characteristics = new List<ICharacteristicBLE>();
+
+			mService.Dispose();
+			mService = null;
+
+			Build();
+		}
+
+		public void Unregister() => throw new NotImplementedException();
+		public string Id => mService.Id.ToString();
+		public override string ToString() => Id;
+	}
+} 

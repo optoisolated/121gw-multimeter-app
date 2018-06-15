@@ -88,6 +88,7 @@ namespace App_121GW
 			//Add the gesture recognizer 
 			mTouch = new Touch();
 			mTouch.Tap	    += MTouch_Tap;
+			mTouch.DoubleTap += MTouch_DoubleTap;
 			mTouch.Pressed  += MTouch_Press;
 			mTouch.Hover	+= MTouch_Hover;
 			mTouch.Released += MTouch_Release;
@@ -97,8 +98,12 @@ namespace App_121GW
 			Effects.Add(mTouch);
 		}
 
+		private void MTouch_DoubleTap(object sender, TouchDoubleTapEventArgs args)
+		{
+			Data.Axis.Reset();
+		}
 
-        private void MTouch_Scroll(object sender, ScrollActionEventArgs args)
+		private void MTouch_Scroll(object sender, ScrollActionEventArgs args)
         {
             var dist = 1f + (float)args.Steps / (720f);
 

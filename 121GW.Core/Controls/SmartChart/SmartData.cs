@@ -91,14 +91,14 @@ namespace App_121GW
 				return;
 
 			(var path, var bounds) = Path;
-
+			path.Transform  (Axis.Transform(dimension));    //Transform the path to fit limits
+															//This only draws the path in the render region (between axis)
+			Canvas.Save();
+			Canvas.ClipRect(Axis.AxisClip(dimension));
+			Canvas.DrawPath(path, DataPaint);               //Render scaled and shifted path
+			Canvas.Restore();
 			Axis.Set		(bounds);					    //Set the axis limits
 			Axis.Draw	    (Canvas, dimension, view);		//Render the axis with limits
-			path.Transform  (Axis.Transform(dimension));	//Transform the path to fit limits
-
-			//This only draws the path in the render region (between axis)
-			Canvas.ClipRect (Axis.AxisClip(dimension));
-			Canvas.DrawPath (path, DataPaint);			  //Render scaled and shifted path
 		}
 		public SmartData(ASmartAxisPair pAxis, IObservableList<SKPoint> pData) : base(pAxis)
 		{

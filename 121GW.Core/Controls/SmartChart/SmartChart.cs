@@ -73,6 +73,17 @@ namespace App_121GW
     {
 		private SmartData   Data;
 		private SmartTitle  _Title = new SmartTitle() { Title = "" };
+		public string Title
+		{
+			get
+			{
+				return _Title.Title;
+			}
+			set
+			{
+				_Title.Title = value;
+			}
+		}
 
 		#region EVENTS
 		public event EventHandler Clicked;
@@ -98,10 +109,11 @@ namespace App_121GW
 			Effects.Add(mTouch);
 		}
 
-		private void MTouch_DoubleTap(object sender, TouchDoubleTapEventArgs args)
-		{
-			Data.Axis.Reset();
-		}
+		private void MTouch_DoubleTap(object sender, TouchDoubleTapEventArgs args) => Data.Axis.Reset();
+		private void MTouch_Tap(object sender, Touch.TouchTapEventArgs args) => Clicked?.Invoke(sender, EventArgs.Empty);
+		private void MTouch_Pan(object sender, TouchPanActionEventArgs args) => Data.Axis.Pan((float)args.Dx, (float)args.Dy);
+
+		public async void SaveCSV() => await Files.Save(Data.GetCSV());
 
 		private void MTouch_Scroll(object sender, ScrollActionEventArgs args)
         {
@@ -113,14 +125,7 @@ namespace App_121GW
 
             Data.Axis.Zoom(zoomX, zoomY, (float)Center.X, (float)Center.Y);
         }
-        private void MTouch_Tap(object sender, Touch.TouchTapEventArgs args)
-		{
-			Clicked?.Invoke(sender, EventArgs.Empty);
-		}
-		private void MTouch_Pan(object sender, TouchPanActionEventArgs args)
-		{
-			Data.Axis.Pan((float)args.Dx, (float)args.Dy);
-		}
+
 		private void MTouch_Pinch(object sender, TouchPinchActionEventArgs args)
 		{
 			var zoomX = (float)args.Pinch.ZoomX;
@@ -130,30 +135,14 @@ namespace App_121GW
 		}
 		#endregion
         
-		public async void SaveCSV()
-		{
-			await Files.Save(Data.GetCSV());
-		}
-		public string Title
-		{
-			get
-			{
-				return _Title.Title;
-			}
-			set
-			{
-				_Title.Title = value;
-			}
-		}
 
         public override void PaintSurface(SKCanvas canvas, SKSize dimension, SKSize viewsize)
         {
             canvas.Clear(BackgroundColor.ToSKColor());
-            (var x1, var y1, var x2, var y2) = 
-                ASmartElement.Padding.GetHorizontalLine(dimension.Width, 10);
+			Data.Draw(canvas, dimension, viewsize);
+			(var x1, var y1, var x2, var y2) = ASmartElement.Padding.GetHorizontalLine(dimension.Width, 10);
 
             _Title.Draw(canvas, dimension, viewsize);
-            Data.Draw(canvas, dimension, viewsize);
         }
         public SmartChart(SmartData pData)
         {

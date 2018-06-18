@@ -31,43 +31,57 @@ namespace App_121GW.BLE
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public class PairedDeviceBLE : IDeviceBLE
 	{
-		async void MDevice_ConnectionStatusChanged( BluetoothLEDevice sender, object args )
+		async void MDevice_ConnectionStatusChanged(BluetoothLEDevice sender, object args)
 		{
-			Debug.WriteLine( "Reconnecting" );
-			if ( sender.ConnectionStatus == BluetoothConnectionStatus.Disconnected )
-				Remake( await BluetoothLEDevice.FromIdAsync(sender.DeviceId) );
+			Debug.WriteLine("Reconnecting");
+			if (sender.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
+				Remake(await BluetoothLEDevice.FromIdAsync(sender.DeviceId));
 		}
 
 		private BluetoothLEDevice mDevice;
 		public ChangeEvent ValueChanged { get; set; } = null;
 		public List<IServiceBLE> Services { get; private set; } = new List<IServiceBLE>();
 
-		void AddServices( IReadOnlyList<GattDeviceService> pServices )
+		void AddServices(IReadOnlyList<GattDeviceService> pServices)
 		{
-			Debug.WriteLine( "Services Aquired" );
+			Debug.WriteLine("Services Aquired");
 			foreach (var item in pServices)
 				Services.Add(new ServiceBLE(item));
-		
+
 			foreach (var service in Services)
 				service.ValueChanged += ValueChanged;
-		
+
 			mDevice.ConnectionStatusChanged += MDevice_ConnectionStatusChanged;
 		}
-		void Build() => Task.Factory.StartNew( async () => AddServices( ( await mDevice.GetGattServicesAsync() ).Services ) );
+		void Build() => Task.Factory.StartNew( async() =>
+		{
+			if (mDevice == null) return;
+			var services = (await mDevice?.GetGattServicesAsync())?.Services;
+			if (services == null) return;
+
+			AddServices(services);
+		});
 
 		public void Remake( object o )
 		{
-			mDevice = null;
-			mDevice = o as BluetoothLEDevice;
+			try
+			{
+				//Unregisters old system
+				Unregister();
 
-			Debug.WriteLine( "Remaking" );
+				mDevice = null;
+				mDevice = o as BluetoothLEDevice;
 
-			foreach (var se in Services) se.Remake();
-			Services = null;
-			Services = new List<IServiceBLE>();
+				Debug.WriteLine("Remaking");
 
-			Unregister();
-			Build();
+				foreach (var se in Services) se.Remake();
+				Services = null;
+				Services = new List<IServiceBLE>();
+
+				//Builds new system
+				Build();
+			}
+			catch { }
 		}
 		public void Unregister()
 		{

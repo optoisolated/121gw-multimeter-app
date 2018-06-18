@@ -39,6 +39,8 @@ namespace App_121GW.BLE
 
 		public void Remake()
 		{
+			if (mCharacteristic == null) return;
+
 			Debug.WriteLine("Characteristic remaking");
 
 			if (mCharacteristic.CanUpdate)

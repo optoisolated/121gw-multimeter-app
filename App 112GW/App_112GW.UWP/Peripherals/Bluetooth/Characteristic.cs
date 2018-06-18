@@ -47,6 +47,8 @@ namespace App_121GW.BLE
 		}
 		public void Remake()
 		{
+			if (mCharacteristic == null) return;
+
 			try { mCharacteristic.ValueChanged -= CharacteristicEvent_ValueChanged; }
 			catch { }
 		}

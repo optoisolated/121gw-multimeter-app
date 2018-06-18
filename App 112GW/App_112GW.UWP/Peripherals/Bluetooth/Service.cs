@@ -32,8 +32,12 @@ namespace App_121GW.BLE
 		public void Remake()
 		{
 			Debug.WriteLine("Service remaking");
-			foreach (var characteristic in Characteristics)
-				characteristic.Remake();
+
+			if (Characteristics != null)
+				if (Characteristics.Count > 0)
+					foreach (var characteristic in Characteristics)
+						characteristic.Remake();
+
 			Characteristics = new List<ICharacteristicBLE>();
 
 			Task.Factory.StartNew(Build);

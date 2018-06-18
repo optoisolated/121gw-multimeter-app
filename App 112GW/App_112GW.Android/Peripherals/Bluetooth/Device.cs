@@ -10,9 +10,9 @@ namespace App_121GW.BLE
 {
 	public class UnPairedDeviceBLE : IDeviceBLE
 	{
-		public IDevice						mDevice;
-		public event DeviceSetupComplete	Ready;
-		public event ChangeEvent			Change;
+		public event DeviceSetupComplete Ready;
+		public ChangeEvent ValueChanged { get; set; }
+		public IDevice mDevice;
 
 		public string	Id							=> mDevice.Id.ToString();
 		public string	Name						=> mDevice.Name;
@@ -26,9 +26,8 @@ namespace App_121GW.BLE
 	}
 	public class PairedDeviceBLE : IDeviceBLE
 	{
-		public event DeviceSetupComplete Ready;
-		public event ChangeEvent Change;
-		private void InvokeChange(object o, CharacteristicEvent v) => Change?.Invoke(o, v);
+		public ChangeEvent ValueChanged{ get; set; }
+		private void InvokeChange(object o, CharacteristicEvent v) => ValueChanged?.Invoke(o, v);
 
 		private IDevice mDevice;
 
@@ -37,33 +36,22 @@ namespace App_121GW.BLE
 		public bool Paired	=> (mDevice.State == Plugin.BLE.Abstractions.DeviceState.Connected);
 		public bool CanPair	=> true;
 
-		private int UninitialisedServices = 0;
-		private void ServiceReady()
-		{
-			if (--UninitialisedServices == 0)
-			{
-				Ready?.Invoke(this);
-				Ready = null;
-			}
-		}
 		private void AddServices(IList<IService> obj)
 		{
-			UninitialisedServices = obj.Count;
 			foreach (var item in obj)
 			{
 				Debug.WriteLine("Service adding : " + item.Name);
-				Services.Add(new ServiceBLE(item, ServiceReady, InvokeChange));
+				Services.Add(new ServiceBLE(item, InvokeChange));
 			}
 		}
 		private void Build()
 		{
 			Task.Factory.StartNew(async () => AddServices(await mDevice.GetServicesAsync()));
 		}
-		public PairedDeviceBLE(IDevice pDevice, DeviceSetupComplete ready)
+		public PairedDeviceBLE(IDevice pDevice)
 		{
 			Services = new List<IServiceBLE>();
 			mDevice = pDevice;
-			Ready = ready;
 			Build();
 		}
 		public override string ToString() => Name + "\n" + Id;

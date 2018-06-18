@@ -2,67 +2,57 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
+using System.Threading.Tasks;
 
 namespace App_121GW.BLE
 {
     public class ServiceBLE : IServiceBLE
 	{
 		private GattDeviceService mService;
-		public event SetupComplete Ready;
-		void TriggerReady()
-		{
-			Debug.WriteLine("Service ready.");
-			Ready?.Invoke();
-		}
-        public List<ICharacteristicBLE> Characteristics { get; private set; }
 
-        public string Id => mService.Uuid.ToString();
-		public override string ToString() => Id;
+		public ChangeEvent ValueChanged	{ get; set; }
+		public List<ICharacteristicBLE> Characteristics { get; private set; } = new List<ICharacteristicBLE>();
 
-		async void Build(ChangeEvent pEvent)
-		{
-            var arg = await mService.GetCharacteristicsAsync();
-			CharacteristicsAquired(arg, pEvent);
-		}
-		private int Uninitialised = 0;
-		private void ItemReady()
-		{
-			--Uninitialised;
-			if (Uninitialised == 0)
-				TriggerReady();
-		}
-		private void CharacteristicsAquired(GattCharacteristicsResult result, ChangeEvent pEvent)
+		private void CharacteristicsAquired(GattCharacteristicsResult pResult)
         {
-            //Clear existing.
-            Characteristics = null;
-            Characteristics = new List<ICharacteristicBLE>();
+			//Clear existing
+			Characteristics = null;
+			Characteristics = new List<ICharacteristicBLE>();
+			var characteristics = pResult.Characteristics;
 
-            //Build list
-            var characteristics = result.Characteristics;
-			Uninitialised = characteristics.Count;
-			foreach (var item in result.Characteristics)
-				Characteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));
+			//Build list
+			foreach (var item in characteristics)
+				Characteristics.Add(new CharacteristicBLE(item));
+
+			foreach (var item in Characteristics)
+				item.ValueChanged += ValueChanged;
 		}
 		
+		private async void Build() => CharacteristicsAquired(await mService.GetCharacteristicsAsync());
 		public void Remake()
 		{
+			Debug.WriteLine("Service remaking");
 			foreach (var characteristic in Characteristics)
 				characteristic.Remake();
-		}
+			Characteristics = new List<ICharacteristicBLE>();
 
-		public ServiceBLE(GattDeviceService pInput, SetupComplete ready, ChangeEvent pEvent)
+			Task.Factory.StartNew(Build);
+		}
+		public ServiceBLE(GattDeviceService pInput)
 		{
-			Ready	   = ready;
-			mService	= pInput;
-			Build(pEvent);
+			mService = pInput;
+			Task.Factory.StartNew(Build);
 		}
 		~ServiceBLE()
 		{
-			Debug.WriteLine("Deregistering Service.");
+			Debug.WriteLine("De-registering service");
 			Remake();
 			mService.Dispose();
 			mService = null;
 			Characteristics = null;
 		}
+
+		public string Id => mService.Uuid.ToString();
+		public override string ToString() => Id;
 	}
 }

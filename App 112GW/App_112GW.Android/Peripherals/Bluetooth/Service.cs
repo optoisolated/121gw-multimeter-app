@@ -12,30 +12,19 @@ namespace App_121GW.BLE
 {
 	public class ServiceBLE : IServiceBLE
 	{
-		public event SetupComplete			Ready;
-
-		private ChangeEvent					mEvent;
-		private volatile IService			mService;
+		private volatile IService mService;
+		public ChangeEvent ValueChanged { get; set; } 
 
 		public List<ICharacteristicBLE>		Characteristics { get; }
 		public string						Id => mService.Id.ToString();
+		public override string				ToString() => Id;
 
-		void TriggerReady() => Ready?.Invoke();
-		public override string ToString() => Id;
-
-		private int Uninitialised = 0;
-		private void ItemReady()
-		{
-			if (--Uninitialised == 0)
-				TriggerReady();
-		}
 		private void AddCharacteristics(IList<ICharacteristic> obj)
 		{
-			Uninitialised = obj.Count;
 			foreach (var item in obj)
 			{
 				Debug.WriteLine("Characteristic adding : " + item.Name);
-				Characteristics.Add(new CharacteristicBLE(item, ItemReady, mEvent));
+				Characteristics.Add(new CharacteristicBLE(item, ValueChanged));
 			}
 		}
 		private async void Build()
@@ -44,12 +33,11 @@ namespace App_121GW.BLE
 			AddCharacteristics(characteristics);
 		}
 
-		public ServiceBLE(IService pInput, SetupComplete ready, ChangeEvent pEvent)
+		public ServiceBLE(IService pInput, ChangeEvent pEvent)
 		{
 			Characteristics = new List<ICharacteristicBLE>();
-			Ready			+=  ready;
 			mService		=   pInput;
-			mEvent			=   pEvent;
+			ValueChanged	=   pEvent;
 
 			Task.Factory.StartNew(Build);
 		}

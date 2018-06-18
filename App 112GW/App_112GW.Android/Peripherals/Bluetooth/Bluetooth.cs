@@ -9,6 +9,6 @@ namespace App_121GW.BLE.Droid
 {
     class Bluetooth : IBluetooth
     {
-        public IClientBLE Create(BluetoothDeviceFilter pFilter) => new ClientBLE(pFilter);
+        public IClientBLE Create(IBluetoothDeviceFilter pFilter) => new ClientBLE(pFilter);
     }
 }

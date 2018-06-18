@@ -23,83 +23,35 @@ namespace App_121GW
 	public class Settings : AutoGrid
 	{
 		public delegate void AddBluetoothDevice(IDeviceBLE pDevice);
+
 		public event AddBluetoothDevice AddDevice;
 		private BluetoothDeviceSelector BluetoothSelectDevice = new BluetoothDeviceSelector(new Bluetooth121GWFilter());
-		private GeneralButton ButtonLeft;
-		private GeneralButton ButtonRight;
 
-		public Settings ()
+		public Settings() : base()
 		{
-			ButtonLeft  = new GeneralButton("", ButtonLeft_Clicked);
-			ButtonRight = new GeneralButton("", ButtonRight_Clicked);
-
 			//Setup connected event
-			DefineGrid(2, 4);
+			DefineGrid(1, 4);
 
 			//Setup default display
-			AutoAdd(new GeneralView { Content = new Label { Text = "Select the 121GW to connect to:" } }, 2);
+			AutoAdd(new GeneralLabel { Text = "Select the 121GW to connect to:" });
 			FormatCurrentRow(GridUnitType.Auto);
 
-			AutoAdd(BluetoothSelectDevice, 2);
+			AutoAdd(BluetoothSelectDevice);
 			FormatCurrentRow(GridUnitType.Star);
 
-			AutoAdd(ButtonLeft);
+			AutoAdd(new GeneralLabel { Text = "Build : " + Version.Build() });
 			FormatCurrentRow(GridUnitType.Auto);
-			AutoAdd(new GeneralView { Content = new Label { Text = ("Build : " + Version.Build()), VerticalTextAlignment = TextAlignment.Center, VerticalOptions = LayoutOptions.Fill } });
-			FormatCurrentRow(GridUnitType.Auto);
-			
-			ClearRightButton();
-			ClearLeftButton();
 
-			SetLeftButton("Refresh", RefreshDevices);
+			AutoAdd(new GeneralButton("Refresh", async (o, e) => await BluetoothSelectDevice.Reset()));
+			FormatCurrentRow(GridUnitType.Auto);
+
 			BluetoothSelectDevice.Connected += Connected;
 		}
 
-		private async void RefreshDevices(object sender, EventArgs e) => await BluetoothSelectDevice.Reset();
 		private void Connected(IDeviceBLE pDevice)
 		{
 			if (pDevice == null) return;
 			AddDevice?.Invoke(pDevice);
-		}
-
-		private event EventHandler RightButtonEvent;
-		private event EventHandler LeftButtonEvent;
-
-		private void ButtonRight_Clicked(object sender, EventArgs e) => RightButtonEvent?.Invoke(sender, e);
-		private void ButtonLeft_Clicked(object sender, EventArgs e) => LeftButtonEvent?.Invoke(sender, e);
-		
-		private string LeftButtonText
-		{
-			set => ButtonLeft.Text = value;
-		}
-		private string RightButtonText
-		{
-			set => ButtonRight.Text = value;
-		}
-
-		public void SetLeftButton(string LeftText, EventHandler LeftEvent)
-		{
-			LeftButtonEvent = null;
-			LeftButtonEvent += LeftEvent;
-			LeftButtonText = LeftText;
-			ButtonLeft.IsVisible = true;
-		}
-		public void SetRightButton(string RightText, EventHandler RightEvent)
-		{
-			RightButtonEvent = null;
-			RightButtonEvent += RightEvent;
-			RightButtonText = RightText;
-			ButtonRight.IsVisible = true;
-		}
-		public void ClearRightButton()
-		{
-			RightButtonEvent = null;
-			ButtonRight.IsVisible = false;
-		}
-		public void ClearLeftButton()
-		{
-			LeftButtonEvent = null;
-			ButtonLeft.IsVisible = false;
 		}
 	}
 }

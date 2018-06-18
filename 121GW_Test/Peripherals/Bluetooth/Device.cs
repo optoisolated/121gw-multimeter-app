@@ -11,64 +11,68 @@ namespace App_121GW.BLE
         public IDevice mDevice;
         public ChangeEvent ValueChanged { get; set; }
 
-		public string Id => mDevice.Id.ToString();
-        public string Name => mDevice.Name;
-		public bool Paired => (mDevice.State == Plugin.BLE.Abstractions.DeviceState.Connected);
+		public string Id	=> mDevice.Id.ToString();
+        public string Name	=> mDevice.Name;
+		public bool Paired	=> (mDevice.State == Plugin.BLE.Abstractions.DeviceState.Connected);
         public bool CanPair => true;
 
-        public UnPairedDeviceBLE(IDevice pDevice) { mDevice = pDevice; }
-        public override string ToString() =>  Name + "\n" + Id;
+        public override string ToString()	=>  Name + "\n" + Id;
 
-        public void Remake(object o) => throw new NotImplementedException();
-        public void Unregister() => throw new NotImplementedException();
-		public void Dispose() => throw new NotImplementedException();
+        public void Remake(object o)		=> throw new NotImplementedException();
+        public void Unregister()			=> throw new NotImplementedException();
+		public void Dispose()				=> throw new NotImplementedException();
 
-		public List<IServiceBLE> Services => null;
-    }
-    public class PairedDeviceBLE : IDeviceBLE
+		public List<IServiceBLE> Services	=> null;
+
+		public UnPairedDeviceBLE(IDevice pDevice) { mDevice = pDevice; }
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public class PairedDeviceBLE : IDeviceBLE
 	{
 		private IDevice mDevice;
-		public ChangeEvent ValueChanged { get; set; }
+		public ChangeEvent ValueChanged { get; set; } = null;
+		public List<IServiceBLE> Services { get; set; } = new List<IServiceBLE>();
 
-		public List<IServiceBLE> Services { get; private set; }
-
-		void AddServices(IList<IService> obj)
+		void AddServices(IList<IService> pServices)
 		{
-			foreach (var item in obj)
-			{
-				Debug.WriteLine("Service adding : " + item.Name);
+			Debug.WriteLine("Services Aquired");
+			foreach (var item in pServices)
 				Services.Add(new ServiceBLE(item));
-			}
+
 			foreach (var service in Services)
 				service.ValueChanged += ValueChanged;
 		}
-		void Build() => Task.Factory.StartNew(async () => AddServices(await mDevice.GetServicesAsync()));
+		void Build() => Task.Factory.StartNew( async () => AddServices( await mDevice.GetServicesAsync() ) );
 
-        public PairedDeviceBLE(IDevice pDevice)
-        {
-            Services = new List<IServiceBLE>();
-            mDevice = pDevice;
-            Build();
-		}
 		public void Remake(object o)
 		{
-			Debug.WriteLine("Remaking.");
+			mDevice = null;
+			mDevice = o as IDevice;
+
+			Debug.WriteLine("Remaking");
 
 			foreach (var se in Services) se.Remake();
 			Services = null;
 			Services = new List<IServiceBLE>();
 
-			mDevice = null;
-			mDevice = o as IDevice;
-
 			Build();
 		}
 		public void Unregister() { }
 
-		public string			Id => mDevice.Id.ToString();
-		public override string	ToString() => Name + "\n" + Id;
-		public string			Name => mDevice.Name;
-		public bool				Paired => (mDevice.State == Plugin.BLE.Abstractions.DeviceState.Connected);
-		public bool				CanPair => true;
+		public PairedDeviceBLE( IDevice pDevice )
+		{
+			mDevice = pDevice;
+			Build();
+		}
+		~PairedDeviceBLE()
+		{
+		}
+
+		public string Id => mDevice.Id.ToString();
+		public string Name => mDevice.Name;
+		public bool Paired => (mDevice.State == Plugin.BLE.Abstractions.DeviceState.Connected);
+		public bool CanPair => true;
+
+		public override string ToString() => Name + "\n" + Id;
 	}
 }

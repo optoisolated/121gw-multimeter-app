@@ -37,7 +37,7 @@ namespace App_121GW
 		private bool mActive;
 		private VariableMonitor<bool> mChanged;
 		private VariableMonitor<bool> mRenderChanged;
-		public event EventHandler OnChanged;
+		public event EventHandler OnChanged { add => mChanged.OnChanged += value; remove => mChanged.OnChanged -= value; }
 
 		public SKImage  mImage;
 		public string Name { get; private set; }

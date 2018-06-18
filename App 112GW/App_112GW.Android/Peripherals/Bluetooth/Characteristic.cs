@@ -12,7 +12,6 @@ namespace App_121GW.BLE
 {
 	public class CharacteristicBLE : ICharacteristicBLE
 	{
-		public event SetupComplete Ready;
 		public event ChangeEvent ValueChanged;
 		public volatile ICharacteristic mCharacteristic;
 
@@ -43,22 +42,14 @@ namespace App_121GW.BLE
 			ValueChanged?.Invoke(sender, charEvent);
 		}
 
-		public CharacteristicBLE(ICharacteristic pInput, SetupComplete ready, ChangeEvent pEvent)
+		public CharacteristicBLE(ICharacteristic pInput, ChangeEvent pEvent)
 		{
-			Ready += ready;
 			ValueChanged += pEvent;
 			mCharacteristic = pInput;
 			mCharacteristic.ValueUpdated +=  CharacteristicEvent_ValueChanged;
 
 			if (mCharacteristic.CanUpdate)
-			{
-				Task.Factory.StartNew(async () =>
-				{
-					await mCharacteristic.StartUpdatesAsync();
-					Ready?.Invoke();
-				});
-			}
-			else Ready?.Invoke();
+				Task.Factory.StartNew(async () => await mCharacteristic.StartUpdatesAsync());
 		}
 
 		public void Remake() => throw new NotImplementedException();

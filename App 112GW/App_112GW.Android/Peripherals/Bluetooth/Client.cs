@@ -57,15 +57,13 @@ namespace App_121GW.BLE
                 await mAdapter.StopScanningForDevicesAsync();
 
                 Debug.WriteLine("Connection Complete.");
-                return new PairedDeviceBLE((pInput as UnPairedDeviceBLE).mDevice, TriggerDeviceConnected);
+                return new PairedDeviceBLE((pInput as UnPairedDeviceBLE).mDevice);
             }
             return null;
         }
 
 		public ClientBLE(IBluetoothDeviceFilter pFilter) : base(pFilter)
 		{
-			mConnectedDevices = new ObservableCollection<IDeviceBLE>();
-
 			//Setup bluetoth basic adapter
 			mDevice	 = CrossBluetoothLE.Current;
 			mAdapter = CrossBluetoothLE.Current.Adapter;
@@ -93,7 +91,7 @@ namespace App_121GW.BLE
 			string disconnect_Id = e.Device.Id.ToString();
 			Debug.WriteLine( "DeviceConnection_Lost." );
 			Debug.WriteLine( disconnect_Id );
-			foreach (var item in mConnectedDevices)
+			foreach (var item in ConnectedDevices)
 				if (item.Id == disconnect_Id)
 				{
 					Debug.WriteLine(item.Id);

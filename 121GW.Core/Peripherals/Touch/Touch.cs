@@ -99,7 +99,8 @@ namespace App_121GW
 				ZoomX = 1 + XDistanceDelta / _XDistance;
 
 				if (float.IsInfinity(ZoomX)) ZoomX = 1;
-				if (ZoomX < 0) ZoomX = 1;
+
+				ZoomX = Globals.Clip(ZoomX, 0.5f, 1.5f);
 			}
 		}
 		private float  _YDistance;
@@ -114,7 +115,8 @@ namespace App_121GW
 				ZoomY = 1 + YDistanceDelta / _YDistance;
 
 				if (float.IsInfinity(ZoomY)) ZoomY = 1;
-				if (ZoomY < 0) ZoomY = 1;
+
+				ZoomY = Globals.Clip(ZoomY, 0.5f, 1.5f);
 			}
 		}
         public float Distance => (float)Math.Sqrt(XDistance * XDistance + YDistance * YDistance);

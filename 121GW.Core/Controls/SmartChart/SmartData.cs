@@ -23,20 +23,9 @@ namespace App_121GW
             Points.Clear();
 		}
 
-		private List<SKPoint> PointsList
-		{
-			get
-			{
-				return Points.ToList();
-			}
-		}
-		private SKPoint[] PointsArray
-		{
-			get
-			{
-				return Points.ToList().ToArray();
-			}
-		}
+		private List<SKPoint> PointsList => Points.ToList();
+		private SKPoint[] PointsArray => Points.ToList().ToArray();
+
 		protected (SKPath, SKRect) Path
 		{
 			get

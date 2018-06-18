@@ -44,7 +44,6 @@ namespace App_121GW
         public static SKPaint MinorPaint (float scale) => ScaledPaint(scale, _MajorPaint);
 		public static SKPaint MaskPaint { get; private set; } = MakeDefaultPaint(Globals.BackgroundColor, 1, Globals.MinorFontSize, Globals.Typeface);
 
-
 		public static SKPaint GridPaint(float scale)
         {
             var temp = ScaledPaint(scale, _GridPaint);
@@ -85,11 +84,8 @@ namespace App_121GW
 			}
 		}
 
-		#region EVENTS
 		public event EventHandler Clicked;
-		#endregion
 		
-		#region TOUCHSCREEN
 		private Touch mTouch;
 		private void MTouch_Press   (object sender, TouchActionEventArgs args)  {}
 		private void MTouch_Hover   (object sender, TouchActionEventArgs args)  {}
@@ -133,7 +129,6 @@ namespace App_121GW
 			var Center = args.Pinch.Center;
 			Data.Axis.Zoom(zoomX, zoomY, (float)Center.X, (float)Center.Y);
 		}
-		#endregion
         
 
         public override void PaintSurface(SKCanvas canvas, SKSize dimension, SKSize viewsize)

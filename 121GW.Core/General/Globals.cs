@@ -7,6 +7,13 @@ namespace App_121GW
 {
     public static class Globals
 	{
+		public static float Clip(float pInput, float pMinimum, float pMaximum)
+		{
+			if (pInput > pMaximum) return pMaximum;
+			if (pInput < pMinimum) return pMinimum;
+			return pInput;
+		}
+
 		private static Random random = new Random();
 		public static void RunMainThread(Action input)
 		{

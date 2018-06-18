@@ -16,6 +16,7 @@ namespace App_121GW.BLE
         Task Stop();
         Task Rescan();
         Task Reset();
+		void Clear();
 
         Task<IDeviceBLE> Connect(IDeviceBLE pInput);
 	}
@@ -24,6 +25,12 @@ namespace App_121GW.BLE
 		private readonly IBluetoothDeviceFilter mFilter;
 		public ObservableCollection<IDeviceBLE> ConnectedDevices { get; private set; } = new ObservableCollection<IDeviceBLE>();
 		public ObservableCollection<IDeviceBLE> VisibleDevices { get; private set; } = new ObservableCollection<IDeviceBLE>();
+
+
+		public void Clear()
+		{
+			VisibleDevices.Clear();
+		}
 
 		public IDeviceBLE DeviceConnected( IDeviceBLE pInput )
 		{

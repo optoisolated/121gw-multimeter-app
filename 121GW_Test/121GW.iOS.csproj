@@ -94,6 +94,7 @@
     <Compile Include="Peripherals\Bluetooth\Service.cs" />
     <Compile Include="Peripherals\Touch\Touch.cs" />
     <Compile Include="Peripherals\Touch\TouchRecognizer.cs" />
+    <Compile Include="Peripherals\Version\Version.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="AppLogo.ico" />
     <BundleResource Include="Banner2048x996.png" />

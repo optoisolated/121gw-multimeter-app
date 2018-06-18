@@ -34,14 +34,18 @@ namespace App_121GW
 			ButtonRight = new GeneralButton("", ButtonRight_Clicked);
 
 			//Setup connected event
-			DefineGrid(2, 2);
+			DefineGrid(2, 4);
 
 			//Setup default display
+			AutoAdd(new GeneralView { Content = new Label { Text = "Select the 121GW to connect to:" } }, 2);
+			FormatCurrentRow(GridUnitType.Auto);
+
 			AutoAdd(BluetoothSelectDevice, 2);
 			FormatCurrentRow(GridUnitType.Star);
-			
+
 			AutoAdd(ButtonLeft);
-			AutoAdd(ButtonRight);
+			FormatCurrentRow(GridUnitType.Auto);
+			AutoAdd(new GeneralView { Content = new Label { Text = ("Build : " + Version.Build()), VerticalTextAlignment = TextAlignment.Center, VerticalOptions = LayoutOptions.Fill } });
 			FormatCurrentRow(GridUnitType.Auto);
 			
 			ClearRightButton();
@@ -51,10 +55,7 @@ namespace App_121GW
 			BluetoothSelectDevice.Connected += Connected;
 		}
 
-		private async void RefreshDevices(object sender, EventArgs e)
-		{
-			await BluetoothSelectDevice.Reset();
-		}
+		private async void RefreshDevices(object sender, EventArgs e) => await BluetoothSelectDevice.Reset();
 		private void Connected(IDeviceBLE pDevice)
 		{
 			if (pDevice == null) return;
@@ -69,17 +70,11 @@ namespace App_121GW
 		
 		private string LeftButtonText
 		{
-			set
-			{
-				ButtonLeft.Text = value;
-			}
+			set => ButtonLeft.Text = value;
 		}
 		private string RightButtonText
 		{
-			set
-			{
-				ButtonRight.Text = value;
-			}
+			set => ButtonRight.Text = value;
 		}
 
 		public void SetLeftButton(string LeftText, EventHandler LeftEvent)

@@ -1,18 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
-using System.ComponentModel;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.Platform;
 using System.Diagnostics;
-
-using System.Collections;
-using System.Threading;
 
 namespace App_121GW
 {
@@ -87,6 +76,12 @@ namespace App_121GW
 		public Point PointA { get; private set; }
 		public Point PointB { get; private set; }
 
+		public const float MaxZoomRate = 0.25f;
+		public const float MaxZoomValue = 1.0f + MaxZoomRate;
+		public const float MinZoomValue = 1.0f - MaxZoomRate;
+
+		float GetZoom(float pDelta, float pDistance) => Globals.Clip(1 + pDelta / pDistance, MinZoomValue, MaxZoomValue);
+
 		private float  _XDistance;
 		public float   XDistance
 		{
@@ -96,11 +91,7 @@ namespace App_121GW
 				var dist = Math.Abs(value);
 				XDistanceDelta = dist - _XDistance;
 				_XDistance = dist;
-				ZoomX = 1 + XDistanceDelta / _XDistance;
-
-				if (float.IsInfinity(ZoomX)) ZoomX = 1;
-
-				ZoomX = Globals.Clip(ZoomX, 0.5f, 1.5f);
+				ZoomX = GetZoom(XDistanceDelta, dist);
 			}
 		}
 		private float  _YDistance;
@@ -112,11 +103,7 @@ namespace App_121GW
 				var dist = Math.Abs(value);
 				YDistanceDelta = dist - _YDistance;
 				_YDistance = dist;
-				ZoomY = 1 + YDistanceDelta / _YDistance;
-
-				if (float.IsInfinity(ZoomY)) ZoomY = 1;
-
-				ZoomY = Globals.Clip(ZoomY, 0.5f, 1.5f);
+				ZoomY = GetZoom(YDistanceDelta, dist);
 			}
 		}
         public float Distance => (float)Math.Sqrt(XDistance * XDistance + YDistance * YDistance);
@@ -337,7 +324,7 @@ namespace App_121GW
 						{
 							var temp = new TouchPanActionEventArgs(dx, dy);
 							var dist = temp.Distance;
-							if (dist > 0)
+							if (dist > 0f)
 							{
 								if (Mode == TouchMode.Pan || temp.Distance > GestureThreshold)
 								{
@@ -351,7 +338,7 @@ namespace App_121GW
 					case 2:
 						{
 							var temp = new TouchPinchActionEventArgs(PinchProcessor);
-							if (temp.Pinch.DistanceDelta >= 0)
+							if (temp.Pinch.DistanceDelta >= 0f)
 							{
 								Mode = TouchMode.Pinch;
 								if (PinchProcessor.Set(item1.Position, item2.Position))

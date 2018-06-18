@@ -9,8 +9,12 @@ namespace App_121GW
 	{
 		public static float Clip(float pInput, float pMinimum, float pMaximum)
 		{
+			if (float.IsInfinity(pInput))	return 1.0f;
+			if (float.IsNaN(pInput))		return 1.0f;
+
 			if (pInput > pMaximum) return pMaximum;
 			if (pInput < pMinimum) return pMinimum;
+
 			return pInput;
 		}
 

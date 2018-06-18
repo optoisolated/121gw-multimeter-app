@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: Xamarin.Forms.Dependency(typeof(App_121GW.BLE.Android.Bluetooth))]
-namespace App_121GW.BLE.Android
+[assembly: Xamarin.Forms.Dependency(typeof(App_121GW.BLE.Droid.Bluetooth))]
+namespace App_121GW.BLE.Droid
 {
     class Bluetooth : IBluetooth
     {

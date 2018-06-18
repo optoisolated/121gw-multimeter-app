@@ -52,6 +52,7 @@ namespace App_121GW.BLE
 				{
 					IsBusy = true;
 					Connected?.Invoke(await mClient?.Connect((e.SelectedItem as IDeviceBLE)));
+					mClient.Clear();
 				}
 				finally
 				{
@@ -60,6 +61,5 @@ namespace App_121GW.BLE
 			};
 			mDevices.ItemsSource = mClient.VisibleDevices;
 		}
-        
-    }
+	}
 }

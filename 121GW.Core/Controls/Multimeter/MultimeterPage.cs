@@ -17,7 +17,7 @@ namespace App_121GW
             get { return base.Title; }
             set
             {
-                base.Title = "[ " + value + " ]";
+                base.Title = "[ 121GW " + value + " ]";
             }
         }
         private void Device_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

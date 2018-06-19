@@ -166,7 +166,7 @@ namespace App_121GW
 		public int          MainRangeIndex  => Nibble(6, false);
         public int          MainRangeValue  => MainRange.mValues[MainRangeIndex];
         public char         MainRangeUnits  => MainRange.mNotation[MainRangeIndex];
-        public int          MainIntValue    => (mData[7] << 8) | mData[8];
+        public int          MainIntValue    => ((mData[5] >> 6) & 0x3) | (mData[7] << 8) | mData[8];
         public eMode        SubMode         => (eMode)mData[9];
         public bool         SubOverload     => (Nibble(10, true) & 0x8) != 0;
         public eSign        SubSign         => ((eSign)BoolToInt((Nibble(10, true) & 0x4) > 0));

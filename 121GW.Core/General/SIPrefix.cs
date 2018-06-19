@@ -5,12 +5,21 @@ using System.Text;
 
 namespace App_121GW
 {
-    public class SIValue
-    {
-		private char[]  UnitLookup	=	{ 'a', 'f', 'p','n','u','m',' ','k','M','G','T', 'P', 'E'};
-		public double	Value			{ get; }
-		public int		SigFigures		{ get; }
-		public double	Power		=>	Math.Floor(Math.Log10(Math.Abs(Value)));
+	public class SIValue
+	{
+		private char[] UnitLookup = { 'a', 'f', 'p', 'n', 'u', 'm', ' ', 'k', 'M', 'G', 'T', 'P', 'E' };
+		public double Value { get; }
+		public int SigFigures { get; }
+		public double Power
+		{
+			get
+			{
+				var power = (float)Math.Floor(Math.Log10(Math.Abs(Value)));
+				if (float.IsNaN(power)) return 1.0f;
+				if (float.IsInfinity(power)) return 1.0f;
+				return power;
+			}
+		}
 		public double	Multiply	=>	Math.Pow(10, -SI_Power);
 
 		public double	SI_Power	=>	Math.Floor(Power / 3.0) * 3.0;

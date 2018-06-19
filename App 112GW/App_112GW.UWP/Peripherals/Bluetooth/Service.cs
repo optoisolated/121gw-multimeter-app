@@ -1,48 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
 namespace App_121GW.BLE
 {
     public class ServiceBLE : IServiceBLE
 	{
-		private GattDeviceService mService;
-		public event SetupComplete Ready;
-		void TriggerReady()
-		{
-			Debug.WriteLine("Service ready.");
-			Ready?.Invoke();
-		}
+		private GattDeviceService		mService;
+		public ChangeEvent				ValueChanged	{ get; set; }
         public List<ICharacteristicBLE> Characteristics { get; private set; }
 
-        public string Id => mService.Uuid.ToString();
-		public override string ToString() => Id;
-
-		async void Build(ChangeEvent pEvent)
-		{
-            var arg = await mService.GetCharacteristicsAsync();
-			CharacteristicsAquired(arg, pEvent);
-		}
-		private int Uninitialised = 0;
-		private void ItemReady()
-		{
-			--Uninitialised;
-			if (Uninitialised == 0)
-				TriggerReady();
-		}
-		private void CharacteristicsAquired(GattCharacteristicsResult result, ChangeEvent pEvent)
+		private void CharacteristicsAquired(GattCharacteristicsResult pResult)
         {
             //Clear existing.
             Characteristics = null;
             Characteristics = new List<ICharacteristicBLE>();
 
-            //Build list
-            var characteristics = result.Characteristics;
-			Uninitialised = characteristics.Count;
-			foreach (var item in result.Characteristics)
-				Characteristics.Add(new CharacteristicBLE(item, ItemReady, pEvent));
+			foreach (var item in pResult.Characteristics)
+				Characteristics.Add(new CharacteristicBLE(item));
+
+			foreach (var item in Characteristics)
+				item.ValueChanged += ValueChanged;
 		}
+		void Build() => Task.Factory.StartNew(async ()=>CharacteristicsAquired(await mService.GetCharacteristicsAsync()));
 		
 		public void Remake()
 		{
@@ -50,19 +32,20 @@ namespace App_121GW.BLE
 				characteristic.Remake();
 		}
 
-		public ServiceBLE(GattDeviceService pInput, SetupComplete ready, ChangeEvent pEvent)
+		public ServiceBLE(GattDeviceService pInput)
 		{
-			Ready	   = ready;
-			mService	= pInput;
-			Build(pEvent);
+			mService = pInput;
+			Build();
 		}
 		~ServiceBLE()
 		{
 			Debug.WriteLine("Deregistering Service.");
 			Remake();
-			mService.Dispose();
 			mService = null;
 			Characteristics = null;
 		}
+
+		public string Id => mService.Uuid.ToString();
+		public override string ToString() => Id;
 	}
 }

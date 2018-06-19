@@ -71,6 +71,8 @@ namespace App_121GW
 	public class SmartChart : GeneralRenderedView
     {
 		private SmartData   Data;
+		public void Reset() => Data.Reset();
+
 		private SmartTitle  _Title = new SmartTitle() { Title = "" };
 		public string Title
 		{
@@ -110,7 +112,6 @@ namespace App_121GW
 		private void MTouch_Pan(object sender, TouchPanActionEventArgs args) => Data.Axis.Pan((float)args.Dx, (float)args.Dy);
 
 		public async void SaveCSV() => await Files.Save(Data.GetCSV());
-
 		private void MTouch_Scroll(object sender, ScrollActionEventArgs args)
         {
             var dist = 1f + (float)args.Steps / (720f);
@@ -121,7 +122,6 @@ namespace App_121GW
 
             Data.Axis.Zoom(zoomX, zoomY, (float)Center.X, (float)Center.Y);
         }
-
 		private void MTouch_Pinch(object sender, TouchPinchActionEventArgs args)
 		{
 			var zoomX = (float)args.Pinch.ZoomX;
@@ -129,8 +129,6 @@ namespace App_121GW
 			var Center = args.Pinch.Center;
 			Data.Axis.Zoom(zoomX, zoomY, (float)Center.X, (float)Center.Y);
 		}
-        
-
         public override void PaintSurface(SKCanvas canvas, SKSize dimension, SKSize viewsize)
         {
             canvas.Clear(BackgroundColor.ToSKColor());

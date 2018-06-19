@@ -189,7 +189,7 @@ namespace App_121GW
 				var OldVal = Point.Position;
 				var DeltaX = NewVal.X - OldVal.X;
 				var DeltaY = NewVal.Y - OldVal.Y;
-				_Delta = (float)Math.Sqrt(DeltaX * DeltaX + DeltaY * DeltaY);
+				Delta = (float)Math.Sqrt(DeltaX * DeltaX + DeltaY * DeltaY);
 				Point.Position = value;
 			}
 		}
@@ -204,19 +204,8 @@ namespace App_121GW
 				Point.TouchType = value;
 			}
 		}
-		private float _Delta;
-		public float Delta
-		{
-			get
-			{
-				return _Delta;   
-			}
-			set
-			{
-				_Delta = value;
-			}
-		}
-		
+		public float Delta { get; set; }
+
 		public TouchCursor (TouchPoint pPoint)
 		{
 			Point = pPoint;
@@ -316,7 +305,7 @@ namespace App_121GW
 				if (Cursors.Count >= 2)
 					Mode = TouchMode.Pinch;
 			}
-			else
+			//else
 			{
 				var item1 = Cursors[ args.ID ];
 				TouchCursor item2 = item1;
@@ -337,7 +326,7 @@ namespace App_121GW
 						{
 							var temp = new TouchPanActionEventArgs(dx, dy);
 							var dist = temp.Distance;
-							if (dist > 0)
+							if (dist > 0.0f)
 							{
 								if (Mode == TouchMode.Pan || temp.Distance > GestureThreshold)
 								{
@@ -481,7 +470,7 @@ namespace App_121GW
 		}
 
 		//Initialise class and base
-		public Touch(int pTapTimeout = 500, float pThreshold = 4) : base("App_121GW.Touch")
+		public Touch(int pTapTimeout = 500, float pThreshold = 1) : base("App_121GW.Touch")
 		{
 			GestureThreshold = pThreshold;
 			TapTimeout = pTapTimeout;

@@ -12,20 +12,18 @@ namespace App_121GW.BLE
         public event ChangeEvent ValueChanged;
         public volatile ICharacteristic mCharacteristic;
 
-        public bool Send(string pInput) => Send(Encoding.UTF8.GetBytes(pInput));
-        public bool Send(byte[] pInput)
+        public void Send(string pInput) => Send(Encoding.UTF8.GetBytes(pInput));
+        public void Send(byte[] pInput)
         {
             try
 			{
 				Task.Factory.StartNew(async () => await mCharacteristic.WriteAsync(pInput));
-				return true;
             }
             catch (Exception e)
             {
                 Debug.WriteLine("Failed to Send.");
                 Debug.WriteLine(e);
             }
-            return false;
         }
 
         //Event that is called when the value of the characteristic is changed

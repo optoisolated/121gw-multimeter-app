@@ -14,14 +14,8 @@ namespace App_121GW
 		public event EventHandler SaveClicked;
 		public event EventHandler ResetClicked;
 
-		private void ButtonPress_Save(object sender, EventArgs e)
-		{
-			SaveClicked?.Invoke(sender, e);
-		}
-		private void ButtonPress_Reset(object sender, EventArgs e)
-		{
-			ResetClicked?.Invoke(sender, e);
-		}
+		private void ButtonPress_Save(object sender, EventArgs e) => SaveClicked?.Invoke(sender, e);
+		private void ButtonPress_Reset(object sender, EventArgs e) => ResetClicked?.Invoke(sender, e);
 
 		public SmartChartMenu(bool ShowSave = true, bool ShowReset = true)
 		{

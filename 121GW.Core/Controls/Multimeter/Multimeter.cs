@@ -135,7 +135,12 @@ namespace App_121GW
             else
                 MyProcessor.Reset();
         }
-        public void Reset() => Logger.Reset();
+		public void Reset()
+		{
+			Logger.Reset();
+			Chart.Reset();
+		}
+
         public Multimeter(BLE.IDeviceBLE pDevice)
         {
             mDevice = pDevice ?? throw new Exception("Multimeter must connect to a BLE device, not null.");

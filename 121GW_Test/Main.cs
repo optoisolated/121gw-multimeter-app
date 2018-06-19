@@ -8,7 +8,7 @@ namespace App_121GW.iOS
 		static void Main(string[] args)
 		{
 			UIButton.Appearance.TintColor = UIColor.LightGray;
-			UIButton.Appearance.SetTitleColor(UIColor.FromRGB(0, 127, 14), UIControlState.Normal);
+			UIButton.Appearance.SetTitleColor(UIColor.Black, UIControlState.Normal);
 
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.

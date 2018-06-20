@@ -13,8 +13,6 @@ namespace App_121GW
 		private Settings SettingsView = new Settings();
         private MathChart MathChart = new MathChart();
 
-		
-		
         private void AddPage(string Title, View Content) => Children.Add(new GeneralPage(Title, Content));
 
 		private void AddDevice(MultimeterPage Device)

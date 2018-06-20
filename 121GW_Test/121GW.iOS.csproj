@@ -88,6 +88,7 @@
     <Compile Include="Peripherals\Files\Files.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\TabbedPageRenderer.cs" />
     <None Include="Info.plist" />
     <Compile Include="Peripherals\Bluetooth\Bluetooth.cs" />
     <Compile Include="Peripherals\Bluetooth\Characteristic.cs" />

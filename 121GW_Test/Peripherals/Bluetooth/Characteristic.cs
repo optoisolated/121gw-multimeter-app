@@ -29,6 +29,7 @@ namespace App_121GW.BLE
         private void CharacteristicEvent_ValueChanged(object sender, Plugin.BLE.Abstractions.EventArgs.CharacteristicUpdatedEventArgs args)
         {
 			Debug.WriteLine("Value changed");
+
             ValueChanged?.Invoke(sender, new CharacteristicEvent(args.Characteristic.Value));
         }
 

@@ -40,7 +40,7 @@ namespace App_121GW.BLE
 				Services.Add(new ServiceBLE(item));
 
 			foreach (var service in Services)
-				service.ValueChanged += ValueChanged;
+				service.ValueChanged += (o, e) => ValueChanged?.Invoke(o, e);
 		}
 		void Build() => Task.Factory.StartNew( async () => AddServices( await mDevice.GetServicesAsync() ) );
 

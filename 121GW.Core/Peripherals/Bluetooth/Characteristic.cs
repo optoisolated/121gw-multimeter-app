@@ -8,7 +8,12 @@ namespace App_121GW.BLE
     {
         public byte[] Bytes;
 		override public string ToString() => Encoding.UTF8.GetString(Bytes);
-        public CharacteristicEvent(byte[] pNewValue) => Bytes = pNewValue;
+		public CharacteristicEvent(byte[] pNewValue)
+		{
+			Bytes = pNewValue;
+
+			Debug.WriteLine(ToString());
+		}
     }
     public interface ICharacteristicBLE
 	{

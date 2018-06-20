@@ -32,10 +32,10 @@ namespace App_121GW.BLE
         {
             var template = new DataTemplate(typeof(TextCell));
 
-            template.	SetBinding	(TextCell.TextProperty,			"Name"					);
-            template.	SetBinding	(TextCell.DetailProperty,		"Id"					);
-            template.	SetValue	(TextCell.TextColorProperty,	Globals.TextColor		);
-            template.	SetValue	(TextCell.DetailColorProperty,	Globals.TextColor		);
+            template.SetBinding	(TextCell.TextProperty,			"Name"					);
+            template.SetBinding	(TextCell.DetailProperty,		"Id"					);
+            template.SetValue	(TextCell.TextColorProperty,	Globals.TextColor		);
+            template.SetValue	(TextCell.DetailColorProperty,	Globals.TextColor		);
 
             return template;
         }

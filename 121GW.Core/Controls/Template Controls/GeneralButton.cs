@@ -10,6 +10,7 @@ namespace App_121GW
 			Text = pText;
 			Clicked += pEvent;
 			Margin = 0;
+			base.FontSize = Globals.MajorFontSize;
 		}
 	}
 }

@@ -6,9 +6,10 @@ namespace App_121GW
 	{
 		GeneralTabbedPage()
 		{
+			Padding			= Globals.Padding;
+			BarTextColor	= Globals.TextColor;
 			BackgroundColor = Globals.BackgroundColor;
-			Padding = Globals.Padding;
-			BarTextColor = Globals.TextColor;
+
 		}
 	}
 }

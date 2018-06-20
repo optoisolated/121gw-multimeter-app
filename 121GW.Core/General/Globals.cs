@@ -57,21 +57,21 @@ namespace App_121GW
 		{
 			get
 			{
-				return (float)Device.GetNamedSize(NamedSize.Medium, typeof(Label)); ;
+				return (float)Device.GetNamedSize(NamedSize.Large, typeof(Label)); ;
 			}
 		}
 		public static float     MajorFontSize
 		{
 			get
 			{
-				return (float)Device.GetNamedSize(NamedSize.Small, typeof(Label)); ;
+				return (float)Device.GetNamedSize(NamedSize.Medium, typeof(Label)); ;
 			}
 		}
 		public static float     MinorFontSize
 		{
 			get
 			{
-				return (float)Device.GetNamedSize(NamedSize.Small, typeof(Label)); ;
+				return (float)Device.GetNamedSize(NamedSize.Medium, typeof(Label)); ;
 			}
 		}
 

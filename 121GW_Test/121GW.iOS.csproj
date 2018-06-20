@@ -48,9 +48,10 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer: David Ledger (Q9LPA95382)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>iPhone Development New</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
@@ -64,8 +65,8 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: David Ledger (Q9LPA95382)</CodesignKey>
-    <CodesignProvision>iPhone Development New</CodesignProvision>
+    <CodesignKey>iPhone Distribution: JONESTRONICS PTY LTD (4T752Q4495)</CodesignKey>
+    <CodesignProvision>121GW Distribution</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <BuildIpa>true</BuildIpa>

@@ -7,7 +7,8 @@ namespace App_121GW.iOS
 		// This is the main entry point of the application.
 		static void Main(string[] args)
 		{
-			UIButton.Appearance.TintColor = UIColor.LightGray;
+			UIButton.Appearance.TintColor = UIColor.LightTextColor;
+			UIButton.Appearance.BackgroundColor = UIColor.FromRGB(200, 200, 200);
 			UIButton.Appearance.SetTitleColor(UIColor.Black, UIControlState.Normal);
 
 			// if you want to use a different Application Delegate class from "AppDelegate"

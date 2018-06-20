@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using System.Diagnostics;
 
 namespace App_121GW
 {
@@ -28,13 +29,23 @@ namespace App_121GW
 				Children.Add(dev);
 				CurrentPage = Children[Children.Count - 1];
 			});
-        }
+		}
 
-        public MainPage()
+
+		protected override void InvalidateMeasure()
+		{
+			base.InvalidateMeasure();
+			On<iOS>().SetUseSafeArea(true);
+			var safe = On<iOS>().SafeAreaInsets();
+			Padding = new Thickness(0, safe.Top, 0, 0);
+			Debug.WriteLine(safe.ToString());
+		}
+
+		public MainPage()
 		{
             On<Android>().SetIsSwipePagingEnabled(false);
-            On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
-
+            //On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
+			
             BackgroundColor = Globals.BackgroundColor;
 			SettingsView.AddDevice += Button_AddDevice;
 

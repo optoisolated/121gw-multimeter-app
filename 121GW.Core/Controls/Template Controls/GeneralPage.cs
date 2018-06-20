@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace App_121GW
 {
@@ -10,6 +11,7 @@ namespace App_121GW
 			Content = pContent;
 			Padding = Globals.Padding;
 			BackgroundColor = Globals.BackgroundColor;
+			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
 		}
 	}
 }

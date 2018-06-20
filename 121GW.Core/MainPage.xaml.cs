@@ -48,8 +48,7 @@ namespace App_121GW
 		public MainPage()
 		{
 			On<Android>().SetIsSwipePagingEnabled(false);
-            //On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True).SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
-			
+
             BackgroundColor = Globals.BackgroundColor;
 			SettingsView.AddDevice += Button_AddDevice;
 

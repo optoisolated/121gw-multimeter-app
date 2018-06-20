@@ -42,7 +42,6 @@ namespace App_121GW
             Wait();
             if (EnableTouchHorizontal)  Horizontal.Pan(dx);
 			if (EnableTouchVertical)    Vertical.Pan(dy);
-
 			Parent.Parent.InvalidateSurface();
             Release();
 		}
@@ -57,18 +56,18 @@ namespace App_121GW
 
 			float top	=	top_si.SI_Ceiling;
 			float bot	=	bot_si.SI_Floor;
-			
+
 			while (true)
 			{
 				{
 					var dist = (int)(top - bot);
-					if ((dist % ticks) == 0) break;
-					else top += 1;
+					if ((dist % ticks) == 0 && (dist != 0)) break;
+					else top += 1.0f;
 				}
 				{
 					var dist = (int)(top - bot);
-					if ((dist % ticks) == 0) break;
-					else bot -= 1;
+					if ((dist % ticks) == 0 && (dist != 0)) break;
+					else bot -= 1.0f;
 				}
 			}
 

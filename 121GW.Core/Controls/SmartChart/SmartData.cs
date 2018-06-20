@@ -1,16 +1,12 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System;
-using System.Threading;
 
 namespace App_121GW
 {
 	public abstract class ASmartData : ASmartElement
 	{
-		public SmartChart	   Parent  = null;
+		public SmartChart		Parent  = null;
 		public ASmartAxisPair   Axis	= null;
 
 		protected SKPaint DataPaint = MakeDefaultPaint(Globals.TextColor, 1, Globals.MajorFontSize, Globals.Typeface, IsStroke:true);
@@ -97,11 +93,7 @@ namespace App_121GW
             DataPaint.Color = Globals.UniqueColor().ToSKColor();
 			Axis.Parent	    = this;
 			Points          = pData;
-			Points.CollectionChanged += Points_CollectionChanged;
-		}
-		private void Points_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			Parent.InvalidateSurface();
+			Points.CollectionChanged += (s, e) => Parent.InvalidateSurface();
 		}
 	}
 }

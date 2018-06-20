@@ -1,57 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using System.Threading.Tasks;
+using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
 namespace App_121GW.BLE
 {
     public class ServiceBLE : IServiceBLE
 	{
-		private GattDeviceService mService;
-
-		public ChangeEvent ValueChanged	{ get; set; }
-		public List<ICharacteristicBLE> Characteristics { get; private set; } = new List<ICharacteristicBLE>();
+		private GattDeviceService		mService;
+		public ChangeEvent				ValueChanged	{ get; set; }
+        public List<ICharacteristicBLE> Characteristics { get; private set; }
 
 		private void CharacteristicsAquired(GattCharacteristicsResult pResult)
         {
-			//Clear existing
-			Characteristics = null;
-			Characteristics = new List<ICharacteristicBLE>();
-			var characteristics = pResult.Characteristics;
+            //Clear existing.
+            Characteristics = null;
+            Characteristics = new List<ICharacteristicBLE>();
 
-			//Build list
-			foreach (var item in characteristics)
+			foreach (var item in pResult.Characteristics)
 				Characteristics.Add(new CharacteristicBLE(item));
 
 			foreach (var item in Characteristics)
 				item.ValueChanged += ValueChanged;
 		}
+		void Build() => Task.Factory.StartNew(async ()=>CharacteristicsAquired(await mService.GetCharacteristicsAsync()));
 		
-		private async void Build() => CharacteristicsAquired(await mService.GetCharacteristicsAsync());
 		public void Remake()
 		{
-			Debug.WriteLine("Service remaking");
-
-			if (Characteristics != null)
-				if (Characteristics.Count > 0)
-					foreach (var characteristic in Characteristics)
-						characteristic.Remake();
-
-			Characteristics = new List<ICharacteristicBLE>();
-
-			Task.Factory.StartNew(Build);
+			foreach (var characteristic in Characteristics)
+				characteristic.Remake();
 		}
+
 		public ServiceBLE(GattDeviceService pInput)
 		{
 			mService = pInput;
-			Task.Factory.StartNew(Build);
+			Build();
 		}
 		~ServiceBLE()
 		{
-			Debug.WriteLine("De-registering service");
+			Debug.WriteLine("Deregistering Service.");
 			Remake();
-			mService.Dispose();
 			mService = null;
 			Characteristics = null;
 		}

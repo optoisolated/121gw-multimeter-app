@@ -11,26 +11,14 @@ namespace App_121GW.BLE
 		private GattCharacteristic mCharacteristic;
 		public event ChangeEvent ValueChanged;
 
-		void TriggerChange(GattCharacteristic sender, CharacteristicEvent ChangeEvent)
-		{
-			ValueChanged?.Invoke(sender, ChangeEvent);
-		}
+		void TriggerChange(GattCharacteristic sender, CharacteristicEvent ChangeEvent) => ValueChanged?.Invoke(sender, ChangeEvent);
 
-		public bool Send(string pInput)
-		{
-			Task.Factory.StartNew(async () => await mCharacteristic.WriteValueAsync(CryptographicBuffer.ConvertStringToBinary(pInput, BinaryStringEncoding.Utf8)));
-			return true;
-		}
-		public bool Send(byte[] pInput)
-		{
-			Task.Factory.StartNew(async () => await mCharacteristic.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(pInput)));
-            return true;
-		}
+		public void Send(string pInput) => Task.Factory.StartNew(async () => await mCharacteristic.WriteValueAsync(CryptographicBuffer.ConvertStringToBinary(pInput, BinaryStringEncoding.Utf8)));
+		public void Send(byte[] pInput) => Task.Factory.StartNew(async () => await mCharacteristic.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(pInput)));
 
 		//Event that is called when the value of the characteristic is changed
 		private void CharacteristicEvent_ValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
 		{
-			Debug.WriteLine("Value changed");
 			CryptographicBuffer.CopyToByteArray(args.CharacteristicValue, out byte[] data);
 			TriggerChange(sender, new CharacteristicEvent(data));
 		}
@@ -41,16 +29,14 @@ namespace App_121GW.BLE
 			if ((properties & indicate_mask) != 0)
 			{
 				Debug.WriteLine("Setting up Indicate.");
-                var obj2 = await mCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate);
+				await mCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate);
 				mCharacteristic.ValueChanged += CharacteristicEvent_ValueChanged;
 			}
 		}
 		public void Remake()
 		{
-			if (mCharacteristic == null) return;
-
-			try { mCharacteristic.ValueChanged -= CharacteristicEvent_ValueChanged; }
-			catch { }
+			if (mCharacteristic != null)
+				mCharacteristic.ValueChanged -= CharacteristicEvent_ValueChanged;
 		}
 
 		public CharacteristicBLE(GattCharacteristic pInput)

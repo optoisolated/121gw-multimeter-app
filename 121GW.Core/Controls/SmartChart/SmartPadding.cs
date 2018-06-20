@@ -15,12 +15,12 @@ namespace App_121GW
 		private float OtherSide(float Val) => 1 - Val;
 
 		//These get the pixel coordinates of the padding
-		public float LeftPosition(float Width) => Left * Width;
-		public float RightPosition(float Width) => OtherSide(Right) * Width;
-		public float TopPosition(float Height) => Top * Height;
-		public float BottomPosition(float Height) => OtherSide(Bottom) * Height;
-		public float PaddedWidth(float Width) => Width * (1 - (Left + Right));
-		public float PaddedHeight(float Height) => Height * (1 - (Top + Bottom));
+		public float LeftPosition	(float Width)	=> Left * Width;
+		public float RightPosition	(float Width)	=> OtherSide(Right) * Width;
+		public float TopPosition	(float Height)	=> Top * Height;
+		public float BottomPosition	(float Height)	=> OtherSide(Bottom) * Height;
+		public float PaddedWidth	(float Width)	=> Width * (1 - (Left + Right));
+		public float PaddedHeight	(float Height)	=> Height * (1 - (Top + Bottom));
 		
 		//This returns the paddnig rectangle
 		public SKRect Rectangle(float Height, float Width)

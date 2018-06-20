@@ -16,15 +16,12 @@ namespace App_121GW
 			Screen
 		}
 
-		private readonly float FrameLength = 10;
-		private readonly LoggerMode Mode = LoggerMode.Rescaling;
-		private DateTime DataStart = DateTime.Now;
-		public  ObservableList<SKPoint> Data = new ObservableList<SKPoint>();
+		private readonly float			FrameLength = 10;
+		private readonly LoggerMode		Mode		= LoggerMode.Rescaling;
+		private DateTime				DataStart	= DateTime.Now;
+		public  ObservableList<SKPoint> Data		= new ObservableList<SKPoint>();
 
-		public void Reset()
-		{
-			Data.Clear();
-		}
+		public void Reset() => Data.Clear();
 		public void Sample(float pValue)
 		{
 			TimeSpan t_diff = (Data.Count == 0) ? ((DataStart = DateTime.Now).Subtract(DataStart)) : DateTime.Now.Subtract(DataStart);

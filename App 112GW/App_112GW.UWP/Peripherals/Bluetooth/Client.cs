@@ -97,7 +97,7 @@ namespace App_121GW.BLE
 		}
 		~ClientBLE()
 		{
-			if (mDeviceWatcher != null)
+			if ( mDeviceWatcher != null )
 			{
 				// Unregister the event handlers.
 				mDeviceWatcher.Added	-=  DeviceWatcher_Added;

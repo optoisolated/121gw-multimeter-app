@@ -11,12 +11,19 @@ namespace App_121GW.BLE
         public volatile ICharacteristic mCharacteristic;
         public event ChangeEvent ValueChanged;
 
-        public bool Send(string pInput) => Send(Encoding.UTF8.GetBytes(pInput));
-        public bool Send(byte[] pInput)
-		{
-			Task.Factory.StartNew(async () => await mCharacteristic.WriteAsync(pInput));
-			return true;
-		}
+        public void Send(string pInput) => Send(Encoding.UTF8.GetBytes(pInput));
+        public void Send(byte[] pInput)
+        {
+            try
+			{
+				Task.Factory.StartNew(async () => await mCharacteristic.WriteAsync(pInput));
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Failed to Send.");
+                Debug.WriteLine(e);
+            }
+        }
 
         //Event that is called when the value of the characteristic is changed
         private void CharacteristicEvent_ValueChanged(object sender, Plugin.BLE.Abstractions.EventArgs.CharacteristicUpdatedEventArgs args)
@@ -39,13 +46,8 @@ namespace App_121GW.BLE
 
 		public void Remake()
 		{
-			if (mCharacteristic == null) return;
-
-			Debug.WriteLine("Characteristic remaking");
-
-			if (mCharacteristic.CanUpdate)
-				mCharacteristic.ValueUpdated -= CharacteristicEvent_ValueChanged;
-
+			Debug.WriteLine("Characteristic remaking...");
+			mCharacteristic.ValueUpdated -= CharacteristicEvent_ValueChanged;
 			mCharacteristic = null;
 			ValueChanged = null;
 		}

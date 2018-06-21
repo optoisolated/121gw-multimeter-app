@@ -18,7 +18,7 @@ namespace App_121GW
 		private void AddDevice(MultimeterPage Device)
 		{
             MathChart.AddDevice(Device);
-
+			
 			if (Children.Count >= 2)
 				if (MathChart.Devices.Count == 2)
 					Children.Insert(1, new GeneralPage("Maths", MathChart));

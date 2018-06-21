@@ -17,20 +17,20 @@ using UIKit;
 using Xamarin.Forms.Internals;
 using static Xamarin.Forms.PlatformConfiguration.iOSSpecific.Page;
 
-[assembly: ExportRenderer(typeof(TabbedPage), typeof(ExtendedTabbedPageRenderer))]
-namespace TabbedPageDemo.iOS
-{
-	public class ExtendedTabbedPageRenderer : TabbedRenderer
-	{
-		protected override async Task<Tuple<UIImage, UIImage>> GetIcon(Page page)
-		{
-			if (!string.IsNullOrEmpty(page.Icon?.File))
-			{
-				var source = global::Xamarin.Forms.Internals.Registrar.Registered.GetHandlerForObject<IImageSourceHandler>(page.Icon);
-				var icon = await source.LoadImageAsync(page.Icon);
-				return Tuple.Create(icon, (UIImage)null);
-			}
-			return null;
-		}
-	};
-}
+//[assembly: ExportRenderer(typeof(TabbedPage), typeof(ExtendedTabbedPageRenderer))]
+//namespace TabbedPageDemo.iOS
+//{
+//	public class ExtendedTabbedPageRenderer : TabbedRenderer
+//	{
+//		protected override async Task<Tuple<UIImage, UIImage>> GetIcon(Page page)
+//		{
+//			if (!string.IsNullOrEmpty(page.Icon?.File))
+//			{
+//				var source = global::Xamarin.Forms.Internals.Registrar.Registered.GetHandlerForObject<IImageSourceHandler>(page.Icon);
+//				var icon = await source.LoadImageAsync(page.Icon);
+//				return Tuple.Create(icon, (UIImage)null);
+//			}
+//			return null;
+//		}
+//	};
+//}

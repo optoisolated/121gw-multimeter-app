@@ -367,20 +367,20 @@ namespace App_121GW
 						SetLayer(LowZ, true);
 						SetLayer(SegV, true);
 						break;
-					case Packet121GW.eMode.DCV:
-						SetLayer(SegV, true);
-						break;
-					case Packet121GW.eMode.ACV:
-						SetLayer(SegV, true);
-						break;
 					case Packet121GW.eMode.DCmV:
 						SetLayer(SegV, true);
 						SetLayer(SegmV, true);
+						break;
+					case Packet121GW.eMode.DCV:
+						SetLayer(SegV, true);
 						break;
 					case Packet121GW.eMode.ACmV:
 						SetLayer(AC, true);
 						SetLayer(SegV, true);
 						SetLayer(SegmV, true);
+						break;
+					case Packet121GW.eMode.ACV:
+						SetLayer(SegV, true);
 						break;
 					case Packet121GW.eMode.Temp:
 					case Packet121GW.eMode.TempC:
@@ -537,21 +537,20 @@ namespace App_121GW
 						}
 					}
 
-					//Setup the SI units outputs
-					var units = value.MainRangeUnits;
-					switch (units)
-					{
-						case 'm':   SetLayer(SegmV, true);  break;
-						case 'M':   SetLayer(SegM,  true);  break;
-						case 'k':   SetLayer(Segk,  true);  break;
-						case 'u':   SetLayer(Segu,  true);  break;
-						case 'n':   SetLayer(Segn,  true);  break;
-					};
-
 					//Output the value to the emulated LCD
 					outstring = outstring.PadLeft(5, ' ').Replace(" .", "0.");
 					LargeSegmentsWord = outstring;
 				}
+				//Setup the SI units outputs
+				var units = value.MainRangeUnits;
+				switch (units)
+				{
+					case 'm': SetLayer(SegmV, true); break;
+					case 'M': SetLayer(SegM, true); break;
+					case 'k': SetLayer(Segk, true); break;
+					case 'u': SetLayer(Segu, true); break;
+					case 'n': SetLayer(Segn, true); break;
+				};
 			}
 		}
 		private Packet121GW.eMode _SubMode;
@@ -582,7 +581,7 @@ namespace App_121GW
 						break;
 					case Packet121GW.eMode.ACmV:
 						SetLayer(AC,	true);
-						SetLayer(SegV,  true);
+						SetLayer(SubV,  true);
 						SetLayer(Subm,  true);
 						break;
 					case Packet121GW.eMode.Temp:
@@ -602,6 +601,7 @@ namespace App_121GW
 					case Packet121GW.eMode.Continuity:
 						break;
 					case Packet121GW.eMode.Diode:
+						SetLayer(SubV, true);
 						break;
 					case Packet121GW.eMode.Capacitor:
 						break;
@@ -967,7 +967,7 @@ namespace App_121GW
 		private void Redraw()
 		{
             RedrawLayers();
-            InvalidateSurface();
+			Invalidate();
 		}
 		private void Invalidate() => InvalidateSurface();
 

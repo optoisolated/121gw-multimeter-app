@@ -11,7 +11,6 @@ namespace App_121GW
 {
 	public class CustomTabbedPageRenderer : TabbedPageRenderer
 	{
-
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
 			base.OnElementChanged(e);

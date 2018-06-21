@@ -13,13 +13,15 @@ namespace App_121GW
 		private Settings SettingsView = new Settings();
         private MathChart MathChart = new MathChart();
 
-        private void AddPage(string Title, View Content) => Children.Add(new GeneralPage(Title, Content));
+        private void AddPage(string Title, View Content, string Icon = null) => Children.Add(new GeneralPage(Title, Content, Icon));
 
 		private void AddDevice(MultimeterPage Device)
 		{
             MathChart.AddDevice(Device);
-			if (MathChart.Devices.Count == 1)
-				AddPage("< Maths >", MathChart);
+
+			if (Children.Count >= 2)
+				if (MathChart.Devices.Count == 2)
+					Children.Insert(1, new GeneralPage("Maths", MathChart));
         }
 		private void Button_AddDevice(IDeviceBLE pDevice)
 		{
@@ -50,7 +52,7 @@ namespace App_121GW
             BackgroundColor = Globals.BackgroundColor;
 			SettingsView.AddDevice += Button_AddDevice;
 
-            AddPage("< Settings >", SettingsView);
+            AddPage("Settings", SettingsView);
 		}
     }
 }

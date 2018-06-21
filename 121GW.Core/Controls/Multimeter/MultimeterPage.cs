@@ -5,9 +5,8 @@ namespace App_121GW
 	public class MultimeterPage : GeneralPage
     {
         public Multimeter Device { get; set; }
-        public MultimeterPage(IDeviceBLE pDevice) : base ("", new Multimeter(pDevice))
+        public MultimeterPage(IDeviceBLE pDevice) : base ("Test", new Multimeter(pDevice), "Multimeter")
         {
-            base.Title = "Test";
             Device = Content as Multimeter;
             Device.PropertyChanged += Device_PropertyChanged;
         }

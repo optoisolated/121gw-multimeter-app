@@ -64,14 +64,14 @@ namespace App_121GW
 		{
 			get
 			{
-				return (float)Device.GetNamedSize(NamedSize.Medium, typeof(Label)); ;
+				return (float)Device.GetNamedSize(NamedSize.Default, typeof(Label)); ;
 			}
 		}
 		public static float     MinorFontSize
 		{
 			get
 			{
-				return (float)Device.GetNamedSize(NamedSize.Medium, typeof(Label)); ;
+				return (float)Device.GetNamedSize(NamedSize.Small, typeof(Label)); ;
 			}
 		}
 
@@ -85,15 +85,8 @@ namespace App_121GW
 			return output;
 		}
 		public static float     RandomBetween(float min, float max) => (float)RandomBetween((double)min, (double)max);
+		public static int BorderWidth { get; } = 3;
 
-		private static int      _BorderWidth = 3;
-		public static int       BorderWidth
-		{
-			get
-			{
-				return _BorderWidth;
-			}
-		}
 		private static double   Brightness(Color A)
 		{
 			return A.Luminosity;
@@ -183,19 +176,7 @@ namespace App_121GW
 				return Color.Black;
 			}
 		}
-
-		private static double   _Padding = 3.0f;
-		public static double    Padding
-		{
-			get
-			{
-				return _Padding;
-			}
-			set
-			{
-				_Padding = value;
-			}
-		}
+		public static double Padding { get; set; } = 3.0f;
 
 		public static Color     UniqueColor(Range ContrastRange)
 		{

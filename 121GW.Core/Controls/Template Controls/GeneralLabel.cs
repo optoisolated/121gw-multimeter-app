@@ -9,7 +9,7 @@ namespace App_121GW
 			HorizontalOptions = LayoutOptions.CenterAndExpand;
 			VerticalOptions = LayoutOptions.CenterAndExpand;
 			TextColor = Globals.TextColor;
-			FontSize = Globals.MinorFontSize;
+			FontSize = Globals.MajorFontSize;
 		}
 	}
 }

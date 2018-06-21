@@ -6,9 +6,11 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using System.Diagnostics;
 
 using System.Collections;
+using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
+
 namespace App_121GW
 {
-	public partial class MainPage : Xamarin.Forms.TabbedPage
+	public partial class MainPage : GeneralTabbedPage
 	{
 		private Settings SettingsView = new Settings();
         private MathChart MathChart = new MathChart();
@@ -17,7 +19,10 @@ namespace App_121GW
 
 		private void AddDevice(MultimeterPage Device)
 		{
-            MathChart.AddDevice(Device);
+			On<Windows>().SetHeaderIconsEnabled(true);
+			On<Windows>().EnableHeaderIcons();
+			On<Windows>().SetHeaderIconsSize(new Size(32, 32));
+			MathChart.AddDevice(Device);
 			
 			if (Children.Count >= 2)
 				if (MathChart.Devices.Count == 2)

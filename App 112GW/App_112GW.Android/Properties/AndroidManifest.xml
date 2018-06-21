@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="eevblog.x121gw" android:versionCode="7" android:versionName="1">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="eevblog.x121gw" android:versionCode="8" android:versionName="1">
 	<uses-sdk />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<application android:label="121GW.Android" android:hardwareAccelerated="true"></application>
 </manifest>

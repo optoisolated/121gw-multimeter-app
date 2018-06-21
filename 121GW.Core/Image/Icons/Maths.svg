@@ -16,9 +16,9 @@
    id="svg4603"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="Maths.svg"
-   inkscape:export-filename="C:\Users\David\Maths@x3.png"
-   inkscape:export-xdpi="285.75"
-   inkscape:export-ydpi="285.75">
+   inkscape:export-filename="G:\David Ledger\Documents\Visual Studio 2017\Projects\App 112GW\121GW.Core\Image\Icons\Maths.png"
+   inkscape:export-xdpi="406.39999"
+   inkscape:export-ydpi="406.39999">
   <defs
      id="defs4597" />
   <sodipodi:namedview
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="-12.638454"
+     inkscape:cx="-27.10274"
      inkscape:cy="22.966177"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -37,7 +37,7 @@
      inkscape:snap-object-midpoints="true"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="-8"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
@@ -61,7 +61,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -101,6 +101,6 @@
          id="tspan5213"
          x="22.5"
          y="297.04211"
-         style="stroke-width:0.26458332"></tspan></text>
+         style="stroke-width:0.26458332" /></text>
   </g>
 </svg>

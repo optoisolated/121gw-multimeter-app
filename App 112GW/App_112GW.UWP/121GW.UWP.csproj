@@ -146,11 +146,14 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Settings.png" />
     <None Include="App_112GW.UWP_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Package.xml" />
+    <Content Include="Maths.png" />
+    <Content Include="Multimeter.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-100.png" />

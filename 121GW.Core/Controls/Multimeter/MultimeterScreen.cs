@@ -807,6 +807,8 @@ namespace App_121GW
 						SetLayer(AC, true);
 						break;
 					case Packet121GW.eAD_DC.eACDC:
+						SetLayer(DC, true);
+						SetLayer(AC, true);
 						SetLayer(DC_Plus_AC, true);
 						break;
 					case Packet121GW.eAD_DC.eNone:

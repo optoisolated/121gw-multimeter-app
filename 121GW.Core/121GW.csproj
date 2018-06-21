@@ -29,6 +29,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Image\Icons\Maths.svg" />
     <None Remove="Image\Icons\Multimeter.svg" />
     <None Remove="Image\Icons\Settings.svg" />
     <None Remove="Image\Layer Resources\!bar_range.svg" />
@@ -209,8 +210,6 @@
     <None Remove="Image\Layer Resources\TEST.svg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Image\Icons\Multimeter.svg" />
-    <EmbeddedResource Include="Image\Icons\Settings.svg" />
     <EmbeddedResource Include="Image\Layer Resources\!bar_range.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -740,6 +739,9 @@
     <EmbeddedResource Update="Image\Layer Resources\Sub%25.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\Icons\" />
   </ItemGroup>
 
 </Project>

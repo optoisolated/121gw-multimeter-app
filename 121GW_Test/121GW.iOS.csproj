@@ -91,7 +91,6 @@
     <Compile Include="Peripherals\Files\Files.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderer\TabbedPageRenderer.cs" />
     <BundleResource Include="Resources\Multimeter%40x2.png" />
     <BundleResource Include="Resources\Multimeter%40x3.png" />
     <BundleResource Include="Resources\Settings.png" />
@@ -224,7 +223,9 @@
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Renderer\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\121GW.Core\121GW.csproj">
       <Project>{b4cee817-34ed-4ebc-93cb-e775d485a052}</Project>

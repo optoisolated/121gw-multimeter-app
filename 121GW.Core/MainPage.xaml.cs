@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 using System.Collections;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
+using Xamarin.Forms.Xaml;
 
 namespace App_121GW
 {

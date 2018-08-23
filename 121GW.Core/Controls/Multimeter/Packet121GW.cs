@@ -110,7 +110,7 @@ namespace App_121GW
 			new Range121GW("mVA",   "Power AC (VA)",        new int[]{4,5,2,3}      ,"mm  "     ),      //15
 			new Range121GW("uA",    "Current AC (A)",       new int[]{2,3}          ,"  "       ),      //16
 			new Range121GW("uA",    "Current DC (A)",       new int[]{2,3}          ,"  "       ),      //17
-			new Range121GW("mA",    "Current AC (A)",       new int[]{3,1,2}        ,"mmm"      ),      //18
+			new Range121GW("mA",    "Current AC (A)",       new int[]{1,2}          ,"mm"       ),      //18
 			new Range121GW("mA",    "Current DC (A)",       new int[]{1,2}          ,"mm"       ),      //19
 			new Range121GW("A",     "Current AC (A)",       new int[]{3,1,2}        ,"m  "      ),      //20
 			new Range121GW("A",     "Current DC (A)",       new int[]{3,1,2}        ,"m  "      ),      //21

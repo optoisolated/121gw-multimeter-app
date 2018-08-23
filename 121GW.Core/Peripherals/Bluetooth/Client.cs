@@ -67,7 +67,13 @@ namespace App_121GW.BLE
 
 						if (add && (pInput.Name.Length > 0))
 							if (mFilter.IdAccepted(pInput) && mFilter.NameAccepted(pInput))
-								VisibleDevices.Add(pInput);
+							{
+								foreach (var item in ConnectedDevices)
+									if (item.Id.GetHashCode() == pInput.Id.GetHashCode())
+										add = false;
+
+								if (add) VisibleDevices.Add(pInput);
+							}
 					}, "Adding");
                 }
                 catch ( Exception e )
